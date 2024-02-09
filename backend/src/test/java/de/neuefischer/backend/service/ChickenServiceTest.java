@@ -4,15 +4,10 @@ import de.neuefischer.backend.modul.Chicken;
 import de.neuefischer.backend.repository.ChickensRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ChickenServiceTest {
