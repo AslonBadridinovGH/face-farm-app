@@ -9,8 +9,8 @@ import java.time.LocalDate;
 public record Chicken(
         @Id
         String id,
-        String race, Integer weightInFirstDay, Integer expectedSlaughterWeight,
-        Integer expectedSlaughterAge,Double feedConversion, String hatchery,
+        String race, Double weightInFirstDay, Double expectedSlaughterWeight,
+        Integer expectedSlaughterAge, Double feedConversion, String hatchery,
         LocalDate hatchDay
         ) {
 }

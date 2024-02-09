@@ -31,7 +31,7 @@ public class ChickenController {
         return chickenService.addChicken(chickenDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Chicken updateChicken(@RequestBody Chicken chicken){
         return chickenService.updateChicken(chicken);
     }

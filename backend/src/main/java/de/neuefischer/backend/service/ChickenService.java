@@ -3,7 +3,9 @@ package de.neuefischer.backend.service;
 import de.neuefischer.backend.dto.ChickenDto;
 import de.neuefischer.backend.modul.Chicken;
 import de.neuefischer.backend.repository.ChickensRepo;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -59,7 +61,7 @@ public class ChickenService {
         if (byId.isPresent()){
             return byId.get();
         }
-        throw (new NoSuchElementException());
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
     }
 
     public Chicken deleteChickenById(String id) {
@@ -71,6 +73,5 @@ public class ChickenService {
         }
         throw (new NoSuchElementException());
     }
-
 
 }
