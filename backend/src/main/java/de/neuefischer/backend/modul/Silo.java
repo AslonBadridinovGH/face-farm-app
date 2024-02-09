@@ -1,6 +1,15 @@
 package de.neuefischer.backend.modul;
 
+import lombok.With;
+import org.springframework.data.annotation.Id;
+
+import java.util.List;
+
+@With
 public record Silo(
-    Integer numberOfSilo, Integer capacity,
-    Feed feed, Integer amountOfFeed ) {
-}
+        @Id
+        String id,
+        Integer numberOfSilo,
+        Integer capacity,
+        Integer amountOfFeed,
+        List <Feed> feed ) {}

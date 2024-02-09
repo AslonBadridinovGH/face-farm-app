@@ -35,7 +35,7 @@ public class ChickenService {
         if (byId.isPresent()){
             return byId.get();
         }
-        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No chicken with such id!"));
     }
 
     public Chicken addChicken(ChickenDto chickenDto) {
