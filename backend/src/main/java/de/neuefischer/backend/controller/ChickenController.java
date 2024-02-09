@@ -36,10 +36,10 @@ public class ChickenController {
         return chickenService.updateChicken(chicken);
     }
 
+
     @DeleteMapping("/{id}")
     public Chicken deleteChicken(@PathVariable String id){
            return chickenService.deleteChickenById(id);
     }
-
 
 }

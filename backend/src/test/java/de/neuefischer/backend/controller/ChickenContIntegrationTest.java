@@ -36,19 +36,7 @@ public class ChickenContIntegrationTest {
     @Test
     void getChickensTest_shouldReturnListWithOneObject_whenOneObjectWasSavedInRepository() throws Exception {
 
-        String dateString = "2024-02-12";
-        LocalDate date = null;
-        try {
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            // Parse the string to a LocalDate object
-            date = LocalDate.parse(dateString, formatter);
-
-        } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
-        }
+        LocalDate date = LocalDate.of(2024, 2, 12);
 
         chickensRepo.save(
         new Chicken("1","ross308", 0.4, 2.8, 40, 1.6,
@@ -84,19 +72,7 @@ public class ChickenContIntegrationTest {
     @Test
     void getChickenByIdTest_shouldReturnObjectWithTheId() throws Exception {
 
-        String dateString = "2024-02-12";
-        LocalDate date = null;
-        try {
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            // Parse the string to a LocalDate object
-            date = LocalDate.parse(dateString, formatter);
-
-        } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
-        }
+        LocalDate date = LocalDate.of(2024, 2, 12);
 
         Chicken savedBook = chickensRepo.save(
                 new Chicken("1", "ross308", 0.4, 2.8, 40,
@@ -167,19 +143,7 @@ public class ChickenContIntegrationTest {
     void putChickenTest_shouldReturnChickenUpdatedChicken_whenUpdatedChickenSent() throws Exception {
 
         // GIVEN
-        String dateString = "2024-02-12";
-        LocalDate date = null;
-        try {
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            // Parse the string to a LocalDate object
-            date = LocalDate.parse(dateString, formatter);
-
-        } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
-        }
+        LocalDate date = LocalDate.of(2024, 2, 12);
 
         chickensRepo.save(
                 new Chicken("1","ross308", 0.4, 2.8, 40, 1.6,
@@ -225,19 +189,7 @@ public class ChickenContIntegrationTest {
     @Test
     void getChickenByNoExistingIdTest_shouldReturnNoObject() throws Exception {
 
-        String dateString = "2024-02-12";
-        LocalDate date = null;
-        try {
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            // Parse the string to a LocalDate object
-            date = LocalDate.parse(dateString, formatter);
-
-        } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
-        }
+        LocalDate date = LocalDate.of(2024, 2, 12);
 
         //GIVEN
         chickensRepo.save(
@@ -259,19 +211,7 @@ public class ChickenContIntegrationTest {
     void deleteChicken_shouldReturnChicken_whenThisObjectWasDeletedFromRepository() throws Exception{
 
         // GIVEN
-        String dateString = "2024-02-12";
-        LocalDate date = null;
-        try {
-            // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            // Parse the string to a LocalDate object
-            date = LocalDate.parse(dateString, formatter);
-
-        } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
-        }
+        LocalDate date = LocalDate.of(2024, 2, 12);
 
         Chicken savedBook = chickensRepo.save(
                 new Chicken("1", "ross308", 0.4, 2.8, 40,

@@ -25,8 +25,17 @@ public class ChickenService {
         this.idService = idService;
     }
 
+
     public List<Chicken> getChickens() {
         return chickensRepo.findAll();
+    }
+
+    public Chicken getById(String id) {
+        Optional<Chicken> byId = chickensRepo.findById(id);
+        if (byId.isPresent()){
+            return byId.get();
+        }
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
     }
 
     public Chicken addChicken(ChickenDto chickenDto) {
@@ -54,14 +63,6 @@ public class ChickenService {
 
     public Chicken updateChicken(Chicken chicken){
          return chickensRepo.save(chicken);
-    }
-
-    public Chicken getById(String id) {
-        Optional<Chicken> byId = chickensRepo.findById(id);
-        if (byId.isPresent()){
-            return byId.get();
-        }
-        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
     }
 
     public Chicken deleteChickenById(String id) {

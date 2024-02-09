@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @With
 public record Chicken(
         @Id
-        String id,
-        String race, Double weightInFirstDay, Double expectedSlaughterWeight,
+        String id, String race, Double weightInFirstDay, Double expectedSlaughterWeight,
         Integer expectedSlaughterAge, Double feedConversion, String hatchery,
         LocalDate hatchDay
+
         ) {
 }
