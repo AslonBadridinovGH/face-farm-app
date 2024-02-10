@@ -47,16 +47,16 @@ public class ChickenContIntegrationTest {
                         [
                                 
                            {
-                                  "id": "1",
+                                   "id": "1",
                                    "race": "ross308",
-                                    "weightInFirstDay": 0.4,
-                                     "expectedSlaughterWeight": 2.8,
+                                   "weightInFirstDay": 0.4,
+                                   "expectedSlaughterWeight": 2.8,
                                    "expectedSlaughterAge": 40,
-                                    "feedConversion": 1.6,
-                                     "hatchery": "kwh",
-                                   "hatchDay": "2024-02-12" 
+                                   "feedConversion": 1.6,
+                                   "hatchery": "kwh",
+                                   "hatchDay": "2024-02-12"
                            }
-                        ] 
+                        ]
                          
                         """));
 
@@ -87,7 +87,7 @@ public class ChickenContIntegrationTest {
                                            "expectedSlaughterAge": 40,
                                            "feedConversion": 1.6,
                                            "hatchery": "kwh",
-                                           "hatchDay": "2024-02-12" 
+                                           "hatchDay": "2024-02-12"
                                       }
                                 """
                 ))
@@ -106,14 +106,14 @@ public class ChickenContIntegrationTest {
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-             { 
+             {
                  "race": "ross308",
                   "weightInFirstDay": 0.4,
                   "expectedSlaughterWeight": 2.8,
                   "expectedSlaughterAge": 40,
                   "feedConversion": 1.6,
                   "hatchery": "kwh",
-                  "hatchDay": "2024-02-12"      
+                  "hatchDay": "2024-02-12"    
              }
 """))
                 .andExpect(status().isOk())
@@ -126,7 +126,7 @@ public class ChickenContIntegrationTest {
                   "expectedSlaughterAge": 40,
                   "feedConversion": 1.6,
                   "hatchery": "kwh",
-                  "hatchDay": "2024-02-12"      
+                  "hatchDay": "2024-02-12"
              }
 """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
@@ -135,17 +135,16 @@ public class ChickenContIntegrationTest {
 
     @DirtiesContext
     @Test
-    void putChickenTest_shouldReturnChickenUpdatedChicken_whenUpdatedChickenSent() throws Exception {
+    void putChickenTest_shouldReturnUpdatedChicken_whenUpdatedChickenSent() throws Exception {
 
         // GIVEN
         LocalDate date = LocalDate.of(2024, 2, 12);
 
         chickensRepo.save(
-                new Chicken("1","ross308", 0.4, 2.8, 40, 1.6,
-                        "kwh", date));
+                new Chicken("1","ross308", 0.4, 2.8, 40,
+                        1.6, "kwh", date));
 
         // WHEN
-
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/chicken/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
@@ -172,12 +171,12 @@ public class ChickenContIntegrationTest {
                                           "expectedSlaughterAge": 39,
                                           "feedConversion": 1.5,
                                           "hatchery": "kwh",
-                                          "hatchDay": "2024-02-11"    
+                                          "hatchDay": "2024-02-11"   
                                        }
 
                         """))
                 .andReturn();
-        assertEquals(200,mvcResult.getResponse().getStatus());
+        assertEquals(200, mvcResult.getResponse().getStatus());
     }
 
     @DirtiesContext
@@ -208,7 +207,7 @@ public class ChickenContIntegrationTest {
         // GIVEN
         LocalDate date = LocalDate.of(2024, 2, 12);
 
-        Chicken savedBook = chickensRepo.save(
+        chickensRepo.save(
                 new Chicken("1", "ross308", 0.4, 2.8, 40,
                         1.6, "kwh", date));
 
