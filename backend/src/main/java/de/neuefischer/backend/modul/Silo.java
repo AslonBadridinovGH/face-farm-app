@@ -13,4 +13,4 @@ public record Silo(
         Integer numberOfSilo,
         Integer capacity,
         Integer amountOfFeed,
-        List<Feed>feeds ) {}
+        List<Feed> feeds ) {}

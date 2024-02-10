@@ -7,5 +7,5 @@ public record SiloDto(
         Integer  numberOfSilo,
         Integer  capacity,
         Integer  amountOfFeed,
-        String[] feedIds) {
+        String [] feedIds) {
 }

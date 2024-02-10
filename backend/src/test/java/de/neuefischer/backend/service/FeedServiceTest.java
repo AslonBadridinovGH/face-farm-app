@@ -1,13 +1,10 @@
 package de.neuefischer.backend.service;
-
 import de.neuefischer.backend.dto.FeedDto;
 import de.neuefischer.backend.modul.Feed;
 import de.neuefischer.backend.repository.FeedsRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,16 +19,9 @@ public class FeedServiceTest {
     @Test
     void getFeedTest_returnListOfAllFeed(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
-
         // GIVEN
         Mockito.when(feedsRepo.findAll()).thenReturn(
-                List.of(
-                new Feed("1", "classic", 0.5, 2.8, 40,
-                        1.6, "kwh", date),
-                new Feed("2", "ross308", 0.4, 2.8, 40,
-                        1.6, "kwh", date)
-               )
+                List.of(new Feed("1", "2220", "starter", "desc", 0.5))
         );
 
         FeedService feedService = new FeedService(feedsRepo, idService);
@@ -40,30 +30,24 @@ public class FeedServiceTest {
         List<Feed> actual = feedService.getFeeds();
 
         // THEN
-        assertEquals(List.of(
-                new Feed("1", "classic", 0.5, 2.8, 40,
-                        1.6, "kwh", date),
-                new Feed("2", "ross308", 0.4, 2.8, 40,
-                        1.6, "kwh", date)
-        ), actual);
+        assertEquals(
+           List.of(new Feed("1", "2220", "starter", "desc", 0.5)), actual);
 
         Mockito.verify(feedsRepo, Mockito.times(1)).findAll();
         Mockito.verifyNoMoreInteractions(feedsRepo);
     }
 
-    @Test
+  @Test
     void getFeedByIdTest_returnOneFeed(){
 
-        LocalDate localDate = LocalDate.of(2024, 2, 12);
 
         // GIVEN
          String expectedId = "1";
 
          Mockito.when(feedsRepo.findById(expectedId)).thenReturn(Optional.of(
-
-         new Feed("1","ross308", 0.5, 2.8, 40,
-                1.6, "kwh", localDate)
+                 new Feed("1", "2220", "starter", "desc", 0.5)
          ));
+
         FeedService feedService = new FeedService(feedsRepo, idService);
 
         //WHEN
@@ -74,19 +58,14 @@ public class FeedServiceTest {
         Assertions.assertEquals(expectedId, actual.id());
     }
 
+
     @Test
     void addFeedTest_returnFeed(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
 
-        String dateString = "2024-02-12";
+        FeedDto feedDto =  new FeedDto( "2220", "starter", "desc", 0.5);
 
-        FeedDto feedDto = new FeedDto("ross308", 0.5, 2.8, 40,
-                1.6, "kwh", dateString);
-
-
-        Feed feed =  new Feed("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+              Feed feed = new Feed("test-id", "2220", "starter", "desc", 0.5);
 
         // GIVEN
         Mockito.when(feedsRepo.save(feed)).thenReturn(feed);
@@ -101,22 +80,19 @@ public class FeedServiceTest {
         Mockito.verify(feedsRepo).save(feed);
         Mockito.verify(idService).newId();
 
-        Feed expected =  new Feed("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+        Feed expected =  new Feed("test-id", "2220", "starter", "desc", 0.5);
 
         assertEquals(expected, actual);
 
     }
 
+
     @Test
     void updateFeedTest_returnFeed(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
+        Feed updateFeed = new Feed("test-id", "2220", "starter", "desc", 0.5);
 
-        Feed updateFeed =  new Feed("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
-
-        Mockito.when(feedsRepo.save(Mockito.any())).thenReturn(updateFeed);
+        Mockito.when(feedsRepo.save(updateFeed)).thenReturn(updateFeed);
 
         FeedService feedService = new FeedService(feedsRepo, idService);
 
@@ -127,28 +103,22 @@ public class FeedServiceTest {
          assertEquals(updateFeed, actual);
          Mockito.verify(feedsRepo, Mockito.times(1)).save(updateFeed);
          Mockito.verifyNoMoreInteractions(feedsRepo);
-
-
-
     }
+
 
     @Test
     void deleteFeedTest_returnFeed(){
 
-        String id = "1";
-        LocalDate date = LocalDate.of(2024, 2, 12);
-
-        Feed feed = new Feed("1", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
-
         // GIVEN
-         Mockito.when(feedsRepo.findById(id)).thenReturn(Optional.of(feed));
+        String id = "1";
+
+        Feed feed = new Feed(id, "2220", "starter", "desc", 0.5);
+        Mockito.when(feedsRepo.findById(id)).thenReturn(Optional.of(feed));
 
          FeedService feedService = new FeedService(feedsRepo, idService);
          Feed actual = feedService.deleteFeedById(id);
 
         // WHEN
-
         assertEquals(feed, actual);
 
         Mockito.verify(feedsRepo, Mockito.times(1)).findById(id);
