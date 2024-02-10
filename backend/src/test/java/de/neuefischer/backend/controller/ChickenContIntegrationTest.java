@@ -69,11 +69,11 @@ public class ChickenContIntegrationTest {
 
         LocalDate date = LocalDate.of(2024, 2, 12);
 
-        Chicken savedBook = chickensRepo.save(
+        Chicken chicken = chickensRepo.save(
                 new Chicken("1", "ross308", 0.4, 2.8, 40,
                 1.6, "kwh", date));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chicken/{id}", savedBook.id()))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chicken/{id}", chicken.id()))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -113,7 +113,7 @@ public class ChickenContIntegrationTest {
                   "expectedSlaughterAge": 40,
                   "feedConversion": 1.6,
                   "hatchery": "kwh",
-                  "hatchDay": "2024-02-12"    
+                  "hatchDay": "2024-02-12"
              }
 """))
                 .andExpect(status().isOk())

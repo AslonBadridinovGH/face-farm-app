@@ -12,5 +12,5 @@ public record Silo(
         String id,
         Integer numberOfSilo,
         Integer capacity,
-        Integer amountOfFeed,
+        Double amountOfFeed,
         List<Feed> feeds ) {}

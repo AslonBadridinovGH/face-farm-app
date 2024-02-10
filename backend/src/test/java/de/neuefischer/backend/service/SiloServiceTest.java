@@ -1,13 +1,14 @@
 package de.neuefischer.backend.service;
 
 import de.neuefischer.backend.dto.SiloDto;
+import de.neuefischer.backend.modul.Feed;
 import de.neuefischer.backend.modul.Silo;
+import de.neuefischer.backend.repository.FeedsRepo;
 import de.neuefischer.backend.repository.SilosRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,145 +16,123 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SiloServiceTest {
 
-    SilosRepo chickensRepo = Mockito.mock(SilosRepo.class);
+    SilosRepo silosRepo = Mockito.mock(SilosRepo.class);
     IdService idService = Mockito.mock(IdService.class);
+    FeedsRepo feedsRepo = Mockito.mock(FeedsRepo.class);
 
 
     @Test
     void getSiloTest_returnListOfAllSilo(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
-
         // GIVEN
-        Mockito.when(chickensRepo.findAll()).thenReturn(
+        Mockito.when(silosRepo.findAll()).thenReturn(
                 List.of(
-                new Silo("1", "classic", 0.5, 2.8, 40,
-                        1.6, "kwh", date),
-                new Silo("2", "ross308", 0.4, 2.8, 40,
-                        1.6, "kwh", date)
+                   new Silo("1", 1, 10, 2.5, new ArrayList<Feed>()),
+                   new Silo("2", 2, 11, 3.5, new ArrayList<Feed>())
                )
         );
 
-        SiloService chickenService = new SiloService(chickensRepo, idService);
+        SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
 
         // WHEN
-        List<Silo> actual = chickenService.getSilos();
+        List<Silo> actual = siloService.getSilos();
 
         // THEN
         assertEquals(List.of(
-                new Silo("1", "classic", 0.5, 2.8, 40,
-                        1.6, "kwh", date),
-                new Silo("2", "ross308", 0.4, 2.8, 40,
-                        1.6, "kwh", date)
+                new Silo("1", 1, 10, 2.5, new ArrayList<Feed>()),
+                new Silo("2", 2, 11, 3.5, new ArrayList<Feed>())
         ), actual);
 
-        Mockito.verify(chickensRepo, Mockito.times(1)).findAll();
-        Mockito.verifyNoMoreInteractions(chickensRepo);
+        Mockito.verify(silosRepo, Mockito.times(1)).findAll();
+        Mockito.verifyNoMoreInteractions(silosRepo);
     }
 
     @Test
     void getSiloByIdTest_returnOneSilo(){
 
-        LocalDate localDate = LocalDate.of(2024, 2, 12);
-
         // GIVEN
-         String expectedId = "1";
+         String id = "1";
 
-         Mockito.when(chickensRepo.findById(expectedId)).thenReturn(Optional.of(
-
-         new Silo("1","ross308", 0.5, 2.8, 40,
-                1.6, "kwh", localDate)
+         Mockito.when(silosRepo.findById(id)).thenReturn(Optional.of(
+             new Silo("1", 1, 10, 2.5, new ArrayList<Feed>())
          ));
-        SiloService chickenService = new SiloService(chickensRepo, idService);
+
+        SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
 
         //WHEN
-        Silo actual = chickenService.getById(expectedId);
+        Silo actual = siloService.getById(id);
 
         // THEN
         Assertions.assertNotNull(actual);
-        Assertions.assertEquals(expectedId, actual.id());
+        Assertions.assertEquals(id, actual.id());
     }
 
     @Test
     void addSiloTest_returnSilo(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
 
-        String dateString = "2024-02-12";
-
-        SiloDto chickenDto = new SiloDto("ross308", 0.5, 2.8, 40,
-                1.6, "kwh", dateString);
-
-
-        Silo chicken =  new Silo("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+        SiloDto siloDto = new SiloDto( 1, 10, 2.5, new String[]{"1"});
+        Feed feed = new Feed("1", "2220", "starter", "desc", 0.5);
+        Silo silo = new Silo("test-id", 1, 10, 2.5, new ArrayList<Feed>(List.of(feed)));
 
         // GIVEN
-        Mockito.when(chickensRepo.save(chicken)).thenReturn(chicken);
+        Mockito.when(silosRepo.save(silo)).thenReturn(silo);
         Mockito.when(idService.newId()).thenReturn("test-id");
+        Mockito.when(feedsRepo.findById("1")).thenReturn(Optional.of(feed));
 
-        SiloService chickenService = new SiloService(chickensRepo, idService);
+        SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
 
         // WHEN
-        Silo actual = chickenService.addSilo(chickenDto);
+        Silo actual = siloService.addSilo(siloDto);
 
         // THEN
-        Mockito.verify(chickensRepo).save(chicken);
+        Mockito.verify(silosRepo).save(silo);
         Mockito.verify(idService).newId();
 
-        Silo expected =  new Silo("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+        Silo expected =  new Silo("test-id", 1, 10, 2.5, new ArrayList<Feed>(List.of(feed)));
 
         assertEquals(expected, actual);
-
     }
 
     @Test
     void updateSiloTest_returnSilo(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
+        Feed feed = new Feed("1", "2220", "starter", "desc", 0.5);
+        Silo silo = new Silo("test-id", 1, 10, 2.5, new ArrayList<Feed>(List.of(feed)));
 
-        Silo updateSilo =  new Silo("test-id", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+        Mockito.when(silosRepo.save(Mockito.any())).thenReturn(silo);
 
-        Mockito.when(chickensRepo.save(Mockito.any())).thenReturn(updateSilo);
-
-        SiloService chickenService = new SiloService(chickensRepo, idService);
+        SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
 
         // WHEN
-        Silo actual = chickenService.updateSilo(updateSilo);
+        Silo actual = siloService.updateSilo(silo);
 
         //THEN
-         assertEquals(updateSilo, actual);
-         Mockito.verify(chickensRepo, Mockito.times(1)).save(updateSilo);
-         Mockito.verifyNoMoreInteractions(chickensRepo);
-
-
+         assertEquals(silo, actual);
+         Mockito.verify(silosRepo, Mockito.times(1)).save(silo);
+         Mockito.verifyNoMoreInteractions(silosRepo);
 
     }
+
 
     @Test
     void deleteSiloTest_returnSilo(){
 
-        String id = "1";
-        LocalDate date = LocalDate.of(2024, 2, 12);
+         String id = "1";
+         Feed feed = new Feed("1", "2220", "starter", "desc", 0.5);
+         Silo silo = new Silo(id, 1, 10, 2.5, new ArrayList<Feed>(List.of(feed)));
 
-        Silo chicken = new Silo("1", "ross308", 0.5, 2.8, 40,
-                1.6, "kwh", date);
+         // GIVEN
+         Mockito.when(silosRepo.findById(id)).thenReturn(Optional.of(silo));
 
-        // GIVEN
-         Mockito.when(chickensRepo.findById(id)).thenReturn(Optional.of(chicken));
-
-         SiloService chickenService = new SiloService(chickensRepo, idService);
-         Silo actual = chickenService.deleteSiloById(id);
+         SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
+         Silo actual = siloService.deleteSiloById(id);
 
         // WHEN
-
-        assertEquals(chicken, actual);
-
-        Mockito.verify(chickensRepo, Mockito.times(1)).findById(id);
-        Mockito.verify(chickensRepo, Mockito.times(1)).delete(chicken);
-        Mockito.verifyNoMoreInteractions(chickensRepo);
+        assertEquals(silo, actual);
+        Mockito.verify(silosRepo, Mockito.times(1)).findById(id);
+        Mockito.verify(silosRepo, Mockito.times(1)).delete(silo);
+        Mockito.verifyNoMoreInteractions(silosRepo);
 
     }
 

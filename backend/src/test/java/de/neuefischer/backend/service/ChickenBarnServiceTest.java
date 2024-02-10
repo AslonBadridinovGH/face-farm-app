@@ -86,7 +86,7 @@ public class ChickenBarnServiceTest {
         LocalDate localDate = LocalDate.of(2024, 2, 12);
         Chicken chicken = new Chicken("1", "ross308", 0.5, 2.8, 40, 1.6, "kwh", localDate);
 
-        Silo silo = new Silo("1", 1, 10, 10, new ArrayList<Feed>());
+        Silo silo = new Silo("1", 1, 10, 10.0, new ArrayList<Feed>());
 
         ChickenBarnDto chickenBarnDto = new ChickenBarnDto(1.2, "stall_1",  new String[]{"1"}, 0, 35000, new String[]{"1"});
 
@@ -127,7 +127,7 @@ public class ChickenBarnServiceTest {
         LocalDate localDate = LocalDate.of(2024, 2, 12);
         Chicken chicken = new Chicken("1", "ross308", 0.5, 2.8, 40, 1.6, "kwh", localDate);
 
-        Silo silo = new Silo("1", 1, 10, 10, new ArrayList<Feed>());
+        Silo silo = new Silo("1", 1, 10, 10.5, new ArrayList<Feed>());
 
         ChickenBarn chickenBarn = new ChickenBarn("test-id", 1.2, "stall_1", new ArrayList<Chicken>(List.of(chicken)), 0,
                 35000, new ArrayList<Silo>(List.of(silo)));
@@ -152,7 +152,7 @@ public class ChickenBarnServiceTest {
 
         Chicken chicken = new Chicken("1", "ross308", 0.5, 2.8, 40, 1.6, "kwh", LocalDate.of(2024, 2, 12));
 
-        Silo silo = new Silo("1", 1, 10, 10, new ArrayList<Feed>());
+        Silo silo = new Silo("1", 1, 10, 10.5, new ArrayList<Feed>());
 
         ChickenBarn chickenBarn = new ChickenBarn("test-id", 1.2, "stall_1", new ArrayList<Chicken>(List.of(chicken)), 0,
                 35000, new ArrayList<Silo>(List.of(silo)));

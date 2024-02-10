@@ -28,6 +28,7 @@ public class SiloService {
         this.idService = idService;
     }
 
+
     public List<Silo> getSilos() {
         return silosRepo.findAll();
     }
