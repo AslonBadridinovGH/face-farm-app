@@ -20,9 +20,9 @@ import java.util.Optional;
 public class ChickenBarnService {
 
     private final ChickenBarnsRepo chickenBarnsRepo;
+    private final IdService idService;
     private final ChickensRepo chickensRepo;
     private final SilosRepo silosRepo;
-    private final IdService idService;
 
     public ChickenBarnService(ChickenBarnsRepo chickenBarnsRepo, IdService idService, ChickensRepo chickensRepo,SilosRepo silosRepo) {
         this.chickenBarnsRepo = chickenBarnsRepo;
@@ -41,13 +41,14 @@ public class ChickenBarnService {
         if (byId.isPresent()){
             return byId.get();
         }
-        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No chicken Barn with such id!"));
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No chicken Barn with such id!: " +id));
     }
 
     public ChickenBarn addChickenBarn(ChickenBarnDto chickenBarnDto) {
 
         String [] strings = chickenBarnDto.chickensIds();
         List<Chicken> chickenList = new ArrayList<>();
+
         for (String string : strings) {
             Optional<Chicken> byId = chickensRepo.findById(string);
             if (byId.isEmpty()) {
@@ -72,7 +73,6 @@ public class ChickenBarnService {
         chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
         return chickenBarnsRepo.save(chickenBarn);
     }
-
 
     public ChickenBarn updateChickenBarn(ChickenBarn chicken){
          return chickenBarnsRepo.save(chicken);

@@ -7,6 +7,7 @@ import java.util.List;
 
 @With
 public record Silo(
+
         @Id
         String id,
         Integer numberOfSilo,
