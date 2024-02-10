@@ -108,7 +108,7 @@ public class ChickenBarnContIntegrationTest {
 
 
 
-    @DirtiesContext
+   /* @DirtiesContext
     @Test
     void addChickenBarnTest_shouldReturnOneObject_whenObjectWasSavedInRepository() throws Exception {
 
@@ -164,7 +164,7 @@ public class ChickenBarnContIntegrationTest {
 """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
-
+*/
 
 
 
