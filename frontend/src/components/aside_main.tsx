@@ -7,10 +7,12 @@ export default function Aside_main() {
         <div className={"farm"}>
             <aside >
                 <NavLinks to={"/farm/farmInfo"} className={({ isActive }) => (isActive ? 'active' : '')}>Farm Info</NavLinks>
-                <NavLinks to={"/farm/addFarm"} >Add New Farm</NavLinks>
-                <NavLinks to={"/farm/addNewBarn"}>Add New Chicken Barn</NavLinks>
+               {/* <NavLinks to={"/farm/addFarm"} >Add New Farm</NavLinks>
+                   <NavLinks to={"/farm/addNewBarn"}>Add New Chicken Barn</NavLinks>
+                   <NavLinks to={"/farm/addSilo"}>Add New Silo</NavLinks> */}
+
                 <NavLinks to={"/farm/chickenBarn"}>All Chicken  Barns</NavLinks>
-                <NavLinks to={"/farm/addSilo"}>Add New Silo</NavLinks>
+
                 <NavLinks to={"/farm/silos"}>All Silos</NavLinks>
             </aside>
             <main>
@@ -19,6 +21,7 @@ export default function Aside_main() {
         </div>
     );
 }
+
 const NavLinks = styled(NavLink)`
     
     color: #ffffff;

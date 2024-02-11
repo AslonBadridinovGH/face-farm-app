@@ -30,7 +30,6 @@ function App() {
                  <Route path={"addNewBarn"} element={<AddNewBarn/>}/>
                  <Route path={"silos"} element={<Silo/>}/>
                  <Route path={"addSilo"} element={<AddNewSilo/>}/>
-
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />
