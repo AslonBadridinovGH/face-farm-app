@@ -47,6 +47,7 @@ public class ChickenBarnService {
     public ChickenBarn addChickenBarn(ChickenBarnDto chickenBarnDto) {
 
         String [] strings = chickenBarnDto.chickensIds();
+
         List<Chicken> chickenList = new ArrayList<>();
 
         for (String string : strings) {
