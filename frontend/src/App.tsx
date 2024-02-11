@@ -9,12 +9,21 @@ import Clime from "./components/nextComp/clime.tsx";
 import AddNewFarm from "./components/addNewFarm.tsx";
 import AddNewBarn from "./components/addNewBarn.tsx";
 import FarmInfo from "./components/farmInfo.tsx";
-import ChickenBarn from "./components/chicken_barn.tsx";
+import ChickenBarns from "./components/chicken_barn.tsx";
 import AddNewSilo from "./components/AddNewSilo.tsx";
 import Silo from "./components/silo.tsx";
+import {useState} from "react";
+import {ChBarn} from "./types/ChickenBarn.tsx";
 
 
 function App() {
+
+    const [chickenBarns, setChickenBars] = useState<ChBarn[]>([])
+
+    const addChickenBarn = (chickenBarnToSave:ChBarn)=>{
+         setChickenBars([...chickenBarns, chickenBarnToSave] )
+    }
+
 
   return (
     <>
@@ -26,8 +35,8 @@ function App() {
                  <Route index element={<p>Farm ...</p>}/>
                  <Route path={"farmInfo"}  element={<FarmInfo/>}/>
                  <Route path={"addFarm"} element={<AddNewFarm/>}/>
-                 <Route path={"chickenBarn"} element={<ChickenBarn/>}/>
-                 <Route path={"addNewBarn"} element={<AddNewBarn/>}/>
+                 <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
+                 <Route path={"addNewBarn"} element={<AddNewBarn saveBarn = {addChickenBarn} />}/>
                  <Route path={"silos"} element={<Silo/>}/>
                  <Route path={"addSilo"} element={<AddNewSilo/>}/>
              </Route>

@@ -26,3 +26,12 @@ nav a.active {
     width: 80%;
     padding-bottom: 20px;
 }
+
+.barns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    padding-top: 20px;
+
+}

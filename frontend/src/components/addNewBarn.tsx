@@ -1,21 +1,26 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
+import {ChBarn} from "../types/ChickenBarn.tsx";
+
+type addBarnProps = {
+    saveBarn: (characterToSave: ChBarn) => void
+}
 
 
-export default function AddNewBarn() {
+export default function AddNewBarn(props : addBarnProps) {
 
     const [area, setArea] = useState<number>(0)
-    const [amount_of_animals, setAmount_of_animals]=useState<number>(0)
+    const [amount_of_animal, setAmount_of_animal]=useState<number>(0)
     const [number_of_barn, setNumber_of_barn]=useState<number>(0)
     const [capacity_of_barn, setCapacity_of_barn]=useState<number>(0)
-    const [siloos, setSiloos]=useState<string[]>([])
+    const [silos, setSilos]=useState<string[]>([])
 
 
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
         setArea(event.target.valueAsNumber)
     }
     const onAmount_of_animalsChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setAmount_of_animals(event.target.valueAsNumber)
+        setAmount_of_animal(event.target.valueAsNumber)
     }
     const onNumber_of_barnChange= (event: ChangeEvent<HTMLInputElement>) => {
         setNumber_of_barn(event.target.valueAsNumber)
@@ -28,15 +33,29 @@ export default function AddNewBarn() {
         console.log(event.target.value.split(",")
         )
         if (event.target.value.includes(",")){
-            setSiloos(event.target.value.split(","))
+            setSilos(event.target.value.split(","))
         }else {
-            setSiloos([event.target.value])
+            setSilos([event.target.value])
         }
 
     }
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        const chBarnToSave: ChBarn = {
+
+            id: "1",
+            area: area,
+            amount_of_animals: amount_of_animal,
+            number_of_barn: number_of_barn,
+            capacity_of_barn:capacity_of_barn,
+            chicken : "chicken",
+            silos: silos
+        }
+
+        props.saveBarn(chBarnToSave)
+
     }
 
     return (
@@ -49,7 +68,7 @@ export default function AddNewBarn() {
                 <SInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Number of animals</label>
-                <SInput value={amount_of_animals} type={"number"} onChange={onAmount_of_animalsChange}
+                <SInput value={amount_of_animal} type={"number"} onChange={onAmount_of_animalsChange}
                         placeholder={"number of animals"}/>
 
                 <label>Number of barns</label>
@@ -61,7 +80,7 @@ export default function AddNewBarn() {
                         placeholder={"capacity of barn"}/>
 
                 <label>Number of silos</label>
-                <input value={siloos.join(",")} onChange={onSilos_of_barnsChange}/>
+                <input value={silos.join(",")} onChange={onSilos_of_barnsChange}/>
 
                 <button type={"submit"}>Submit</button>
 
