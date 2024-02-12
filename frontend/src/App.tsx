@@ -11,19 +11,24 @@ import AddNewBarn from "./components/AddNewBarn.tsx";
 import FarmInfo from "./components/FarmInfo.tsx";
 import ChickenBarns from "./components/ChickenBarnComp.tsx";
 import AddNewSilo from "./components/AddNewSilo.tsx";
-import Silo from "./components/Silo.tsx";
+import Silos from "./components/SiloComp.tsx";
 import {useState} from "react";
 import {ChBarn} from "./types/ChickenBarn.tsx";
+import {Silo} from "./types/Silo.tsx";
 
 
 function App() {
 
     const [chickenBarns, setChickenBars] = useState<ChBarn[]>([])
+    const [silos, setSilos] = useState<Silo[]>([])
 
     const addChickenBarn = (chickenBarnToSave:ChBarn)=>{
          setChickenBars([...chickenBarns, chickenBarnToSave] )
     }
 
+    const addSilo = (siloToSave : Silo):void=>{
+        setSilos([...silos, siloToSave])
+    }
 
   return (
     <>
@@ -33,12 +38,12 @@ function App() {
 
              <Route path={"/farm"}  element={<AsideMain/>}>
                  <Route index element={<p>Farm ...</p>}/>
-                 <Route path={"farmInfo"}  element={<FarmInfo/>}/>
+                 <Route path={"farmInfo"} element={<FarmInfo/>}/>
                  <Route path={"addFarm"} element={<AddNewFarm/>}/>
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddNewBarn saveBarn = {addChickenBarn} />}/>
-                 <Route path={"silos"} element={<Silo/>}/>
-                 <Route path={"addSilo"} element={<AddNewSilo/>}/>
+                 <Route path={"silos"} element={<Silos silos={silos}/>}  />
+                 <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />

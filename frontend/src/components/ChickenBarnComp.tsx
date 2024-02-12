@@ -3,7 +3,7 @@ import ChickenBarnElement from "./ChickenBarnElement.tsx";
 import styled from "styled-components";
 
 type viewAllBarnsProps = {
-    chickenBarns: ChBarn[]
+    chickenBarns: ChBarn[];
 }
 
 

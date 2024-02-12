@@ -1,17 +1,17 @@
-import {ChBarn} from "../types/ChickenBarn.tsx";
 import styled from "styled-components";
+import {Silo} from "../types/Silo.tsx";
+
 
 type barnsElementProps = {
-    barn: ChBarn
+    silo: Silo
 }
 
-export default  function ChickenBarnElement(props:barnsElementProps) {
+export default  function SiloElement(props:barnsElementProps) {
 
-  /*
-      const navitage= useNavigate();
-      const onBoxClick=()=>{
-      navitage(`/books/${props.barn.id}`)
-    }*/
+/*    const navitage= useNavigate();
+        const onBoxClick=()=>{
+        navitage(`/books/${props.barn.id}`)
+}*/
 
     return (
         <div>
@@ -20,7 +20,7 @@ export default  function ChickenBarnElement(props:barnsElementProps) {
             <div className="barns">
 
                 <StyledDiv>
-                    <StyledH>{props.barn.number_of_barn}</StyledH>
+                    <StyledH>{props.silo.numberOfSilo}</StyledH>
                 </StyledDiv>
 
             </div>
@@ -47,6 +47,6 @@ const StyledDiv = styled.div`
     border-color: rgb(221 221 221);
     background-color: white;
     padding: 1.25rem;
-    
+
 `;
 

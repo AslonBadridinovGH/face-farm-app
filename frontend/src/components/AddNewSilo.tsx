@@ -1,10 +1,14 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
+import {Silo} from "../types/Silo.tsx";
 
+type adSiloPops ={
+    saveSilo : (siloToSave : Silo)=>void;
+}
 
-export default function AddNewSilo() {
+export default function AddNewSilo(props: adSiloPops) {
 
-    const [numberSilo, setNumberSilo]=useState<number>(0)
+    const [numberOfSilo, setNumberSilo]=useState<number>(0)
     const [capacity, setCapacity]=useState<number>(0)
     const [currentFeed, setCurrentFeed]=useState<string>("")
     const [amountFeed, setAmountFeed]=useState<number>(0)
@@ -25,6 +29,16 @@ export default function AddNewSilo() {
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        const siloToSave :Silo ={
+
+            id : "1",
+            numberOfSilo : numberOfSilo,
+            capacity : capacity,
+            currentFeed : currentFeed,
+            amountFeed : amountFeed,
+        }
+        props.saveSilo(siloToSave);
     }
 
     return (
@@ -35,7 +49,7 @@ export default function AddNewSilo() {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <label>Number of Silo</label>
-                <SInput value={numberSilo} type={"number"} onChange={onNumberOfSiloChange} placeholder={"area"}/>
+                <SInput value={numberOfSilo} type={"number"} onChange={onNumberOfSiloChange} placeholder={"area"}/>
 
                 <label>Capacity of Silo</label>
                 <SInput value={capacity} type={"number"} onChange={onCapacityChange}
