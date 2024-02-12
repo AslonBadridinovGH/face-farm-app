@@ -1,5 +1,5 @@
 import {ChBarn} from "../types/ChickenBarn.tsx";
-import ChickenBarnElement from "./chicken_barn_element.tsx";
+import ChickenBarnElement from "./ChickenBarnElement.tsx";
 import styled from "styled-components";
 
 type viewAllBarnsProps = {

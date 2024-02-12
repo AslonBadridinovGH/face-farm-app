@@ -2,7 +2,7 @@
 import {NavLink, Outlet} from "react-router-dom";
 import styled from "styled-components";
 
-export default function Aside_main() {
+export default function AsideMain() {
     return (
         <div className={"farm"}>
             <aside >

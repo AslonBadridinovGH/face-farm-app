@@ -1,17 +1,17 @@
 import './App.css'
 import Navbar from "./components/Navbar.tsx";
 import {Route, Routes} from "react-router-dom";
-import Home from "./components/home.tsx";
-import Aside_main from "./components/aside_main.tsx";
+import Home from "./components/Home.tsx";
+import AsideMain from "./components/AsideMain.tsx";
 import Contact from "./components/nextComp/contact.tsx";
 import Production from "./components/nextComp/production.tsx";
 import Clime from "./components/nextComp/clime.tsx";
-import AddNewFarm from "./components/addNewFarm.tsx";
-import AddNewBarn from "./components/addNewBarn.tsx";
-import FarmInfo from "./components/farmInfo.tsx";
-import ChickenBarns from "./components/chicken_barn.tsx";
+import AddNewFarm from "./components/AddNewFarm.tsx";
+import AddNewBarn from "./components/AddNewBarn.tsx";
+import FarmInfo from "./components/FarmInfo.tsx";
+import ChickenBarns from "./components/ChickenBarnComp.tsx";
 import AddNewSilo from "./components/AddNewSilo.tsx";
-import Silo from "./components/silo.tsx";
+import Silo from "./components/Silo.tsx";
 import {useState} from "react";
 import {ChBarn} from "./types/ChickenBarn.tsx";
 
@@ -31,7 +31,7 @@ function App() {
          <Routes>
              <Route index element={<Home/>}/>
 
-             <Route path={"/farm"}  element={<Aside_main/>}>
+             <Route path={"/farm"}  element={<AsideMain/>}>
                  <Route index element={<p>Farm ...</p>}/>
                  <Route path={"farmInfo"}  element={<FarmInfo/>}/>
                  <Route path={"addFarm"} element={<AddNewFarm/>}/>
