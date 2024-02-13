@@ -7,7 +7,6 @@ type viewAllBarnsProps = {
     chickenBarns: ChBarn[];
 }
 
-
 export default  function ChickenBarns(props: viewAllBarnsProps) {
     return (
         <StyledDiv>
