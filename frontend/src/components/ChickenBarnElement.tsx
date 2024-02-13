@@ -17,8 +17,7 @@ export default  function ChickenBarnElement(props:barnsElementProps) {
     return (
         <div>
 
-            {/*<div onClick={onBoxClick} className="barns">*/}
-            <div className="barns">
+          <div onClick={onBoxClick} className="barns">
 
                 <StyledDiv>
                     <StyledH>{props.barn.number_of_barn}</StyledH>
