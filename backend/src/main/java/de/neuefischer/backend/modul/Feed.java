@@ -1,4 +1,14 @@
 package de.neuefischer.backend.modul;
 
-public record Feed(String type, String description, Double pricePerTone) {
+import lombok.With;
+import org.springframework.data.annotation.Id;
+
+@With
+public record Feed(
+        @Id
+        String id,
+        String articleNumber,
+        String type,
+        String description,
+        Double pricePerTone){
 }
