@@ -33,19 +33,3 @@ const StyledDiv =styled.div`
     align-items: center;
 `;
 
-/*
-const NavLinks = styled(NavLink)`
-
-    color: #ffffff;
-    width: auto;
-    height: 30px;
-    text-decoration: none;
-    border-radius: 0.375rem;
-    padding: 5px 4.5vw;
-    font-size: 1.5vw;
-    font-weight: 500;
-    margin-right: 0.3vw;
-    text-align: start;
-    line-height: 30px;
-    background-color: yellow;
-`;*/

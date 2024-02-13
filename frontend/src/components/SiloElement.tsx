@@ -10,7 +10,7 @@ export default  function SiloElement(props:barnsElementProps) {
 
 /*    const navitage= useNavigate();
         const onBoxClick=()=>{
-        navitage(`/books/${props.barn.id}`)
+        navitage(`/silos/${props.barn.id}`)
 }*/
 
     return (
