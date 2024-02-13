@@ -2,15 +2,15 @@
 import {NavLink, Outlet} from "react-router-dom";
 import styled from "styled-components";
 
-export default function Aside_main() {
+export default function AsideMain() {
     return (
         <div className={"farm"}>
             <aside >
                 <NavLinks to={"/farm/farmInfo"} className={({ isActive }) => (isActive ? 'active' : '')}>Farm Info</NavLinks>
 
-                <NavLinks to={"/farm/chickenBarn"}>All Chicken  Barns</NavLinks>
-
-                <NavLinks to={"/farm/silos"}>All Silos</NavLinks>
+                   <NavLinks to={"/farm/addFarm"}>Add New Farm</NavLinks>
+                   <NavLinks to={"/farm/chickenBarns"}> All Chicken Barns</NavLinks>
+                   <NavLinks to={"/farm/silos"}>All Silos</NavLinks>
             </aside>
             <main>
                  <Outlet/>
@@ -18,6 +18,7 @@ export default function Aside_main() {
         </div>
     );
 }
+
 
 const NavLinks = styled(NavLink)`
     
