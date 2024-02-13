@@ -18,6 +18,8 @@ import {Silo} from "./types/Silo.tsx";
 import ViewBarn from "./components/ViewBarn.tsx";
 import axios from "axios";
 import EditChickenBarn from "./components/EditChickenBarn.tsx";
+import EditSilo from "./components/EditSilo.tsx";
+import ViewSilo from "./components/ViewSilo.tsx";
 
 
 function App() {
@@ -30,10 +32,6 @@ function App() {
 
     const addChickenBarn = (chickenBarnToSave:ChBarn)=>{
          setChickenBars([...chickenBarns, chickenBarnToSave] )
-    }
-
-    const addSilo = (siloToSave : Silo):void=>{
-        setSilos([...silos, siloToSave])
     }
 
     const deleteBarn = (id: string) => {
@@ -53,7 +51,30 @@ function App() {
             )
     }
 
-  return (
+    const addSilo = (siloToSave : Silo):void=>{
+        setSilos([...silos, siloToSave])
+    }
+
+    const deleteSilo = (id: string) => {
+        axios.delete(`/api/silos/${id}`)
+            .then(response => {
+                setSilos([...silos.filter(silo => id !== silo.id)]);
+                navigate("/farm/silos")
+                return console.log(response.data)
+            })
+    }
+
+    const editSilo = (silo: Silo): void => {
+        axios.put(`/api/silos/${silo.id}`, silo)
+            .then(response => {
+                    setSilos(silos.map((item) => (item.id === silo.id ? response.data : item)))
+                    navigate("/silos/" + response.data.id)
+                }
+            )
+    }
+
+
+    return (
     <>
          <Navbar/>
          <Routes>
@@ -63,12 +84,17 @@ function App() {
                  <Route index element={<p>Farm ...</p>}/>
                  <Route path={"farmInfo"} element={<FarmInfo/>}/>
                  <Route path={"addFarm"} element={<AddNewFarm/>}/>
+
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddNewBarn saveBarn = {addChickenBarn} />}/>
+                 <Route path={"viewBarn/:id"} element={<ViewBarn handleBarnDelete={deleteBarn}/>}/>
+                 <Route path={"barn/:id/edit"} element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
+
                  <Route path={"silos"} element={<Silos silos={silos}/>}  />
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
-                 <Route path={"view/:id"} element={<ViewBarn handleBarnDelete={deleteBarn}/>}/>
-                 <Route path="/barn/:id/edit" element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
+                 <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
+                 <Route path={"barn/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />

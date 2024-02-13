@@ -19,13 +19,11 @@ function ViewBarn(props : ViewBarnProps) {
         axios.get(`/api/barn/${id}`).then(value => setBarns(value.data))
     }, []);
 
-
     const handleBarnDelete = (id: string | undefined) => {
         if (id) {
             props.handleBarnDelete(id)
         }
     }
-
 
     return (
         <>

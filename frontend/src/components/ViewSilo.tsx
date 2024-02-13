@@ -4,11 +4,12 @@ import {Link, useParams} from "react-router-dom";
 import styled from "styled-components";
 import {Silo} from "../types/Silo.tsx";
 
+
 type ViewBarnProps = {
-    handleBarnDelete: (id: string) => void
+    handleSiloDelete: (id: string) => void
 }
 
-function ViewBarn(props : ViewBarnProps) {
+function ViewSilo(props : ViewBarnProps) {
 
     const [silo, setSilos] = useState<Silo>();
     const {id} = useParams();
@@ -20,7 +21,7 @@ function ViewBarn(props : ViewBarnProps) {
 
     const handleSiloDelete = (id: string | undefined) => {
         if (id) {
-            props.handleBarnDelete(id)
+            props.handleSiloDelete(id)
         }
     }
 
@@ -45,7 +46,7 @@ function ViewBarn(props : ViewBarnProps) {
     );
 }
 
-export default ViewBarn;
+export default ViewSilo;
 
 
 const StyledDiv = styled.div`
