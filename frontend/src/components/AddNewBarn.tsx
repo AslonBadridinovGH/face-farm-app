@@ -10,26 +10,26 @@ type addBarnProps = {
 export default function AddNewBarn(props : addBarnProps) {
 
     const [area, setArea] = useState<number>(0)
-    const [amount_of_animal, setAmount_of_animal]=useState<number>(0)
-    const [number_of_barn, setNumber_of_barn]=useState<number>(0)
-    const [capacity_of_barn, setCapacity_of_barn]=useState<number>(0)
+    const [amountOfAnimal, setAmountOfAnimal]=useState<number>(0)
+    const [numberOfBarn, setNumberOfBarn]=useState<number>(0)
+    const [capacityOfBarn, setCapacityOfBarn]=useState<number>(0)
     const [silos, setSilos]=useState<string[]>([])
 
 
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
         setArea(event.target.valueAsNumber)
     }
-    const onAmount_of_animalsChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setAmount_of_animal(event.target.valueAsNumber)
+    const onAmountOfAnimalsChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setAmountOfAnimal(event.target.valueAsNumber)
     }
-    const onNumber_of_barnChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setNumber_of_barn(event.target.valueAsNumber)
+    const onNumberOfBarnChange= (event: ChangeEvent<HTMLInputElement>) => {
+        setNumberOfBarn(event.target.valueAsNumber)
     }
-    const onCapacity_of_barnsChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setCapacity_of_barn(event.target.valueAsNumber)
+    const onCapacityOfBarnsChange= (event: ChangeEvent<HTMLInputElement>) => {
+        setCapacityOfBarn(event.target.valueAsNumber)
     }
 
-    const onSilos_of_barnsChange= (event: ChangeEvent<HTMLInputElement>) => {
+    const onSilosOfBarnsChange= (event: ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.value.split(",")
         )
         if (event.target.value.includes(",")){
@@ -47,9 +47,9 @@ export default function AddNewBarn(props : addBarnProps) {
 
             id: "1",
             area: area,
-            amount_of_animals: amount_of_animal,
-            number_of_barn: number_of_barn,
-            capacity_of_barn:capacity_of_barn,
+            amountOfAnimals: amountOfAnimal,
+            numberOfBarn: numberOfBarn,
+            capacityOfBarn:capacityOfBarn,
             chicken : "chicken",
             silos: silos
         }
@@ -68,19 +68,19 @@ export default function AddNewBarn(props : addBarnProps) {
                 <SInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Number of animals</label>
-                <SInput value={amount_of_animal} type={"number"} onChange={onAmount_of_animalsChange}
+                <SInput value={amountOfAnimal} type={"number"} onChange={onAmountOfAnimalsChange}
                         placeholder={"number of animals"}/>
 
                 <label>Number of barns</label>
-                <SInput value={number_of_barn} type={"number"} onChange={onNumber_of_barnChange}
+                <SInput value={numberOfBarn} type={"number"} onChange={onNumberOfBarnChange}
                         placeholder={"number of barns"}/>
 
                 <label>Capacity of barn</label>
-                <SInput value={capacity_of_barn} type={"number"} onChange={onCapacity_of_barnsChange}
+                <SInput value={capacityOfBarn} type={"number"} onChange={onCapacityOfBarnsChange}
                         placeholder={"capacity of barn"}/>
 
                 <label>Number of silos</label>
-                <input value={silos.join(",")} onChange={onSilos_of_barnsChange}/>
+                <input value={silos.join(",")} onChange={onSilosOfBarnsChange}/>
 
                 <button type={"submit"}>Submit</button>
 

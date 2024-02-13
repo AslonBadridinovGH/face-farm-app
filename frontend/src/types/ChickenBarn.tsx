@@ -3,9 +3,9 @@
 
                  id : string,
                area : number,
-   amount_of_animals : number,
-      number_of_barn : number,
-    capacity_of_barn : number,
+   amountOfAnimals : number,
+      numberOfBarn : number,
+    capacityOfBarn : number,
              chicken : string,
                silos : string []
  }

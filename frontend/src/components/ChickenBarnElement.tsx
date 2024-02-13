@@ -1,5 +1,6 @@
 import {ChBarn} from "../types/ChickenBarn.tsx";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 
 type barnsElementProps = {
     barn: ChBarn
@@ -7,20 +8,20 @@ type barnsElementProps = {
 
 export default  function ChickenBarnElement(props:barnsElementProps) {
 
-  /*
+
       const navitage= useNavigate();
+
       const onBoxClick=()=>{
-      navitage(`/books/${props.barn.id}`)
-    }*/
+      navitage(`view/${props.barn.id}`)
+    }
 
     return (
         <div>
 
-            {/*<div onClick={onBoxClick} className="barns">*/}
-            <div className="barns">
+             <div onClick={onBoxClick} className="barns">
 
                 <StyledDiv>
-                    <StyledH>{props.barn.number_of_barn}</StyledH>
+                    <StyledH>{props.barn.numberOfBarn}</StyledH>
                 </StyledDiv>
 
             </div>
