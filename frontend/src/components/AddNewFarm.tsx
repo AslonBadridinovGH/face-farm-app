@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {ChangeEvent, FormEvent, useState} from "react";
 
-
 export default function AddNewFarm() {
 
     const [name, setName] = useState<string>("")

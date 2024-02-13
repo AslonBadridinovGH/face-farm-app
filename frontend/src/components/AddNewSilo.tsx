@@ -8,6 +8,7 @@ type adSiloPops ={
 
 export default function AddNewSilo(props: adSiloPops) {
 
+
     const [numberOfSilo, setNumberSilo]=useState<number>(0)
     const [capacity, setCapacity]=useState<number>(0)
     const [currentFeed, setCurrentFeed]=useState<string>("")

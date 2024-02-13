@@ -6,7 +6,6 @@ type addBarnProps = {
     saveBarn: (characterToSave: ChBarn) => void
 }
 
-
 export default function AddNewBarn(props : addBarnProps) {
 
     const [area, setArea] = useState<number>(0)
