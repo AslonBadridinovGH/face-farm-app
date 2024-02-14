@@ -21,10 +21,10 @@ import EditChickenBarn from "./components/EditChickenBarn.tsx";
 import EditSilo from "./components/EditSilo.tsx";
 import ViewSilo from "./components/ViewSilo.tsx";
 import {ChBarnDto} from "./types/ChickenBarnDto.tsx";
+import {SiloDto} from "./types/SiloDto.tsx";
 
 
 function App() {
-
 
     const [chickenBarns, setChickenBars] = useState<ChBarn[]>([])
 
@@ -32,6 +32,10 @@ function App() {
 
     useEffect(() => {
         axios.get("/api/chickenBarns").then(response => setChickenBars(response.data))
+    }, [])
+
+    useEffect(() => {
+        axios.get("/api/silos").then(response => setSilos(response.data))
     }, [])
 
 
@@ -63,8 +67,13 @@ function App() {
             })
     }
 
-    const addSilo = (siloToSave : Silo):void=>{
-        setSilos([...silos, siloToSave])
+
+    const addSilo = (siloToSave : SiloDto):void=>{
+        axios.post("/api/silos", siloToSave)
+            .then((response) => {
+                setSilos([...silos, response.data])
+                navigate("/farm/viewSilo/" + response.data.id)
+            })
     }
 
     const deleteSilo = (id: string) => {

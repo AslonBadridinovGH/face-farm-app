@@ -58,7 +58,7 @@ public class SiloService {
 
         Silo silo = new Silo(
         id, siloDto.numberOfSilo(),siloDto.capacity(),
-        siloDto.amountOfFeed(),feedList);
+        siloDto.amountOfFeed(), feedList);
         return silosRepo.save(silo);
     }
 

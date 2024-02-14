@@ -1,16 +1,16 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {Silo} from "../types/Silo.tsx";
+import {SiloDto} from "../types/SiloDto.tsx";
 
 type adSiloPops ={
-    saveSilo : (siloToSave : Silo)=>void;
+    saveSilo : (siloToSave : SiloDto)=>void;
 }
 
 export default function AddNewSilo(props: adSiloPops) {
 
     const [numberOfSilo, setNumberSilo]=useState<number>(0)
     const [capacity, setCapacity]=useState<number>(0)
-    const [currentFeed, setCurrentFeed]=useState<string>("")
+    const [feedIds, setFeedIds]=useState<string[]>([])
     const [amountFeed, setAmountFeed]=useState<number>(0)
 
 
@@ -21,8 +21,13 @@ export default function AddNewSilo(props: adSiloPops) {
         setCapacity(event.target.valueAsNumber)
     }
     const onCurrentFeedChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setCurrentFeed(event.target.value)
+        if (event.target.value.includes(",")){
+            setFeedIds(event.target.value.split(","))
+        }else {
+            setFeedIds([event.target.value])
+        }
     }
+
     const onAmountFeedChange= (event: ChangeEvent<HTMLInputElement>) => {
         setAmountFeed(event.target.valueAsNumber)
     }
@@ -30,13 +35,12 @@ export default function AddNewSilo(props: adSiloPops) {
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const siloToSave :Silo ={
+        const siloToSave :SiloDto ={
 
-            id : "1",
             numberOfSilo : numberOfSilo,
             capacity : capacity,
-            currentFeed : currentFeed,
             amountFeed : amountFeed,
+            feedIds : feedIds
         }
         props.saveSilo(siloToSave);
     }
@@ -60,7 +64,7 @@ export default function AddNewSilo(props: adSiloPops) {
                         placeholder={"Amount of Feed"}/>
 
                 <label>Name of Current Feed</label>
-                <SInput value={currentFeed} type={"string"} onChange={onCurrentFeedChange}
+                <SInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
                         placeholder={"Name of Current Feed"}/>
 
                 <button type={"submit"}>Submit</button>
