@@ -20,10 +20,6 @@ function EditChickenBarn(props : editChickenBarn) {
     const [numberOfBarn, setNumberOfBarn]=useState<string>(cBarn?.name || "")
     const [capacityOfBarn, setCapacityOfBarn]=useState<number>(cBarn?.capacityForChickens || 0)
     const [silosIds, setSilosIds]=useState<string[]>( [])
-
-   /* const [silos, setSilos]=useState<Silo[]>(cBarn?.silos || [])
-    const [chickens, setChickens]=useState<Chicken[]>(cBarn?.chickens|| [])*/
-
     const [chickenIds, setChickenIds]=useState<string[]>([])
 
 
@@ -43,8 +39,6 @@ function EditChickenBarn(props : editChickenBarn) {
     const onChickensIdsChange = (event:ChangeEvent<HTMLInputElement>)=>{
         if(event.target.value.includes(",")){
           setChickenIds( event.target.value.split(","))
-         // setChickens(chickens)
-         // chickens.map(value => chickenIds.map(value1 => {value.id=value1}))
         }else {
            setChickenIds([event.target.value])
         }
@@ -54,10 +48,8 @@ function EditChickenBarn(props : editChickenBarn) {
 
         if (event.target.value.includes(",")){
             setSilosIds(event.target.value.split(","))
-           // setSilos(event.target.value.split(","))
         }else {
              setSilosIds([event.target.value])
-          //  setSilos([event.target.value])
         }
     }
 
@@ -123,61 +115,6 @@ function EditChickenBarn(props : editChickenBarn) {
 }
 
 export default EditChickenBarn;
-/*  <StyledDiv>
-
-    <StyledDivAddFarm>Add Farm Infos</StyledDivAddFarm>
-    <StyledFormAdd onSubmit={onFarmSubmit}>
-
-        <label>Area in Hectare</label>
-        <SInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
-
-        <label>Number of animals</label>
-        <SInput value={amountOfAnimal} type={"number"} onChange={onAmountOfAnimalsChange}
-                placeholder={"number of animals"}/>
-
-        <label>Number of barns</label>
-        <SInput value={numberOfBarn} type={"number"} onChange={onNumberOfBarnChange}
-                placeholder={"number of barns"}/>
-
-        <label>Capacity of barn</label>
-        <SInput value={capacityOfBarn} type={"number"} onChange={onCapacityOfBarnsChange}
-                placeholder={"capacity of barn"}/>
-
-        <label>Number of silos</label>
-        <input value={silos.join(",")} onChange={onSilosOfBarnsChange}/>
-
-        <button type={"submit"}>Submit</button>
-        <button onClick={redirect}>List Chicken Barns</button>
-
-    </StyledFormAdd>
-
-</StyledDiv>*/
-
-/*
-const StyledDivAddFarm= styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
-
-const StyledDiv = styled.div`
-    display: flex;
-    padding: 1vw;
-    flex-direction: column;
-`;
-
-const StyledFormAdd = styled.form`
-    display:flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: initial;
-    width:60%;
-`;
-
-const SInput =styled.input`
-    margin: 0.5vw 0 0.5vw 0;
-`;
-*/
 
 const StyledDivAddFarm = styled.div`
     background-color: red;
