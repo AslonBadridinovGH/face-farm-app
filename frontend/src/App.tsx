@@ -12,7 +12,7 @@ import FarmInfo from "./components/FarmInfo.tsx";
 import ChickenBarns from "./components/ChickenBarnComp.tsx";
 import AddNewSilo from "./components/AddNewSilo.tsx";
 import Silos from "./components/SiloComp.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ChBarn} from "./types/ChickenBarn.tsx";
 import {Silo} from "./types/Silo.tsx";
 import ViewBarn from "./components/ViewBarn.tsx";
@@ -20,35 +20,47 @@ import axios from "axios";
 import EditChickenBarn from "./components/EditChickenBarn.tsx";
 import EditSilo from "./components/EditSilo.tsx";
 import ViewSilo from "./components/ViewSilo.tsx";
+import {ChBarnDto} from "./types/ChickenBarnDto.tsx";
 
 
 function App() {
 
 
     const [chickenBarns, setChickenBars] = useState<ChBarn[]>([])
+
     const [silos, setSilos] = useState<Silo[]>([])
+
+    useEffect(() => {
+        axios.get("/api/chickenBarns").then(response => setChickenBars(response.data))
+    }, [])
+
 
     const navigate = useNavigate()
 
-    const addChickenBarn = (chickenBarnToSave:ChBarn)=>{
-         setChickenBars([...chickenBarns, chickenBarnToSave] )
+    const addChickenBarn = (chickenBarnDtoToSend:ChBarnDto)=>{
+
+        axios.post("/api/chickenBarns", chickenBarnDtoToSend)
+             .then((response) => {
+                 setChickenBars([...chickenBarns, response.data])
+                 navigate("/farm/viewBarn/" + response.data.id)
+        })
+    }
+
+    const editBarn = (editedChickenBarn: ChBarnDto): void => {
+        axios.put(`/api/chickenBarns/${editedChickenBarn.id}`, editedChickenBarn)
+            .then((response) => {
+                setChickenBars(chickenBarns.map((item) => (item.id === editedChickenBarn.id ? response.data : item)))
+                  navigate("/farm/viewBarn/" + response.data.id)
+                }
+            )
     }
 
     const deleteBarn = (id: string) => {
-        axios.delete(`/api/barns/${id}`)
-            .then(response => {
-                setChickenBars([...chickenBarns.filter(barn => id !== barn.id)]);
+        axios.delete(`/api/chickenBarns/${id}`)
+            .then(() => {
+                setChickenBars(chickenBarns.filter(barn => id !== barn.id));
                 navigate("/farm/chickenBarns")
-                return console.log(response.data)
             })
-    }
-    const editBarn = (barn: ChBarn): void => {
-        axios.put(`/api/barns/${barn.id}`, barn)
-            .then(response => {
-                setChickenBars(chickenBarns.map((item) => (item.id === barn.id ? response.data : item)))
-                    navigate("/barns/" + response.data.id)
-                }
-            )
     }
 
     const addSilo = (siloToSave : Silo):void=>{
@@ -57,10 +69,9 @@ function App() {
 
     const deleteSilo = (id: string) => {
         axios.delete(`/api/silos/${id}`)
-            .then(response => {
+            .then(() => {
                 setSilos([...silos.filter(silo => id !== silo.id)]);
                 navigate("/farm/silos")
-                return console.log(response.data)
             })
     }
 
@@ -68,11 +79,10 @@ function App() {
         axios.put(`/api/silos/${silo.id}`, silo)
             .then(response => {
                     setSilos(silos.map((item) => (item.id === silo.id ? response.data : item)))
-                    navigate("/silos/" + response.data.id)
+                    navigate("/farm/silos/" + response.data.id)
                 }
             )
     }
-
 
     return (
     <>
@@ -88,13 +98,12 @@ function App() {
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddNewBarn saveBarn = {addChickenBarn} />}/>
                  <Route path={"viewBarn/:id"} element={<ViewBarn handleBarnDelete={deleteBarn}/>}/>
-                 <Route path={"barn/:id/edit"} element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
+                 <Route path={"chickenBarn/:id/edit"} element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
 
                  <Route path={"silos"} element={<Silos silos={silos}/>}  />
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
                  <Route path={"barn/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
-
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />

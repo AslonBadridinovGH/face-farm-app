@@ -1,14 +1,11 @@
-import {Chicken} from "./Chicken.tsx";
-import {Silo} from "./Silo.tsx";
 
-export type ChBarn = {
+ export type ChBarnDto = {
 
                    id : string,
                   area : number,
                   name : string,
-              chickens : Chicken [],
+          chickensIds : string[],
        amountOfChickens : number,
      capacityForChickens : number,
-              silos : Silo[]
-
+              silosIds : string []
  }

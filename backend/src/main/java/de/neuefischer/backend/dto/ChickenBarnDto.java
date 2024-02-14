@@ -11,7 +11,7 @@ import java.util.List;
 public record ChickenBarnDto(
 
    Double  area,
-   String name,
+   String  name,
    String [] chickensIds,
    Integer amountOfChickens,
    Integer capacityForChickens,

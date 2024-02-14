@@ -35,10 +35,6 @@ function EditSilo(props : editSilo) {
 
     const navigate = useNavigate();
 
-    const redirect = ()=>{
-        navigate("/chickenBarns")
-    }
-
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -75,7 +71,7 @@ function EditSilo(props : editSilo) {
                         placeholder={"capacity of barn"}/>
 
                 <button type={"submit"}>Submit</button>
-                <button onClick={redirect}>List Chicken Barns</button>
+                <button onClick={()=>navigate("/chickenBarns")}>List Chicken Barns</button>
 
             </StyledFormAdd>
 

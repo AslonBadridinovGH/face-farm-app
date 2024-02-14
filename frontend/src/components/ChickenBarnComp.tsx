@@ -27,6 +27,7 @@ export default  function ChickenBarns(props: viewAllBarnsProps) {
 const StyledDiv =styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    
 `;
 

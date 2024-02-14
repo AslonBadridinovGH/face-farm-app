@@ -1,17 +1,18 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {ChBarn} from "../types/ChickenBarn.tsx";
+import {ChBarnDto} from "../types/ChickenBarnDto.tsx";
 
 type addBarnProps = {
-    saveBarn: (characterToSave: ChBarn) => void
+    saveBarn: (chickenBarnToSave : ChBarnDto) => void
 }
 
 export default function AddNewBarn(props : addBarnProps) {
 
     const [area, setArea] = useState<number>(0)
     const [amountOfAnimal, setAmountOfAnimal]=useState<number>(0)
-    const [numberOfBarn, setNumberOfBarn]=useState<number>(0)
+    const [numberOfBarn, setNumberOfBarn]=useState<string>("")
     const [capacityOfBarn, setCapacityOfBarn]=useState<number>(0)
+    const [chickenIds, setChickenIds]=useState<string[]>([])
     const [silos, setSilos]=useState<string[]>([])
 
 
@@ -22,37 +23,42 @@ export default function AddNewBarn(props : addBarnProps) {
         setAmountOfAnimal(event.target.valueAsNumber)
     }
     const onNumberOfBarnChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfBarn(event.target.valueAsNumber)
+        setNumberOfBarn(event.target.value)
     }
     const onCapacityOfBarnsChange= (event: ChangeEvent<HTMLInputElement>) => {
         setCapacityOfBarn(event.target.valueAsNumber)
     }
 
     const onSilosOfBarnsChange= (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value.split(",")
-        )
+
         if (event.target.value.includes(",")){
             setSilos(event.target.value.split(","))
         }else {
             setSilos([event.target.value])
         }
+    }
 
+    const onChickensIdsChange = (event:ChangeEvent<HTMLInputElement>)=>{
+      if(event.target.value.includes(",")){
+          setChickenIds( event.target.value.split(","))
+      }else {
+          setChickenIds([event.target.value])
+      }
     }
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const chBarnToSave: ChBarn = {
+        const chBarnToSave: ChBarnDto = {
 
             id: "1",
             area: area,
-            amountOfAnimals: amountOfAnimal,
-            numberOfBarn: numberOfBarn,
-            capacityOfBarn:capacityOfBarn,
-            chicken : "chicken",
-            silos: silos
+            name: numberOfBarn,
+            chickensIds : chickenIds,
+            amountOfChickens: amountOfAnimal,
+            capacityForChickens:capacityOfBarn,
+            silosIds: silos
         }
-
         props.saveBarn(chBarnToSave)
 
     }
@@ -60,29 +66,42 @@ export default function AddNewBarn(props : addBarnProps) {
     return (
         <StyledDiv>
 
-            <StyledDivAddFarm>Add Farm Infos</StyledDivAddFarm>
+            <StyledDivAddFarm>Add New Barn</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>Area in Hectare</label>
-                <SInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
+                <LabelInput>
+                    <label>Number of barn</label>
+                    <StyledInput value={numberOfBarn} type={"string"} onChange={onNumberOfBarnChange}
+                                 placeholder={"number of barns"}/>
+                </LabelInput>
 
-                <label>Number of animals</label>
-                <SInput value={amountOfAnimal} type={"number"} onChange={onAmountOfAnimalsChange}
-                        placeholder={"number of animals"}/>
+                <LabelInput>
+                    <label>Area in Hectare</label>
+                    <StyledInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
+                </LabelInput>
 
-                <label>Number of barns</label>
-                <SInput value={numberOfBarn} type={"number"} onChange={onNumberOfBarnChange}
-                        placeholder={"number of barns"}/>
+                <LabelInput>
+                    <label>Amount of chickens</label>
+                    <StyledInput value={amountOfAnimal} type={"number"} onChange={onAmountOfAnimalsChange}
+                                 placeholder={"number of animals"}/>
+                </LabelInput>
 
-                <label>Capacity of barn</label>
-                <SInput value={capacityOfBarn} type={"number"} onChange={onCapacityOfBarnsChange}
-                        placeholder={"capacity of barn"}/>
+                <LabelInput>
+                    <label>Capacity of barn</label>
+                    <StyledInput value={capacityOfBarn} type={"number"} onChange={onCapacityOfBarnsChange}
+                                 placeholder={"capacity of barn"}/>
+                </LabelInput>
 
-                <label>Number of silos</label>
-                <input value={silos.join(",")} onChange={onSilosOfBarnsChange}/>
+                <LabelInput>
+                    <label>ChickenIds</label>
+                    <input value={chickenIds.join(",")} onChange={onChickensIdsChange}/>
+                </LabelInput>
 
+                <LabelInput>
+                    <label>Number of silos</label>
+                    <input value={silos.join(",")} onChange={onSilosOfBarnsChange}/>
+                </LabelInput>
                 <button type={"submit"}>Submit</button>
-
             </StyledFormAdd>
 
         </StyledDiv>
@@ -90,7 +109,7 @@ export default function AddNewBarn(props : addBarnProps) {
 }
 
 
-const StyledDivAddFarm= styled.div`
+const StyledDivAddFarm = styled.div`
     background-color: red;
     text-align: center;
     padding: 20px 500px 20px 0;
@@ -106,10 +125,15 @@ const StyledFormAdd = styled.form`
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 15px;
     align-items: initial;
     width:60%;
 `;
+const LabelInput = styled.div`
+     display: flex;
+     flex-direction: column;
+`;
 
-const SInput =styled.input`
+const StyledInput =styled.input`
     margin: 0.5vw 0 0.5vw 0;
 `;

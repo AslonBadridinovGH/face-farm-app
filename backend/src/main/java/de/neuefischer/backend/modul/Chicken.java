@@ -17,7 +17,6 @@ public record Chicken(
         Double feedConversion,
         String hatchery,
         LocalDate hatchDay
-
         ) {
         @Override
         public boolean equals(Object o) {

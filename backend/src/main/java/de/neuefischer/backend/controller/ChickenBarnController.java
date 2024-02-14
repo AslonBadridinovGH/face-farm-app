@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chickenBarn")
+@RequestMapping("/api/chickenBarns")
 @RequiredArgsConstructor
 public class ChickenBarnController {
 
@@ -32,10 +32,9 @@ public class ChickenBarnController {
     }
 
     @PutMapping("/{id}")
-    public ChickenBarn updateChickenBarn(@RequestBody ChickenBarn chickenBarn){
-        return chickenBarnService.updateChickenBarn(chickenBarn);
+    public ChickenBarn updateChickenBarn(@PathVariable String id, @RequestBody ChickenBarnDto chickenBarnDto){
+        return chickenBarnService.updateChickenBarn(id, chickenBarnDto);
     }
-
 
     @DeleteMapping("/{id}")
     public ChickenBarn deleteChickenBarn(@PathVariable String id){

@@ -55,7 +55,7 @@ public class ChickenService {
         }
         String id = idService.newId();
         Chicken chicken = new Chicken(
-        id, chickenDto.race(),chickenDto.weightInFirstDay(),chickenDto.expectedSlaughterWeight(),
+        id, chickenDto.race(), chickenDto.weightInFirstDay(),chickenDto.expectedSlaughterWeight(),
         chickenDto.expectedSlaughterAge(),chickenDto.feedConversion(),chickenDto.hatchery(), date
         );
         return chickensRepo.save(chicken);

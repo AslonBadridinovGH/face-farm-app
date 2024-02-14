@@ -75,8 +75,44 @@ public class ChickenBarnService {
         return chickenBarnsRepo.save(chickenBarn);
     }
 
-    public ChickenBarn updateChickenBarn(ChickenBarn chicken){
-         return chickenBarnsRepo.save(chicken);
+    public ChickenBarn updateChickenBarn(String id, ChickenBarnDto chickenBarnDto){
+
+        Optional<ChickenBarn> byId = chickenBarnsRepo.findById(id);
+        if (byId.isEmpty()){
+            throw (new NoSuchElementException());
+        }
+
+        String [] strings = chickenBarnDto.chickensIds();
+
+        List<Chicken> chickenList = new ArrayList<>();
+
+        for (String string : strings) {
+            Optional<Chicken> chickenById = chickensRepo.findById(string);
+            if (chickenById.isEmpty()) {
+                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No chicken with such id: "+string));
+            }
+            Chicken chicken = chickenById.get();
+            chickenList.add(chicken);
+        }
+
+        String[] silosIds = chickenBarnDto.silosIds();
+        List<Silo> silosList = new ArrayList<>();
+        for (String silosId : silosIds) {
+            Optional<Silo> siloById = silosRepo.findById(silosId);
+            if (siloById.isEmpty()) {
+                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No silo with such id: "+silosId));
+            }
+            silosList.add(siloById.get());
+        }
+
+            ChickenBarn chickenBarn = byId.get();
+
+           chickenBarn = new ChickenBarn(
+                byId.get().id(), chickenBarnDto.area(),chickenBarnDto.name(), chickenList,
+                chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
+
+         return chickenBarnsRepo.save(chickenBarn);
+
     }
 
     public ChickenBarn deleteChickenBarnById(String id) {

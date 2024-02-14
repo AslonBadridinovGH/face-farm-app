@@ -124,25 +124,34 @@ public class ChickenBarnServiceTest {
     @Test
     void updateChickenBarnTest_returnChickenBarn(){
 
+
+        String id = "test-id";
+        ChickenBarnDto chickenBarnDto = new ChickenBarnDto(1.2, "stall_1",  new String[]{"1"}, 0, 35000, new String[]{"1"});
+
         LocalDate localDate = LocalDate.of(2024, 2, 12);
         Chicken chicken = new Chicken("1", "ross308", 0.5, 2.8, 40, 1.6, "kwh", localDate);
-
         Silo silo = new Silo("1", 1, 10, 10.5, new ArrayList<Feed>());
 
         ChickenBarn chickenBarn = new ChickenBarn("test-id", 1.2, "stall_1", new ArrayList<Chicken>(List.of(chicken)), 0,
                 35000, new ArrayList<Silo>(List.of(silo)));
 
-
+        // GIVEN
+        Mockito.when(chickenBarnsRepo.findById(id)).thenReturn(Optional.of(chickenBarn));
+        Mockito.when(chickensRepo.findById("1")).thenReturn(Optional.of(chicken));
+        Mockito.when(silosRepo.findById("1")).thenReturn(Optional.of(silo));
         Mockito.when(chickenBarnsRepo.save(chickenBarn)).thenReturn(chickenBarn);
+
         ChickenBarnService chickenBarnService = new ChickenBarnService(chickenBarnsRepo, idService, chickensRepo, silosRepo);
 
         // WHEN
-        ChickenBarn actual = chickenBarnService.updateChickenBarn(chickenBarn);
+        ChickenBarn actual = chickenBarnService.updateChickenBarn(id, chickenBarnDto);
 
         //THEN
          assertEquals(chickenBarn, actual);
          Mockito.verify(chickenBarnsRepo, Mockito.times(1)).save(chickenBarn);
-         Mockito.verifyNoMoreInteractions(chickenBarnsRepo);
+         Mockito.verify(chickensRepo, Mockito.times(1) ).findById("1");
+         Mockito.verify(silosRepo,  Mockito.times(1)).findById("1");
+
     }
 
     @Test

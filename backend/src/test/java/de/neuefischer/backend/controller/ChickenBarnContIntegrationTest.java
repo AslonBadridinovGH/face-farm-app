@@ -56,7 +56,7 @@ public class ChickenBarnContIntegrationTest {
         chickenBarnsRepo.save(chickenBarn);
 
         // WHEN
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarn"))
+        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarns"))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -88,7 +88,7 @@ public class ChickenBarnContIntegrationTest {
                 new ChickenBarn("1", 10.4, "stall1", new ArrayList<Chicken>(), 40, 40,
                         new ArrayList<Silo>()));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarn/{id}", chickenBarn.id()))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarns/{id}", chickenBarn.id()))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -125,7 +125,7 @@ public class ChickenBarnContIntegrationTest {
 
         // GIVEN
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/api/chickenBarn")
+        mvc.perform(MockMvcRequestBuilders.post("/api/chickenBarns")
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -188,16 +188,16 @@ public class ChickenBarnContIntegrationTest {
                          new ArrayList<Silo>()));
 
         // WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/chickenBarn/1")
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/chickenBarns/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""                                              
-                            {      "id": "1",
+                            {      
                                    "area": 10.4,
                                    "name": "stall1",
-                                   "chickens": [],
+                                   "chickensIds": [],
                                    "amountOfChickens": 40,
                                    "capacityForChickens": 40,
-                                   "silos": []
+                                   "silosIds": []
                            }
                                 """))
                 // THEN
@@ -225,7 +225,7 @@ public class ChickenBarnContIntegrationTest {
                         new ArrayList<Silo>()));
 
         String nonExisting ="nonExistingId";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarn/{id}", nonExisting))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickenBarns/{id}", nonExisting))
 
                  // THEN
                 .andExpect(status().isNotFound())
@@ -242,7 +242,7 @@ public class ChickenBarnContIntegrationTest {
         chickenBarnsRepo.save(new ChickenBarn("1", 10.4, "stall1", new ArrayList<Chicken>(), 40, 40,
                 new ArrayList<Silo>()));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/chickenBarn/1"))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/chickenBarns/1"))
 
                 // THEN
                 .andExpect(status().isOk())
