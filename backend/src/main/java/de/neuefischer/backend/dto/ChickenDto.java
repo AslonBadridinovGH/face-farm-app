@@ -6,6 +6,7 @@ public record ChickenDto(
         Double weightInFirstDay,
         Double expectedSlaughterWeight,
         Integer expectedSlaughterAge,
-        Double feedConversion, String hatchery,
+        String feedConversion,
+        String hatchery,
         String hatchDay
 ) {}

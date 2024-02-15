@@ -1,12 +1,12 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {ChBarnDto} from "../types/ChickenBarnDto.tsx";
+import {ChBarnDto} from "../../types/ChickenBarnDto.tsx";
 
 type addBarnProps = {
     saveBarn: (chickenBarnToSave : ChBarnDto) => void
 }
 
-export default function AddNewBarn(props : addBarnProps) {
+export default function AddChickenBarn(props : addBarnProps) {
 
     const [area, setArea] = useState<number>(0)
     const [amountOfAnimal, setAmountOfAnimal]=useState<number>(0)

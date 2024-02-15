@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {ChBarn} from "../types/ChickenBarn.tsx";
+import {ChBarn} from "../../types/ChickenBarn.tsx";
 import {Link, useParams} from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ type ViewBarnProps = {
     handleBarnDelete: (id: string) => void
 }
 
-function ViewBarn(props : ViewBarnProps) {
+function ViewChickenBarn(props : ViewBarnProps) {
 
     const [barn, setBarns] = useState<ChBarn>();
 
@@ -65,7 +65,7 @@ function ViewBarn(props : ViewBarnProps) {
     );
 }
 
-export default ViewBarn;
+export default ViewChickenBarn;
 
 
 const StyledDiv = styled.div`

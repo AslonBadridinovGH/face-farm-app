@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {Silo} from "../types/Silo.tsx";
-import {SiloDto} from "../types/SiloDto.tsx";
+import {Silo} from "../../types/Silo.tsx";
+import {SiloDto} from "../../types/SiloDto.tsx";
 
 type editSilo = {
     silos: Silo[],

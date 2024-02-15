@@ -5,6 +5,6 @@
      articleNumber : string,
      type : string,
      description : string,
-     pricePerTone : number,
+     pricePerTone : string,
 
  }

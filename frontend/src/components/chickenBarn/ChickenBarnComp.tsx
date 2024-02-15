@@ -1,4 +1,4 @@
-import {ChBarn} from "../types/ChickenBarn.tsx";
+import {ChBarn} from "../../types/ChickenBarn.tsx";
 import ChickenBarnElement from "./ChickenBarnElement.tsx";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";

@@ -1,6 +1,6 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {SiloDto} from "../types/SiloDto.tsx";
+import {SiloDto} from "../../types/SiloDto.tsx";
 
 type adSiloPops ={
     saveSilo : (siloToSave : SiloDto)=>void;

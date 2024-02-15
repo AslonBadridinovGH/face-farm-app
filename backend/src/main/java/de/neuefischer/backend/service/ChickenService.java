@@ -53,10 +53,11 @@ public class ChickenService {
             // Handle parsing exception
             System.out.println("Error parsing the date: " + e.getMessage());
         }
+
         String id = idService.newId();
         Chicken chicken = new Chicken(
         id, chickenDto.race(), chickenDto.weightInFirstDay(),chickenDto.expectedSlaughterWeight(),
-        chickenDto.expectedSlaughterAge(),chickenDto.feedConversion(),chickenDto.hatchery(), date
+        chickenDto.expectedSlaughterAge(), Double.parseDouble(chickenDto.feedConversion()), chickenDto.hatchery(), date
         );
         return chickensRepo.save(chicken);
     }

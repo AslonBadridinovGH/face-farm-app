@@ -34,7 +34,7 @@ public class FeedContIntegrationTest {
           new Feed("1","1020", "starter", "desc", 0.40));
 
         // WHEN
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/feed"))
+        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/feeds"))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -63,7 +63,7 @@ public class FeedContIntegrationTest {
         Feed feed = feedsRepo.save(
                 new Feed("1", "1020", "starter", "desc", 0.40));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/feed/{id}", feed.id()))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/feeds/{id}", feed.id()))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -90,7 +90,7 @@ public class FeedContIntegrationTest {
 
         // GIVEN
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/api/feed")
+        mvc.perform(MockMvcRequestBuilders.post("/api/feeds")
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -125,7 +125,7 @@ public class FeedContIntegrationTest {
 
 
         // WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/feed/1")
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/feeds/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                               
@@ -159,7 +159,7 @@ public class FeedContIntegrationTest {
 
         //GIVEN
         String nonExisting ="nonExistingId";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/feed/{id}", nonExisting))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/feeds/{id}", nonExisting))
 
                 // THEN
                 .andExpect(status().isNotFound())
@@ -176,7 +176,7 @@ public class FeedContIntegrationTest {
                 new Feed("1", "1020", "starter", "desc", 0.40));
 
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/feed/1"))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/feeds/1"))
 
                 // THEN
                 .andExpect(status().isOk())
