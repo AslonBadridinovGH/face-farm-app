@@ -47,12 +47,11 @@ function ViewSilo(props : ViewBarnProps) {
                         </StyledG>
 
                     </StyledInfo>
-                    <Link to={`/farm/silo/${silo?.id}/edit`}>
+                   <Link to={`/farm/silo/${silo?.id}/edit`}>
                         <button>Edit</button>
                         <button className="silo-delete-button" onClick={() => handleSiloDelete(silo?.id)}>Delete
                         </button>
                     </Link>
-
                 </StyledDivInfo>
             </StyledDiv>
         </>
