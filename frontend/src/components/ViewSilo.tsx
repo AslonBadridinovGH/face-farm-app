@@ -52,7 +52,6 @@ function ViewSilo(props : ViewBarnProps) {
                         <button className="silo-delete-button" onClick={() => handleSiloDelete(silo?.id)}>Delete
                         </button>
                     </Link>
-
                 </StyledDivInfo>
             </StyledDiv>
         </>
