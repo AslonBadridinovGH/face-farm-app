@@ -15,7 +15,7 @@ function ViewSilo(props : ViewBarnProps) {
     const {id} = useParams();
 
     useEffect(() => {
-        axios.get(`/api/silo/${id}`).then(value => setSilos(value.data))
+        axios.get(`/api/silos/${id}`).then(value => setSilos(value.data))
     }, []);
 
 
@@ -35,7 +35,7 @@ function ViewSilo(props : ViewBarnProps) {
                         <StyledG>{silo?.capacity}.</StyledG>
                         <StyledG>{silo?.currentFeed}.</StyledG>
                     </StyledInfo>
-                    <Link to={`/silos/${silo?.id}/edit`}>
+                    <Link to={`/farm/silos/${silo?.id}/edit`}>
                         <button>Edit</button>
                         <button className="silo-delete-button" onClick={() => handleSiloDelete(silo?.id)}>Delete
                         </button>

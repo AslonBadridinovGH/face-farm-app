@@ -103,7 +103,7 @@ function App() {
                  <Route path={"silos"} element={<Silos silos={silos}/>}  />
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
-                 <Route path={"barn/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+                 <Route path={"silos/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />
