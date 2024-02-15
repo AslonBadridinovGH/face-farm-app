@@ -1,28 +1,29 @@
 import styled from "styled-components";
 import {Silo} from "../types/Silo.tsx";
-
-
+import {useNavigate} from "react-router-dom";
 type barnsElementProps = {
     silo: Silo
 }
-
 export default  function SiloElement(props:barnsElementProps) {
-
-/*    const navitage= useNavigate();
+    const navigate= useNavigate();
         const onBoxClick=()=>{
-        navitage(`/silos/${props.barn.id}`)
-}*/
+            navigate(`/farm/viewSilo/${props.silo.id}`)
+}
 
     return (
         <div>
-
-            {/*<div onClick={onBoxClick} className="barns">*/}
-            <div className="barns">
+             <div onClick={onBoxClick} className="barns">
 
                 <StyledDiv>
-                    <StyledH>{props.silo.numberOfSilo}</StyledH>
+                    <StyledH>
+                        <div>{"Number of Silo"}</div>
+                        <div>{props.silo?.numberOfSilo}</div>
+                    </StyledH>
+                    <StyledH>
+                        <div>{"Amount of Feed"}</div>
+                        <div>{props.silo?.amountOfFeed}</div>
+                    </StyledH>
                 </StyledDiv>
-
             </div>
 
         </div>
@@ -30,23 +31,30 @@ export default  function SiloElement(props:barnsElementProps) {
 }
 
 const StyledH = styled.h2`
+    
+    background-color: #9ea3a8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
     margin: 1vw 0 0 0;
     font-size: 2vw;
-    font-style: normal`;
+    font-style: normal;
+`;
 
 const StyledDiv = styled.div`
+    
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    
     box-shadow: 0 2px 4px 0 rgba(38, 59, 56, 0.10), 0 0 0 1.5px rgba(38, 50, 56, 0.10);
-    margin: .25rem;
-    height: 18rem;
-    width: 20rem;
+    margin: 0.25rem;
+    height: 5rem;
+    width: 26rem;
     border-radius: 0.375rem;
     border-color: rgb(221 221 221);
-    background-color: white;
+    background-color: red;
     padding: 1.25rem;
-
 `;
+
 

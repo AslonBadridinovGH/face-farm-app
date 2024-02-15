@@ -1,6 +1,8 @@
 package de.neuefischer.backend.service;
 
 import de.neuefischer.backend.dto.SiloDto;
+import de.neuefischer.backend.modul.Chicken;
+import de.neuefischer.backend.modul.ChickenBarn;
 import de.neuefischer.backend.modul.Feed;
 import de.neuefischer.backend.modul.Silo;
 import de.neuefischer.backend.repository.FeedsRepo;
@@ -58,12 +60,28 @@ public class SiloService {
 
         Silo silo = new Silo(
         id, siloDto.numberOfSilo(),siloDto.capacity(),
-        siloDto.amountOfFeed(),feedList);
+        siloDto.amountOfFeed(), feedList);
         return silosRepo.save(silo);
     }
 
-    public Silo updateSilo(Silo silo){
-         return silosRepo.save(silo);
+    public Silo updateSilo(String id, SiloDto siloDto){
+
+        Optional<Silo> byId = silosRepo.findById(id);
+        if (byId.isEmpty()){
+            throw (new NoSuchElementException());
+        }
+
+        List<Feed> feedList = new ArrayList<>();
+        String[] strings = siloDto.feedIds();
+        for (String string : strings) {
+            Optional<Feed> feedById = feedsRepo.findById(string);
+            if (feedById.isEmpty()){
+                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No Feed with such id: "+string));
+            }
+            feedList.add(feedById.get());
+        }
+        Silo silo = new Silo(id, siloDto.numberOfSilo(), siloDto.capacity(), siloDto.amountOfFeed(),feedList);
+        return silosRepo.save(silo);
     }
 
     public Silo deleteSiloById(String id) {

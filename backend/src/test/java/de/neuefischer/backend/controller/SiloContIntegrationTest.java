@@ -38,7 +38,7 @@ public class SiloContIntegrationTest {
           new Silo("1",1, 30, 15.5, new ArrayList<Feed>()));
 
         // WHEN
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/silo"))
+        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/silos"))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -67,7 +67,7 @@ public class SiloContIntegrationTest {
         Silo silo =  silosRepo.save(
                 new Silo("1",1, 30, 15.5, new ArrayList<Feed>()));
 
-       MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/silo/{id}", silo.id()))
+       MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/silos/{id}", silo.id()))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -95,7 +95,7 @@ public class SiloContIntegrationTest {
 
         // GIVEN
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/api/silo")
+        mvc.perform(MockMvcRequestBuilders.post("/api/silos")
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -131,16 +131,16 @@ public class SiloContIntegrationTest {
 
 
         // WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/silo/1")
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/silos/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                               
                                   {     
-                                   "id":"1",                           
+                                                    
                                    "numberOfSilo": 1,
                                    "capacity": 30,
                                    "amountOfFeed": 15.5,
-                                   "feeds": []
+                                   "feedIds": []
                            }
                                 """))
                 // THEN
@@ -166,7 +166,7 @@ public class SiloContIntegrationTest {
 
         //GIVEN
         String nonExisting ="nonExistingId";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/silo/{id}", nonExisting))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/silos/{id}", nonExisting))
 
                 // THEN
                 .andExpect(status().isNotFound())
@@ -183,7 +183,7 @@ public class SiloContIntegrationTest {
         silosRepo.save(
                 new Silo("1",1, 30, 15.5, new ArrayList<Feed>()));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/silo/1"))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/silos/1"))
 
                 // THEN
                 .andExpect(status().isOk())

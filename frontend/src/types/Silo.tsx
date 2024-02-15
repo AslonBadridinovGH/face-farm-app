@@ -1,10 +1,11 @@
+import {Feed} from "./Feed.tsx";
 
- export type Silo = {
+export type Silo = {
 
      id : string,
      numberOfSilo : number,
      capacity : number,
-     currentFeed : string,
-     amountFeed : number,
+     amountOfFeed : number,
+     feeds ? : Feed[],
 
  }
