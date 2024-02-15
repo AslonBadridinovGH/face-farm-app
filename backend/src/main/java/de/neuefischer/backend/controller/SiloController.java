@@ -31,8 +31,8 @@ public class SiloController {
     }
 
     @PutMapping("/{id}")
-    public Silo updateSilo(@RequestBody Silo silo){
-        return siloService.updateSilo(silo);
+    public Silo updateSilo(@PathVariable String id, @RequestBody SiloDto siloDto){
+        return siloService.updateSilo(id, siloDto);
     }
 
 

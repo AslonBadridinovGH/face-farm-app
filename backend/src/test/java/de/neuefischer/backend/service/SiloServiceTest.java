@@ -7,6 +7,7 @@ import de.neuefischer.backend.repository.FeedsRepo;
 import de.neuefischer.backend.repository.SilosRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,20 +98,29 @@ public class SiloServiceTest {
     @Test
     void updateSiloTest_returnSilo(){
 
-        Feed feed = new Feed("1", "2220", "starter", "desc", 0.5);
+        String id = "test-id";
+        String feedId ="feed-id";
+
+        Feed feed = new Feed(feedId, "2220", "starter", "desc", 0.5);
+
         Silo silo = new Silo("test-id", 1, 10, 2.5, new ArrayList<Feed>(List.of(feed)));
 
+        SiloDto siloDto = new SiloDto( 1, 10, 2.5, new String[]{feedId});
+
         Mockito.when(silosRepo.save(Mockito.any())).thenReturn(silo);
+        Mockito.when(silosRepo.findById(id)).thenReturn(Optional.of(silo));
+        Mockito.when(feedsRepo.findById(feedId)).thenReturn(Optional.of(feed));
 
         SiloService siloService = new SiloService(silosRepo, idService, feedsRepo);
 
-        // WHEN
-        Silo actual = siloService.updateSilo(silo);
+         // WHEN
+         Silo actual = siloService.updateSilo(id, siloDto);
 
-        //THEN
+         //THEN
          assertEquals(silo, actual);
          Mockito.verify(silosRepo, Mockito.times(1)).save(silo);
-         Mockito.verifyNoMoreInteractions(silosRepo);
+         Mockito.verify(silosRepo, Mockito.times(1)).findById(id);
+         Mockito.verify(feedsRepo, Mockito.times(1)).findById(feedId);
 
     }
 

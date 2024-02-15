@@ -1,23 +1,16 @@
 import {ChBarn} from "../types/ChickenBarn.tsx";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-
 type barnsElementProps = {
     barn: ChBarn
 }
-
 export default  function ChickenBarnElement(props:barnsElementProps) {
-
-
       const navigate= useNavigate();
-
       const onBoxClick=()=>{
           navigate(`/farm/viewBarn/${props.barn.id}`)
     }
-
     return (
         <div>
-
              <div onClick={onBoxClick} className="barns">
 
                 <StyledDiv>

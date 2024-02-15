@@ -1,13 +1,14 @@
-
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
 import {Silo} from "../types/Silo.tsx";
+import {SiloDto} from "../types/SiloDto.tsx";
 
 type editSilo = {
     silos: Silo[],
-    editSilo: (silo: Silo) => void
+    editSilo: (silo: SiloDto) => void
 }
+
 function EditSilo(props : editSilo) {
 
     const {id} = useParams();
@@ -16,8 +17,8 @@ function EditSilo(props : editSilo) {
 
     const [numberOfSilo, setNumberSilo]=useState<number>(silo?.numberOfSilo || 0)
     const [capacity, setCapacity]=useState<number>( silo?.capacity || 0)
-    const [currentFeed, setCurrentFeed]=useState<string>(silo?.currentFeed || "")
-    const [amountFeed, setAmountFeed]=useState<number>( silo?.amountFeed || 0)
+    const [amountOfFeed, setAmountOfFeed]=useState<number>( silo?.amountOfFeed || 0)
+    const [feedIds, setFeedIds]=useState<string[]>([])
 
 
     const onNumberSiloChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,25 +27,30 @@ function EditSilo(props : editSilo) {
     const onCapacityChange = (event: ChangeEvent<HTMLInputElement>) => {
         setCapacity(event.target.valueAsNumber)
     }
-    const onCurrentFeedChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setCurrentFeed(event.target.value)
+
+     const onCurrentFeedChange= (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.includes(",")){
+            setFeedIds(event.target.value.split(","))
+        }else {
+            setFeedIds([event.target.value])
+        }
     }
     const onAmountFeedChange= (event: ChangeEvent<HTMLInputElement>) => {
-        setAmountFeed(event.target.valueAsNumber)
+        setAmountOfFeed(event.target.valueAsNumber)
     }
-
-    const navigate = useNavigate();
 
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
+
         event.preventDefault()
 
-        const siloToSave: Silo = {
-
-            id: silo?.id || "",
-            numberOfSilo, capacity, currentFeed, amountFeed,
+        const siloToSave: SiloDto = {
+            id : silo?.id || "",
+            numberOfSilo :numberOfSilo,
+            capacity:capacity,
+            amountOfFeed:amountOfFeed,
+            feedIds: feedIds
         }
-
         props.editSilo(siloToSave)
 
     }
@@ -52,27 +58,25 @@ function EditSilo(props : editSilo) {
     return (
         <StyledDiv>
 
-            <StyledDivAddFarm>Add Farm Infos</StyledDivAddFarm>
+            <StyledDivAddFarm>Edit Silo Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>Area in Hectare</label>
+                <label>Number of Silo</label>
                 <SInput value={numberOfSilo} type={"number"} onChange={onNumberSiloChange} placeholder={"area"}/>
 
-                <label>Number of animals</label>
+                <label>Capacity</label>
                 <SInput value={capacity} type={"number"} onChange={onCapacityChange}
                         placeholder={"number of animals"}/>
 
-                <label>Number of barns</label>
-                <SInput value={currentFeed} type={"number"} onChange={onCurrentFeedChange}
-                        placeholder={"number of barns"}/>
+                <label>Amount of Feed</label>
+                <SInput value={amountOfFeed} type={"number"} onChange={onAmountFeedChange}
+                        placeholder={"amount of Feed"}/>
 
-                <label>Capacity of barn</label>
-                <SInput value={amountFeed} type={"number"} onChange={onAmountFeedChange}
-                        placeholder={"capacity of barn"}/>
+                <label>Feeds ID s</label>
+                <SInput value={feedIds} type={"number"} onChange={onCurrentFeedChange}
+                        placeholder={"feeds IDs"}/>
 
                 <button type={"submit"}>Submit</button>
-                <button onClick={()=>navigate("/chickenBarns")}>List Chicken Barns</button>
-
             </StyledFormAdd>
 
         </StyledDiv>
@@ -81,7 +85,7 @@ function EditSilo(props : editSilo) {
 
 export default EditSilo;
 
-const StyledDivAddFarm= styled.div`
+const StyledDivAddFarm = styled.div`
     background-color: red;
     text-align: center;
     padding: 20px 500px 20px 0;

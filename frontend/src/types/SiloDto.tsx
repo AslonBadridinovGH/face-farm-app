@@ -1,8 +1,10 @@
 
  export type SiloDto = {
 
+     id:string,
      numberOfSilo : number,
      capacity : number,
-     amountFeed : number,
+     amountOfFeed : number,
      feedIds : string[],
+
  }

@@ -4,7 +4,6 @@ import {ChBarn} from "../types/ChickenBarn.tsx";
 import {Link, useParams} from "react-router-dom";
 import styled from "styled-components";
 
-
 type ViewBarnProps = {
     handleBarnDelete: (id: string) => void
 }
@@ -48,11 +47,11 @@ function ViewBarn(props : ViewBarnProps) {
                             </StyledG>
                             <StyledG>
                                 <div>{"Chickens of Chicken Barn:  "}</div>
-                                <div>{barn?.chickens.map(value => value.race).join(", ")}</div>
+                                <div>{barn?.chickens?.map(value => value.race).join(", ")}</div>
                             </StyledG>
                             <StyledG>
                                 <div>{"Silos of Chicken Barn:  "}</div>
-                                <div>{barn?.silos.map(value => value.numberOfSilo).join(", ")}</div>
+                                <div>{barn?.silos?.map(value => value.numberOfSilo).join(", ")}</div>
                             </StyledG>
                     </StyledInfo>
                     <Link to={`/farm/chickenBarn/${barn?.id}/edit`}>

@@ -42,7 +42,6 @@ function App() {
     const navigate = useNavigate()
 
     const addChickenBarn = (chickenBarnDtoToSend:ChBarnDto)=>{
-
         axios.post("/api/chickenBarns", chickenBarnDtoToSend)
              .then((response) => {
                  setChickenBars([...chickenBarns, response.data])
@@ -50,11 +49,28 @@ function App() {
         })
     }
 
+    const addSilo = (siloToSave : SiloDto):void=>{
+        axios.post("/api/silos", siloToSave)
+            .then((response) => {
+                setSilos([...silos, response.data])
+                navigate("/farm/viewSilo/" + response.data.id)
+            })
+    }
+
     const editBarn = (editedChickenBarn: ChBarnDto): void => {
         axios.put(`/api/chickenBarns/${editedChickenBarn.id}`, editedChickenBarn)
             .then((response) => {
                 setChickenBars(chickenBarns.map((item) => (item.id === editedChickenBarn.id ? response.data : item)))
                   navigate("/farm/viewBarn/" + response.data.id)
+                }
+            )
+    }
+
+    const editSilo = (silo: SiloDto): void => {
+        axios.put(`/api/silos/${silo.id}`, silo)
+            .then(response => {
+                    setSilos(silos.map((item) => (item.id === silo.id ? response.data : item)))
+                    navigate("/farm/viewSilo/" + response.data.id)
                 }
             )
     }
@@ -67,15 +83,6 @@ function App() {
             })
     }
 
-
-    const addSilo = (siloToSave : SiloDto):void=>{
-        axios.post("/api/silos", siloToSave)
-            .then((response) => {
-                setSilos([...silos, response.data])
-                navigate("/farm/viewSilo/" + response.data.id)
-            })
-    }
-
     const deleteSilo = (id: string) => {
         axios.delete(`/api/silos/${id}`)
             .then(() => {
@@ -84,14 +91,6 @@ function App() {
             })
     }
 
-    const editSilo = (silo: Silo): void => {
-        axios.put(`/api/silos/${silo.id}`, silo)
-            .then(response => {
-                    setSilos(silos.map((item) => (item.id === silo.id ? response.data : item)))
-                    navigate("/farm/silos/" + response.data.id)
-                }
-            )
-    }
 
     return (
     <>
@@ -112,7 +111,7 @@ function App() {
                  <Route path={"silos"} element={<Silos silos={silos}/>}  />
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
-                 <Route path={"barn/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+                 <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
              </Route>
 
              <Route path={"/contact"} element={<Contact/>} />

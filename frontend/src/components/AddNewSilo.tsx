@@ -37,9 +37,10 @@ export default function AddNewSilo(props: adSiloPops) {
 
         const siloToSave :SiloDto ={
 
+            id: "1",
             numberOfSilo : numberOfSilo,
             capacity : capacity,
-            amountFeed : amountFeed,
+            amountOfFeed : amountFeed,
             feedIds : feedIds
         }
         props.saveSilo(siloToSave);
@@ -63,7 +64,7 @@ export default function AddNewSilo(props: adSiloPops) {
                 <SInput value={amountFeed} type={"number"} onChange={onAmountFeedChange}
                         placeholder={"Amount of Feed"}/>
 
-                <label>Name of Current Feed</label>
+                <label>ID of Current Feed</label>
                 <SInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
                         placeholder={"Name of Current Feed"}/>
 

@@ -106,8 +106,7 @@ public class ChickenBarnService {
         }
 
             ChickenBarn chickenBarn = byId.get();
-
-           chickenBarn = new ChickenBarn(
+             chickenBarn = new ChickenBarn(
                 byId.get().id(), chickenBarnDto.area(),chickenBarnDto.name(), chickenList,
                 chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
 
