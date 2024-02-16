@@ -46,7 +46,7 @@ export default function AddNewChicken(props : addChickenProps) {
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const chicken: Chicken = {
+        const chicken : Chicken = {
             id: "1",
             race,
             weightInFirstDay,
@@ -99,7 +99,7 @@ export default function AddNewChicken(props : addChickenProps) {
                 <LabelInput>
                     <label>hatch day</label>
                     <StyledInput value={hatchDay} type={"date"} onChange={onHatchDayChange}
-                                 placeholder={"hatch day in form: yyyy-MM-dd"}/>
+                                 placeholder={"hatch day in form: dd.MM.yyyy"}/>
                 </LabelInput>
 
                 <LabelInput>

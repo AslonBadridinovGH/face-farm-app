@@ -5,9 +5,10 @@ import {Chicken} from "../../types/Chicken.tsx";
 
 
 type editChicken = {
-    chickens: Chicken[],
-    editChicken: (chicken: Chicken) => void
+    chickens : Chicken[],
+    editChicken : (chicken : Chicken) => void
 }
+
 function EditChickenBarn(props : editChicken) {
 
     const {id} = useParams();

@@ -42,23 +42,28 @@ public class ChickenService {
 
         String dateString = chickenDto.hatchDay();
         LocalDate date = null;
-        try {
+        if (!dateString.isEmpty()){
+              try {
             // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
             // Parse the string to a LocalDate object
             date = LocalDate.parse(dateString, formatter);
 
         } catch (DateTimeParseException e) {
-            // Handle parsing exception
-            System.out.println("Error parsing the date: " + e.getMessage());
+              // Handle parsing exception
+               System.out.println("Error parsing the date: " + e.getMessage());
+           }
         }
 
+        Double doub = null;
+        if (!chickenDto.feedConversion().isEmpty()){
+            doub = Double.parseDouble(chickenDto.feedConversion());
+        }
         String id = idService.newId();
         Chicken chicken = new Chicken(
         id, chickenDto.race(), chickenDto.weightInFirstDay(),chickenDto.expectedSlaughterWeight(),
-        chickenDto.expectedSlaughterAge(), Double.parseDouble(chickenDto.feedConversion()), chickenDto.hatchery(), date
-        );
+        chickenDto.expectedSlaughterAge(), doub, chickenDto.hatchery(), date);
         return chickensRepo.save(chicken);
     }
 

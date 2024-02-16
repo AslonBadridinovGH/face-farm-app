@@ -72,7 +72,7 @@ function App() {
         })
     }
 
-    const addChicken = (chickenToSave:Chicken)=>{
+    const addChicken = (chickenToSave : Chicken)=>{
         axios.post("/api/chickens", chickenToSave)
              .then((response) => {
                  setChickens([...chickens, response.data])
@@ -116,7 +116,7 @@ function App() {
     }
 
     const editFeed = (feed: Feed): void => {
-        axios.put(`/api/feeds/${feed.id}`, feed)
+        axios.put(`/api/feeds/${feed?.id}`, feed)
             .then(response => {
                     setFeeds(feeds.map((item) => (item.id === feed.id ? response.data : item)))
                     navigate("/farm/viewFeed/" + response.data.id)
