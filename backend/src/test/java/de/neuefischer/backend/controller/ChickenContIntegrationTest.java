@@ -38,7 +38,7 @@ public class ChickenContIntegrationTest {
                 "kwh", date));
 
         // WHEN
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/chicken"))
+        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/chickens"))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -73,7 +73,7 @@ public class ChickenContIntegrationTest {
                 new Chicken("1", "ross308", 0.4, 2.8, 40,
                 1.6, "kwh", date));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chicken/{id}", chicken.id()))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickens/{id}", chicken.id()))
 
                 // THEN
                 .andExpect(status().isOk())
@@ -102,7 +102,7 @@ public class ChickenContIntegrationTest {
 
         // GIVEN
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/api/chicken")
+        mvc.perform(MockMvcRequestBuilders.post("/api/chickens")
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -145,7 +145,7 @@ public class ChickenContIntegrationTest {
                         1.6, "kwh", date));
 
         // WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/chicken/1")
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/chickens/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                               
@@ -191,7 +191,7 @@ public class ChickenContIntegrationTest {
                         "kwh", date));
 
         String nonExisting ="nonExistingId";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chicken/{id}", nonExisting))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/chickens/{id}", nonExisting))
 
                 // THEN
                 .andExpect(status().isNotFound())
@@ -211,7 +211,7 @@ public class ChickenContIntegrationTest {
                 new Chicken("1", "ross308", 0.4, 2.8, 40,
                         1.6, "kwh", date));
 
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/chicken/1"))
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/chickens/1"))
 
                 // THEN
                 .andExpect(status().isOk())

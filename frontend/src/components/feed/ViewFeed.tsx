@@ -2,24 +2,24 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import styled from "styled-components";
-import {Silo} from "../types/Silo.tsx";
-type ViewBarnProps = {
-    handleSiloDelete: (id: string) => void
+import {Feed} from "../../types/Feed.tsx";
+type ViewFeedProps = {
+    handleFeedDelete: (id: string) => void
 }
 
-function ViewSilo(props : ViewBarnProps) {
+function ViewFeed(props : ViewFeedProps) {
 
-    const [silo, setSilos] = useState<Silo>();
+    const [feed, setFeeds] = useState<Feed>();
     const {id} = useParams();
 
     useEffect(() => {
-        axios.get(`/api/silos/${id}`).then(value => setSilos(value.data))
+        axios.get(`/api/feeds/${id}`).then(value => setFeeds(value.data))
     }, []);
 
 
-    const handleSiloDelete = (id: string | undefined) => {
+    const handleFeedDelete = (id: string | undefined) => {
         if (id) {
-            props.handleSiloDelete(id)
+            props.handleFeedDelete(id)
         }
     }
 
@@ -30,26 +30,26 @@ function ViewSilo(props : ViewBarnProps) {
                     <StyledInfo>
 
                         <StyledG>
-                            <div>{"Number of Silo:  "}</div>
-                            <div>{silo?.numberOfSilo}</div>
+                            <div>{"type of Feed:  "}</div>
+                            <div>{feed?.type}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Capacity of Silo:  "}</div>
-                            <div>{silo?.capacity}</div>
+                            <div>{"article number of Feed:  "}</div>
+                            <div>{feed?.articleNumber}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Amount of feed:  "}</div>
-                            <div>{silo?.amountOfFeed}</div>
+                            <div>{"description of feed:  "}</div>
+                            <div>{feed?.description}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Feeds of Silo:  "}</div>
-                            <div>{silo?.feeds?.map(value => value.type)}</div>
+                            <div>{"price per tone of feed:  "}</div>
+                            <div>{feed?.pricePerTone}</div>
                         </StyledG>
 
                     </StyledInfo>
-                   <Link to={`/farm/silo/${silo?.id}/edit`}>
+                    <Link to={`/farm/feed/${feed?.id}/edit`}>
                         <button>Edit</button>
-                        <button className="silo-delete-button" onClick={() => handleSiloDelete(silo?.id)}>Delete
+                        <button className="feed-delete-button" onClick={() => handleFeedDelete(feed?.id)}>Delete
                         </button>
                     </Link>
                 </StyledDivInfo>
@@ -58,7 +58,7 @@ function ViewSilo(props : ViewBarnProps) {
     );
 }
 
-export default ViewSilo;
+export default ViewFeed;
 
 const StyledDiv = styled.div`
     margin: 2vw;

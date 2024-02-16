@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import {Silo} from "../types/Silo.tsx";
 import {useNavigate} from "react-router-dom";
-type barnsElementProps = {
-    silo: Silo
+import {Feed} from "../../types/Feed.tsx";
+
+type feedsElementProps = {
+    feed: Feed
 }
-export default  function SiloElement(props:barnsElementProps) {
+export default  function FeedElement(props:feedsElementProps) {
     const navigate= useNavigate();
         const onBoxClick=()=>{
-            navigate(`/farm/viewSilo/${props.silo.id}`)
+                navigate(`/farm/viewFeed/${props.feed.id}`)
 }
 
     return (
@@ -16,12 +17,12 @@ export default  function SiloElement(props:barnsElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"Number of Silo"}</div>
-                        <div>{props.silo?.numberOfSilo}</div>
+                        <div>{"type of Feed"}</div>
+                        <div>{props.feed.type}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"Amount of Feed"}</div>
-                        <div>{props.silo?.amountOfFeed}</div>
+                        <div>{"article Number of Feed"}</div>
+                        <div>{props.feed.articleNumber}</div>
                     </StyledH>
                 </StyledDiv>
             </div>

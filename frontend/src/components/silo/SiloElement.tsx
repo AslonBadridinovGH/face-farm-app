@@ -1,29 +1,29 @@
-import {ChBarn} from "../types/ChickenBarn.tsx";
 import styled from "styled-components";
+import {Silo} from "../../types/Silo.tsx";
 import {useNavigate} from "react-router-dom";
 type barnsElementProps = {
-    barn: ChBarn
+    silo: Silo
 }
-export default  function ChickenBarnElement(props:barnsElementProps) {
-      const navigate= useNavigate();
-      const onBoxClick=()=>{
-          navigate(`/farm/viewBarn/${props.barn.id}`)
-    }
+export default function SiloElement(props : barnsElementProps) {
+    const navigate= useNavigate();
+        const onBoxClick=()=>{
+            navigate(`/farm/viewSilo/${props.silo.id}`)
+}
+
     return (
         <div>
              <div onClick={onBoxClick} className="barns">
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"Number of Chicken Barns"}</div>
-                        <div>{props.barn.name}</div>
+                        <div>{"Number of Silo"}</div>
+                        <div>{props.silo?.numberOfSilo}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"Amount of chickens  "}</div>
-                        <div>{props.barn.amountOfChickens}</div>
+                        <div>{"Amount of Feed"}</div>
+                        <div>{props.silo?.amountOfFeed}</div>
                     </StyledH>
                 </StyledDiv>
-
             </div>
 
         </div>
@@ -56,4 +56,5 @@ const StyledDiv = styled.div`
     background-color: red;
     padding: 1.25rem;
 `;
+
 

@@ -1,8 +1,8 @@
-import {ChBarn} from "../types/ChickenBarn.tsx";
+import {ChBarn} from "../../types/ChickenBarn.tsx";
 import {useParams} from "react-router-dom";
 import {ChangeEvent, FormEvent, useState} from "react";
 import styled from "styled-components";
-import {ChBarnDto} from "../types/ChickenBarnDto.tsx";
+import {ChBarnDto} from "../../types/ChickenBarnDto.tsx";
 
 
 type editChickenBarn = {

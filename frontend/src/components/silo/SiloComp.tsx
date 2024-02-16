@@ -1,14 +1,13 @@
-import {Silo} from "../types/Silo.tsx";
+import {Silo} from "../../types/Silo.tsx";
 import SiloElement from "./SiloElement.tsx";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-
 
 type viewAllSilos ={
     silos : Silo[];
 }
 
-function SiloFunction(props : viewAllSilos) {
+export default function Silos(props : viewAllSilos) {
 
     return (
         <StyledDiv>
@@ -23,8 +22,6 @@ function SiloFunction(props : viewAllSilos) {
         </StyledDiv>
 );
 }
-
-export default SiloFunction;
 
 const StyledDiv =styled.div`
 

@@ -14,6 +14,11 @@ export default function AsideMain() {
                    <NavLinks to={"/farm/chickenBarns"}>All Chicken Barns</NavLinks>
 
                    <NavLinks to={"/farm/silos"}>All Silos</NavLinks>
+
+                   <NavLinks to={"/farm/chickens"}>All chickens</NavLinks>
+
+                   <NavLinks to={"/farm/feeds"}>All feeds</NavLinks>
+
             </aside>
             <main>
                  <Outlet/>

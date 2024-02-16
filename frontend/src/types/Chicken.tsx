@@ -5,7 +5,7 @@ export type Chicken = {
     weightInFirstDay : number,
     expectedSlaughterWeight : number,
     expectedSlaughterAge : number,
-    feedConversion : number,
+    feedConversion : string,
     hatchery : string,
     hatchDay : string
 }

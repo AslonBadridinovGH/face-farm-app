@@ -5,5 +5,5 @@ public record FeedDto(
         String articleNumber,
         String type,
         String description,
-        Double pricePerTone){
+        String pricePerTone){
 }
