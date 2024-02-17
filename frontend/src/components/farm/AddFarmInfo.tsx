@@ -1,18 +1,27 @@
 import styled from "styled-components";
 import {ChangeEvent, FormEvent, useState} from "react";
+import {FarmDto} from "../../types/FarmDto.tsx";
 
-export default function AddNewFarm() {
+type FarmInfoProps = {
+    saveFarm : (farmDto : FarmDto)=>void;
+}
+
+
+export default function AddFarmInfo(props: FarmInfoProps) {
 
     const [name, setName] = useState<string>("")
     const [activity, setActivity] = useState<string>("")
     const [address, setAddress] = useState<string>("")
-    const [area, setArea] = useState<number>(0)
-    const [construction_year, setConstruction_year]=useState<number>(2024)
-    const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
+    const [area, setArea] = useState<string>("")
+    const [constructionYear, setConstructionYear]=useState<number>(2024)
+
+   /* const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
     const [numberOfBarns, setNumberOfBarns]=useState<number>(0)
-    const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
     const [numberOfSilos, setNumberOfSilos]=useState<number>(0)
+
+    const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
     const [numberOfTechniques, setNumberOfTechniques]=useState<number>(0)
+*/
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
@@ -24,11 +33,14 @@ export default function AddNewFarm() {
         setAddress(event.target.value)
     }
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setArea(event.target.valueAsNumber)
+        setArea(event.target.value)
     }
+
     const onConstruction_yearChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setConstruction_year(event.target.valueAsNumber)
+        setConstructionYear(event.target.valueAsNumber)
     }
+
+/*
     const onNumber_of_animalsChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumberOfAnimals(event.target.valueAsNumber)
     }
@@ -45,9 +57,19 @@ export default function AddNewFarm() {
     const onNumber_of_techniquesChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumberOfTechniques(event.target.valueAsNumber)
     }
+*/
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        const farmToSave : FarmDto = {
+            name ,
+            activity ,
+            address ,
+            area ,
+            constructionYear
+        }
+        props.saveFarm(farmToSave)
     }
 
 
@@ -67,12 +89,13 @@ export default function AddNewFarm() {
                 <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
 
                 <label>Area</label>
-                <StyledInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
+                <StyledInput value={area} type={"string"} onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Construction year</label>
-                <StyledInput value={construction_year} type={"number"} onChange={onConstruction_yearChange}
-                        placeholder={"construction_year"}/>
+                <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}
+                        placeholder={"construction year"}/>
 
+{/*
                 <label>number of animals</label>
                 <StyledInput value={numberOfAnimals} type={"number"} onChange={onNumber_of_animalsChange}
                         placeholder={"number of animals"}/>
@@ -92,7 +115,7 @@ export default function AddNewFarm() {
                 <label>number of techniques</label>
                 <StyledInput value={numberOfTechniques} type={"number"} onChange={onNumber_of_techniquesChange}
                         placeholder={"numberOfTechniques"}/>
-
+*/}
                 <button type={"submit"}>Submit</button>
             </StyledFormAdd>
 

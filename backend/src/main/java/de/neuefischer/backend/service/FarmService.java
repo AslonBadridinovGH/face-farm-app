@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-
-
 @Service
 public class FarmService {
 
@@ -30,14 +28,21 @@ public class FarmService {
 
         int sum = 0;
         List<ChickenBarn> chickenBarns = chickenBarnsRepo.findAll();
+
         Optional<Integer> reduce = chickenBarns.stream().map(ChickenBarn::amountOfChickens).reduce(Integer::sum);
         if (reduce.isPresent()){
            sum = reduce.get();
         }
 
         String id = idService.newId();
+
+        Double doub = null;
+        if (!farmDto.area().isEmpty()){
+            doub = Double.parseDouble(farmDto.area());
+        }
         Farm farmToSave = new Farm(
-            id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
+            id, farmDto.name(), farmDto.activity(),farmDto.address(), doub, farmDto.constructionYear(), sum);
+
         return farmsRepo.save(farmToSave);
     }
 
@@ -54,10 +59,16 @@ public class FarmService {
             Integer amount = chickenBarn.amountOfChickens();
             amountChickens += amount;
         }
+        Double doub = null;
+        if (!farmDto.area().isEmpty()){
+            doub = Double.parseDouble(farmDto.area());
+        }
+
         Farm farmToSave = new Farm(
-                id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), amountChickens);
+                id, farmDto.name(), farmDto.activity(),farmDto.address(), doub, farmDto.constructionYear(), amountChickens);
         return farmsRepo.save(farmToSave);
     }
+
 
     public Farm deleteFarmById(String id) {
 

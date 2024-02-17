@@ -1,9 +1,13 @@
+import {Farm} from "../../types/Farm.tsx";
 
+type farmInfo = {
+    farm : Farm []
+}
 
-export default function FarmInfo() {
+export default function FarmInfo(props : farmInfo) {
     return (
         <div>
-              Farm Infos
+            {props.farm.map(value => value.activity)}
         </div>
     );
 }
