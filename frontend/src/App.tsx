@@ -35,6 +35,7 @@ import {Farm} from "./types/Farm.tsx";
 import {FarmDto} from "./types/FarmDto.tsx";
 import AddFarmInfo from "./components/farm/AddFarmInfo.tsx";
 import ViewFarm from "./components/farm/ViewFarm.tsx";
+import EditFarmInfo from "./components/farm/EditFarmInfo.tsx";
 
 
 
@@ -48,7 +49,11 @@ function App() {
 
     const [feeds, setFeeds] = useState<Feed[]>([])
 
-    const [farm, setFarm] = useState<Farm[]>([])
+    const [farms, setFarm] = useState<Farm[]>([])
+
+    useEffect(() => {
+        axios.get("/api/farm").then(response => setFarm(response.data))
+    }, [])
 
 
     useEffect(() => {
@@ -67,17 +72,13 @@ function App() {
         axios.get("/api/feeds").then(response => setFeeds(response.data))
     }, [])
 
-    useEffect(() => {
-        axios.get("/api/farm").then(response => setFarm(response.data))
-    }, [])
-
 
     const navigate = useNavigate()
 
     const addFarmInfo = (farmDto : FarmDto)=>{
         axios.post("/api/farm", farmDto)
              .then((response) => {
-                 setChickenBars([...farm, response.data])
+                 setChickenBars([...farms, response.data])
                  navigate("/farm/viewFarm/" + response.data.id)
         })
     }
@@ -98,7 +99,6 @@ function App() {
         })
     }
 
-
     const addSilo = (siloToSave : SiloDto):void=>{
         axios.post("/api/silos", siloToSave)
             .then((response) => {
@@ -113,6 +113,17 @@ function App() {
                 setSilos([...feeds, response.data])
                 navigate("/farm/viewFeed/" + response.data.id)
             })
+    }
+
+    const editFarmInfo = (editedFarm: FarmDto): void => {
+        axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
+            .then((response) => {
+                setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
+                 console.log(response.data.id);
+
+                  navigate("/farm/viewFarm/" + response.data.id)
+                }
+            )
     }
 
     const editBarn = (editedChickenBarn: ChBarnDto): void => {
@@ -154,8 +165,8 @@ function App() {
     const deleteFarm = (id: string) => {
         axios.delete(`/api/farm/${id}`)
             .then(() => {
-                setChickenBars(chickenBarns.filter(barn => id !== barn.id));
-                navigate("/farm/farm")
+                setFarm(farms.filter(farm => id !== farm.id));
+                navigate("/farm/farmInfo")
             })
     }
 
@@ -203,10 +214,10 @@ function App() {
 
                  <Route index element={<p>Farm ...</p>}/>
 
-                 <Route path={"farmInfo"} element={<FarmInfo farm={farm}/>}  />
+                 <Route path={"farmInfo"} element={<FarmInfo farm={farms}/>}  />
                  <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
-                 <Route path={"viewSilo/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
-                 <Route path={"farmInfo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+                 <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
+                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
 
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>

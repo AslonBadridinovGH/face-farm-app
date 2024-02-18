@@ -2,7 +2,10 @@ package de.neuefischer.backend.service;
 import de.neuefischer.backend.dto.FarmDto;
 import de.neuefischer.backend.modul.*;
 import de.neuefischer.backend.repository.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,6 +26,15 @@ public class FarmService {
     public List<Farm> getFarm() {
         return farmsRepo.findAll();
     }
+
+    public Farm getById(String id) {
+        Optional<Farm> byId = farmsRepo.findById(id);
+        if (byId.isPresent()){
+            return byId.get();
+        }
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No Farm with such id!"));
+    }
+
 
     public Farm addFarmInfos(FarmDto farmDto) {
 
@@ -63,7 +75,6 @@ public class FarmService {
         if (!farmDto.area().isEmpty()){
             doub = Double.parseDouble(farmDto.area());
         }
-
         Farm farmToSave = new Farm(
                 id, farmDto.name(), farmDto.activity(),farmDto.address(), doub, farmDto.constructionYear(), amountChickens);
         return farmsRepo.save(farmToSave);

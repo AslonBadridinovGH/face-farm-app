@@ -5,6 +5,6 @@
      numberOfSilo : number,
      capacity : number,
      amountOfFeed : number,
-     feedIds : string[],
+     feedIds : string [],
 
  }

@@ -7,7 +7,7 @@ export default function AsideMain() {
         <div className={"farm"}>
 
             <aside >
-                <NavLinks to={"/farm/farmInfos"} className={({ isActive }) => (isActive ? 'active' : '')}>Farm Info</NavLinks>
+                   <NavLinks to={"/farm/farmInfo"} className={({ isActive }) => (isActive ? 'active' : '')}>Farm Info</NavLinks>
 
                    <NavLinks to={"/farm/addFarm"}>Add New Farm</NavLinks>
 

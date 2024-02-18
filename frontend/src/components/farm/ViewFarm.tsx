@@ -18,7 +18,7 @@ function ViewFarm (props : ViewFarmProps) {
     }, []);
 
 
-    const handleSiloDelete = (id: string | undefined) => {
+    const handleFarmDelete = (id: string | undefined) => {
         if (id) {
             props.handleFarmDelete(id)
         }
@@ -54,7 +54,7 @@ function ViewFarm (props : ViewFarmProps) {
                     </StyledInfo>
                     <Link to={`/farm/farmInfo/${farm?.id}/edit`}>
                         <button>Edit</button>
-                        <button className="farm-delete-button" onClick={() => handleSiloDelete(farm?.id)}>Delete
+                        <button className="farm-delete-button" onClick={() => handleFarmDelete(farm?.id)}>Delete
                         </button>
                     </Link>
                 </StyledDivInfo>
