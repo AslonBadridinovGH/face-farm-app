@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import {ChangeEvent, FormEvent, useState} from "react";
-import {FarmDto} from "../../types/FarmDto.tsx";
 import {Farm} from "../../types/Farm.tsx";
 import {useParams} from "react-router-dom";
 
 
 type FarmInfoProps = {
-    farms : Farm[],
-    editeFarm : (farmDto : FarmDto)=>void;
+    farms : Farm [],
+    editeFarm : (farm : Farm) => void;
 }
 
 
@@ -15,22 +14,22 @@ export default function EditFarmInfo(props: FarmInfoProps) {
 
     const {id} = useParams();
 
-    const farm : Farm | undefined = props.farms.find(frm => frm.id === id);
+    const farm : Farm | undefined = props.farms.find(frm => frm.id===id);
 
     const [name, setName] = useState<string>(farm?.name || "")
     const [activity, setActivity] = useState<string>(farm?.activity || "")
     const [address, setAddress] = useState<string>(farm?.address || "")
-    const [area, setArea] = useState<string>(farm?.area?.toString || "")
+    const [area, setArea] = useState<number>(farm?.area || 0)
     const [constructionYear, setConstructionYear]=useState<number>(farm?.constructionYear || 2024)
 
 
-   /* const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
+ /* const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
     const [numberOfBarns, setNumberOfBarns]=useState<number>(0)
     const [numberOfSilos, setNumberOfSilos]=useState<number>(0)
 
     const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
     const [numberOfTechniques, setNumberOfTechniques]=useState<number>(0)
-*/
+   */
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
@@ -42,7 +41,7 @@ export default function EditFarmInfo(props: FarmInfoProps) {
         setAddress(event.target.value)
     }
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setArea(event.target.value)
+        setArea(event.target.valueAsNumber)
     }
 
     const onConstruction_yearChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -72,14 +71,15 @@ export default function EditFarmInfo(props: FarmInfoProps) {
 
         event.preventDefault()
 
-        const farmToSave : FarmDto = {
+        const farmToSave : Farm = {
 
-            id : farm?.id || "",
+            id:farm?.id||"",
             name : name,
             activity : activity,
             address : address,
             area : area,
-            constructionYear : constructionYear
+            constructionYear : constructionYear,
+            amountAnimals : 0
         }
         props.editeFarm(farmToSave)
     }
@@ -101,7 +101,8 @@ export default function EditFarmInfo(props: FarmInfoProps) {
                 <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
 
                 <label>Area</label>
-                <StyledInput value={area} type={"string"} onChange={onAreaChange} placeholder={"area"}/>
+                <StyledInput value={area} type={"number"} step={"0.5"}
+                             onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Construction year</label>
                 <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}

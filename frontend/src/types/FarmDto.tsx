@@ -5,6 +5,6 @@ export type FarmDto = {
     name : string,
     activity : string,
     address : string,
-    area : string,
+    area : number,
     constructionYear : number
 }

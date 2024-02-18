@@ -115,7 +115,8 @@ function App() {
             })
     }
 
-    const editFarmInfo = (editedFarm: FarmDto): void => {
+    const editFarmInfo = (editedFarm: Farm): void => {
+        console.log(editedFarm.id);
         axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
             .then((response) => {
                 setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))

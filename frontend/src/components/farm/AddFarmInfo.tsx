@@ -12,7 +12,7 @@ export default function AddFarmInfo(props: FarmInfoProps) {
     const [name, setName] = useState<string>("")
     const [activity, setActivity] = useState<string>("")
     const [address, setAddress] = useState<string>("")
-    const [area, setArea] = useState<string>("")
+    const [area, setArea] = useState<number>(0)
     const [constructionYear, setConstructionYear]=useState<number>(2024)
 
 
@@ -34,7 +34,7 @@ export default function AddFarmInfo(props: FarmInfoProps) {
         setAddress(event.target.value)
     }
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setArea(event.target.value)
+        setArea(event.target.valueAsNumber)
     }
 
     const onConstruction_yearChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -92,7 +92,7 @@ export default function AddFarmInfo(props: FarmInfoProps) {
                 <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
 
                 <label>Area</label>
-                <StyledInput value={area} type={"string"} onChange={onAreaChange} placeholder={"area"}/>
+                <StyledInput value={area} type={"number"} step={"0.20"} onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Construction year</label>
                 <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}

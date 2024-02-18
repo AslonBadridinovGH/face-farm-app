@@ -48,12 +48,8 @@ public class FarmService {
 
         String id = idService.newId();
 
-        Double doub = null;
-        if (!farmDto.area().isEmpty()){
-            doub = Double.parseDouble(farmDto.area());
-        }
         Farm farmToSave = new Farm(
-            id, farmDto.name(), farmDto.activity(),farmDto.address(), doub, farmDto.constructionYear(), sum);
+            id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
 
         return farmsRepo.save(farmToSave);
     }
@@ -65,18 +61,16 @@ public class FarmService {
         if (byId.isEmpty()){
             throw (new NoSuchElementException());
         }
+
         Integer amountChickens = 0;
         List<ChickenBarn> all = chickenBarnsRepo.findAll();
         for (ChickenBarn chickenBarn : all) {
             Integer amount = chickenBarn.amountOfChickens();
             amountChickens += amount;
         }
-        Double doub = null;
-        if (!farmDto.area().isEmpty()){
-            doub = Double.parseDouble(farmDto.area());
-        }
+
         Farm farmToSave = new Farm(
-                id, farmDto.name(), farmDto.activity(),farmDto.address(), doub, farmDto.constructionYear(), amountChickens);
+                id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), amountChickens);
         return farmsRepo.save(farmToSave);
     }
 

@@ -46,7 +46,7 @@ public class FarmServiceTest {
     @Test
     void addFarmDtoTest_returnFarm(){
 
-        FarmDto farmDto = new FarmDto(  "barnstorf", "broiler", "markstr", "10.5", 2020);
+        FarmDto farmDto = new FarmDto(  "barnstorf", "broiler", "markstr", 10.5, 2020);
         Farm farm = new Farm("test-id", "barnstorf", "broiler", "markstr", 10.5, 2020, 0);
 
         // GIVEN
@@ -74,7 +74,7 @@ public class FarmServiceTest {
 
         Farm farm = new Farm("test-id", "barnstorf", "broiler", "markstr", 10.5, 2020, 0);
 
-        FarmDto farmDto = new FarmDto(  "barnstorf", "broiler", "markstr", "10.5", 2020);
+        FarmDto farmDto = new FarmDto(  "barnstorf", "broiler", "markstr", 10.5, 2020);
 
         Mockito.when(farmsRepo.save(Mockito.any())).thenReturn(farm);
         Mockito.when(farmsRepo.findById(id)).thenReturn(Optional.of(farm));

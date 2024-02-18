@@ -11,7 +11,7 @@ public record FarmDto(
         String name,
         String activity,
         String address,
-        String area,
+        Double area,
         Integer constructionYear
 
 )  {}
