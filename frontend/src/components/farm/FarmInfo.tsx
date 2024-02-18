@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 type farmInfo = {
     farm : Farm []
+    handleFarmDelete: (id: string) => void
 }
 
 export default function FarmInfo(props : farmInfo) {
@@ -12,16 +13,17 @@ export default function FarmInfo(props : farmInfo) {
 
     <StyledDiv>
         <div className={"ClNavLink"}>
-            <h2>All Farms</h2>
-            <NavLink className={"navLink"} to={"/farm/addFarm"}>Add New Farm</NavLink>
+            <h2>Farm Infos</h2>
+            <NavLink className={"navLink"} to={`/farm/farmInfo/${ props.farm.map(value => value.id) }/edit`} >Change Farm Infos</NavLink>
         </div>
 
-        <div className="barns">
-            {props.farm.map(value => (<FarmElement key={value.id} farm={value}/>))}
-        </div>
+       <div>
+           {props.farm.map(value => (<FarmElement key={value.id} farm={value} handleFarmDelete={props.handleFarmDelete} />))}
+       </div>
+
     </StyledDiv>
-)
-    ;
+);
+
 }
 
 
