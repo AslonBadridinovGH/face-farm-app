@@ -51,8 +51,6 @@ public class FarmService {
         Farm farmToSave = new Farm(
             id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
 
-        Farm farmToSave = new Farm(
-            id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
 
         return farmsRepo.save(farmToSave);
     }
