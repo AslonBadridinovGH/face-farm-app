@@ -2,13 +2,13 @@
 import { useState } from "react";
 import "../../App.css";
 import { UserData } from "./Data.tsx";
+import {ArcElement} from 'chart.js'
 import {Bar} from "react-chartjs-2";
-import {BarElement, CategoryScale, Chart, LinearScale} from "chart.js";
-
-    Chart.register(CategoryScale)
-    Chart.register(LinearScale)
-    Chart.register(BarElement)
-
+import {BarElement, CategoryScale, Chart, LinearScale, LineElement, PointElement} from "chart.js";
+import {Title, Tooltip, Legend,} from 'chart.js';
+import LineChart from "./LineChart.tsx";
+import PieChart from "./PieChart.tsx";
+Chart.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement, ArcElement, Title, Tooltip, Legend)
 
 
 export default function Climate() {
@@ -42,12 +42,12 @@ export default function Climate() {
                 <Bar data={userData} />
             </div>
 
-         {/*  <div style={{ width: 700 }}>
+           <div style={{ width: 700 }}>
                 <LineChart chartData={userData} />
             </div>
             <div style={{ width: 700 }}>
                 <PieChart chartData={userData} />
-            </div>*/}
+            </div>
 
         </div>
     );

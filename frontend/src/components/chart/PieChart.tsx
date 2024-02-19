@@ -1,9 +1,13 @@
-/*import React from "react";
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
 
-function PieChart({ chartData }) {
-    return <Pie data={chartData} />;
+import { Pie } from "react-chartjs-2";
+import {DataType} from "../../types/DataType.tsx";
+
+type chartPops ={
+    chartData : DataType;
 }
 
-export default PieChart;*/
+function PieChart(props: chartPops) {
+    return <Pie data={props.chartData} />;
+}
+
+export default PieChart;

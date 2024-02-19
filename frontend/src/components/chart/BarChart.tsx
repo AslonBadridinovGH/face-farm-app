@@ -6,7 +6,6 @@ type chartPops ={
     chartData : DataType;
 }
 
-
 function BarChart( props: chartPops ) {
     return <Bar data={props.chartData} />;
 }

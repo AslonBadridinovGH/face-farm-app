@@ -1,10 +1,13 @@
-/*
-import React from "react";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
 
-function LineChart({ chartData }) {
-    return <Line data={chartData} />;
+import { Line } from "react-chartjs-2";
+import {DataType} from "../../types/DataType.tsx";
+
+type chartPops ={
+    chartData : DataType;
 }
 
-export default LineChart;*/
+function LineChart( props: chartPops ) {
+    return <Line data={props.chartData} />;
+}
+
+export default LineChart;
