@@ -47,6 +47,7 @@ export default function AddChickenBarn(props : addBarnProps) {
     }
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
+
         event.preventDefault()
 
         const chBarnToSave: ChBarnDto = {
