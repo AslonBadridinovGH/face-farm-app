@@ -7,7 +7,7 @@ import {BarElement, CategoryScale, Chart, LinearScale, LineElement, PointElement
 import {Title, Tooltip, Legend,} from 'chart.js';
 import LineChart from "./LineChart.tsx";
 import PieChart from "./PieChart.tsx";
-import {UserDataType} from "../../types/DataType.tsx";
+import {UserDataType} from "../../types/UserDataType.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 Chart.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement, ArcElement, Title, Tooltip, Legend)
@@ -64,11 +64,11 @@ export default function Climate() {
             </div>
 
             <div style={{ width: 700 }}>
-                <LineChart chartData={userDataVar} />
+                <LineChart chartData={userData} />
             </div>
 
             <div style={{ width: 700 }}>
-                <PieChart chartData={userDataVar} />
+                <PieChart chartData={userData} />
             </div>
 
         </div>

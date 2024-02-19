@@ -1,6 +1,6 @@
 
 import { Pie } from "react-chartjs-2";
-import {UserDataType} from "../../types/DataType.tsx";
+import {UserDataType} from "../../types/UserDataType.tsx";
 
 type chartPops ={
     chartData : UserDataType;
