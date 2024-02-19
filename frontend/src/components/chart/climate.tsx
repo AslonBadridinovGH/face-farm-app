@@ -1,7 +1,8 @@
+/*
 import { useState } from "react";
-import "./App.css";
-import BarChart from "./components/BarChart";
-import { UserData } from "./components/Data";
+import "../../App.css";
+import BarChart from "./BarChart.tsx";
+import { UserData } from "./Data.tsx";
 
 export default function Climate() {
 
@@ -30,12 +31,12 @@ export default function Climate() {
                 <BarChart chartData={userData} />
             </div>
 
-{/*            <div style={{ width: 700 }}>
+{/!*            <div style={{ width: 700 }}>
                 <LineChart chartData={userData} />
             </div>
             <div style={{ width: 700 }}>
                 <PieChart chartData={userData} />
-            </div>*/}
+            </div>*!/}
         </div>
     );
 }
@@ -43,3 +44,4 @@ export default function Climate() {
 
 
 
+*/

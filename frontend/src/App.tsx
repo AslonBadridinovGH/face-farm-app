@@ -1,11 +1,11 @@
 import './App.css'
-import Navbar from "./components/Navbar.tsx";
+import Navbar from "./components/chart/Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home.tsx";
 import AsideMain from "./components/AsideMain.tsx";
 import Contact from "./components/nextComp/contact.tsx";
 import Production from "./components/nextComp/production.tsx";
-import Climate from "./climate.tsx";
+/*import Climate from "./components/chart/climate.tsx";*/
 import AddChickenBarn from "./components/chickenBarn/AddChickenBarn.tsx";
 import FarmInfo from "./components/farm/FarmInfo.tsx";
 import ChickenBarns from "./components/chickenBarn/ChickenBarnComp.tsx";
@@ -246,7 +246,7 @@ function App() {
 
              <Route path={"/contact"} element={<Contact/>} />
              <Route path={"/production"} element={<Production/>} />
-             <Route path={"/climate"} element={<Climate/>}/>
+           {/*  <Route path={"/climate"} element={<Climate/>}/>*/}
          </Routes>
 
     </>
