@@ -242,9 +242,7 @@ function App() {
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
                  <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
-
              </Route>
-
              <Route path={"/contact"} element={<Contact/>} />
              <Route path={"/production"} element={<Production/>} />
               <Route path={"/climate"} element={<Climate/>}/>
