@@ -25,10 +25,12 @@ public class FeedController {
         return feedService.getById(id);
     }
 
+
     @PostMapping
     public Feed addFeed(@RequestBody FeedDto feedDto){
         return feedService.addFeed(feedDto);
     }
+
 
     @PutMapping("/{id}")
     public Feed updateFeed(@RequestBody Feed feed){
