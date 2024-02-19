@@ -55,20 +55,21 @@ export default function Climate() {
         ]
     };
 
+    setUserData(userDataVar);
 
     return (
         <div className="App">
 
             <div style={{ width: 700 }}>
-                <Bar data={userData} />
+                <Bar data={userDataVar} />
             </div>
 
             <div style={{ width: 700 }}>
-                <LineChart chartData={userData} />
+                <LineChart chartData={userDataVar} />
             </div>
 
             <div style={{ width: 700 }}>
-                <PieChart chartData={userData} />
+                <PieChart chartData={userDataVar} />
             </div>
 
         </div>
