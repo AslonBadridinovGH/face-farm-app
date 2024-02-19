@@ -1,9 +1,9 @@
 
 import { Pie } from "react-chartjs-2";
-import {DataType} from "../../types/DataType.tsx";
+import {UserDataType} from "../../types/DataType.tsx";
 
 type chartPops ={
-    chartData : DataType;
+    chartData : UserDataType;
 }
 
 function PieChart(props: chartPops) {

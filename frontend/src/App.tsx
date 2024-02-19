@@ -5,7 +5,6 @@ import Home from "./components/Home.tsx";
 import AsideMain from "./components/AsideMain.tsx";
 import Contact from "./components/nextComp/contact.tsx";
 import Production from "./components/nextComp/production.tsx";
-/*import Climate from "./components/chart/climate.tsx";*/
 import AddChickenBarn from "./components/chickenBarn/AddChickenBarn.tsx";
 import FarmInfo from "./components/farm/FarmInfo.tsx";
 import ChickenBarns from "./components/chickenBarn/ChickenBarnComp.tsx";
@@ -77,24 +76,23 @@ function App() {
 
     const navigate = useNavigate()
 
-    const addFarmInfo = (farmDto : FarmDto)=>{
-        axios.post("/api/farm", farmDto)
-             .then((response) => {
-                 setChickenBars([...farms, response.data])
-                 navigate("/farm/viewFarm/" + response.data.id)
-        })
-    }
-
     const editFarmInfo = (editedFarm: Farm): void => {
         console.log(editedFarm.id);
         axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
             .then((response) => {
                     setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
                     console.log(response.data.id);
-
-                    navigate("/farm/viewFarm/" + response.data.id)
+                    navigate("/farm/farmInfo/")
                 }
             )
+    }
+
+    const addFarmInfo = (farmDto : FarmDto)=>{
+        axios.post("/api/farm", farmDto)
+            .then((response) => {
+                setChickenBars([...farms, response.data])
+                navigate("/farm/viewFarm/")
+            })
     }
 
     const deleteFarm = (id: string) => {
@@ -219,9 +217,10 @@ function App() {
                  <Route index element={<p>Farm ...</p>}/>
 
                  <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
+                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
+
                  <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
                  <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
-                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
 
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>
