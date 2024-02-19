@@ -87,7 +87,8 @@ public class FarmContIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
 
-{          
+                         {        
+
                                    "name": "barnstorf",
                                    "activity": "broiler",
                                    "address": "landstrasse",

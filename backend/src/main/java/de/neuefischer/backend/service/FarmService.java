@@ -2,11 +2,13 @@ package de.neuefischer.backend.service;
 import de.neuefischer.backend.dto.FarmDto;
 import de.neuefischer.backend.modul.*;
 import de.neuefischer.backend.repository.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 
 
 @Service
@@ -26,6 +28,14 @@ public class FarmService {
         return farmsRepo.findAll();
     }
 
+    public Farm getById(String id) {
+        Optional<Farm> byId = farmsRepo.findById(id);
+        if (byId.isPresent()){
+            return byId.get();
+        }
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No Farm with such id!"));
+    }
+
     public Farm addFarmInfos(FarmDto farmDto) {
 
         int sum = 0;
@@ -36,8 +46,13 @@ public class FarmService {
         }
 
         String id = idService.newId();
+
         Farm farmToSave = new Farm(
             id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
+
+        Farm farmToSave = new Farm(
+            id, farmDto.name(), farmDto.activity(),farmDto.address(), farmDto.area(), farmDto.constructionYear(), sum);
+
         return farmsRepo.save(farmToSave);
     }
 
@@ -48,6 +63,8 @@ public class FarmService {
         if (byId.isEmpty()){
             throw (new NoSuchElementException());
         }
+
+      
         Integer amountChickens = 0;
         List<ChickenBarn> all = chickenBarnsRepo.findAll();
         for (ChickenBarn chickenBarn : all) {

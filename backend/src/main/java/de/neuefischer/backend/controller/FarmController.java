@@ -14,10 +14,14 @@ public class FarmController {
 
     private final FarmService farmService;
 
-
     @GetMapping
     public List<Farm> getFarms(){
         return farmService.getFarm();
+    }
+
+    @GetMapping("/{id}")
+    public Farm getSiloById(@PathVariable String id) {
+        return farmService.getById(id);
     }
 
     @PostMapping
@@ -26,8 +30,9 @@ public class FarmController {
     }
 
     @PutMapping("/{id}")
-    public Farm updateFarm(@PathVariable String id, @RequestBody FarmDto farm){
-        return farmService.updateFarmInfo(id, farm);
+
+    public Farm updateFarm(@PathVariable String id, @RequestBody FarmDto farmDto){
+        return farmService.updateFarmInfo(id, farmDto);
     }
 
     @DeleteMapping("/{id}")

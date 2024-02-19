@@ -6,9 +6,9 @@ export type ChBarn = {
                    id : string,
                   area : number,
                   name : string,
-              chickens : Chicken [],
+              chickens ? : Chicken [],
        amountOfChickens : number,
      capacityForChickens : number,
-              silos : Silo[]
+              silos ? : Silo[]
 
  }

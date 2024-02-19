@@ -1,18 +1,35 @@
 import styled from "styled-components";
 import {ChangeEvent, FormEvent, useState} from "react";
+import {Farm} from "../../types/Farm.tsx";
+import {useParams} from "react-router-dom";
 
-export default function AddNewFarm() {
 
-    const [name, setName] = useState<string>("")
-    const [activity, setActivity] = useState<string>("")
-    const [address, setAddress] = useState<string>("")
-    const [area, setArea] = useState<number>(0)
-    const [construction_year, setConstruction_year]=useState<number>(2024)
-    const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
+type FarmInfoProps = {
+    farms : Farm [],
+    editeFarm : (farm : Farm) => void;
+}
+
+
+export default function EditFarmInfo(props: FarmInfoProps) {
+
+    const {id} = useParams();
+
+    const farm : Farm | undefined = props.farms.find(frm => frm.id===id);
+
+    const [name, setName] = useState<string>(farm?.name || "")
+    const [activity, setActivity] = useState<string>(farm?.activity || "")
+    const [address, setAddress] = useState<string>(farm?.address || "")
+    const [area, setArea] = useState<number>(farm?.area || 0)
+    const [constructionYear, setConstructionYear]=useState<number>(farm?.constructionYear || 2024)
+
+
+ /* const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
     const [numberOfBarns, setNumberOfBarns]=useState<number>(0)
-    const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
     const [numberOfSilos, setNumberOfSilos]=useState<number>(0)
+
+    const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
     const [numberOfTechniques, setNumberOfTechniques]=useState<number>(0)
+   */
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
@@ -26,9 +43,12 @@ export default function AddNewFarm() {
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
         setArea(event.target.valueAsNumber)
     }
+
     const onConstruction_yearChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setConstruction_year(event.target.valueAsNumber)
+        setConstructionYear(event.target.valueAsNumber)
     }
+
+    /*
     const onNumber_of_animalsChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumberOfAnimals(event.target.valueAsNumber)
     }
@@ -45,16 +65,30 @@ export default function AddNewFarm() {
     const onNumber_of_techniquesChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumberOfTechniques(event.target.valueAsNumber)
     }
+*/
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
+
         event.preventDefault()
+
+        const farmToSave : Farm = {
+
+            id:farm?.id||"",
+            name : name,
+            activity : activity,
+            address : address,
+            area : area,
+            constructionYear : constructionYear,
+            amountAnimals : 0
+        }
+        props.editeFarm(farmToSave)
     }
 
 
     return (
         <StyledDiv>
 
-                      <StyledDivAddFarm>Add Farm Infos</StyledDivAddFarm>
+                      <StyledDivAddFarm>Change Farm Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <label>Name</label>
@@ -67,12 +101,14 @@ export default function AddNewFarm() {
                 <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
 
                 <label>Area</label>
-                <StyledInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
+                <StyledInput value={area} type={"number"} step={"0.5"}
+                             onChange={onAreaChange} placeholder={"area"}/>
 
                 <label>Construction year</label>
-                <StyledInput value={construction_year} type={"number"} onChange={onConstruction_yearChange}
-                        placeholder={"construction_year"}/>
+                <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}
+                        placeholder={"construction year"}/>
 
+{/*
                 <label>number of animals</label>
                 <StyledInput value={numberOfAnimals} type={"number"} onChange={onNumber_of_animalsChange}
                         placeholder={"number of animals"}/>
@@ -92,7 +128,7 @@ export default function AddNewFarm() {
                 <label>number of techniques</label>
                 <StyledInput value={numberOfTechniques} type={"number"} onChange={onNumber_of_techniquesChange}
                         placeholder={"numberOfTechniques"}/>
-
+*/}
                 <button type={"submit"}>Submit</button>
             </StyledFormAdd>
 

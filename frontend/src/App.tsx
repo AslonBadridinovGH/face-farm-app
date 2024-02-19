@@ -1,12 +1,11 @@
 import './App.css'
-import Navbar from "./components/Navbar.tsx";
+import Navbar from "./Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home.tsx";
 import AsideMain from "./components/AsideMain.tsx";
 import Contact from "./components/nextComp/contact.tsx";
 import Production from "./components/nextComp/production.tsx";
-import Clime from "./components/nextComp/clime.tsx";
-import AddNewFarm from "./components/farm/AddNewFarm.tsx";
+/*import Climate from "./components/chart/climate.tsx";*/
 import AddChickenBarn from "./components/chickenBarn/AddChickenBarn.tsx";
 import FarmInfo from "./components/farm/FarmInfo.tsx";
 import ChickenBarns from "./components/chickenBarn/ChickenBarnComp.tsx";
@@ -32,6 +31,13 @@ import AddNewFeed from "./components/feed/AddNewFeed.tsx";
 import Feeds from "./components/feed/FeedComp.tsx";
 import ViewFeed from "./components/feed/ViewFeed.tsx";
 import EditFeed from "./components/feed/EditFeed.tsx";
+import {Farm} from "./types/Farm.tsx";
+import {FarmDto} from "./types/FarmDto.tsx";
+import AddFarmInfo from "./components/farm/AddFarmInfo.tsx";
+import ViewFarm from "./components/farm/ViewFarm.tsx";
+import EditFarmInfo from "./components/farm/EditFarmInfo.tsx";
+import Climate from "./components/chart/climate.tsx";
+
 
 
 function App() {
@@ -43,6 +49,13 @@ function App() {
     const [chickens, setChickens] = useState<Chicken[]>([])
 
     const [feeds, setFeeds] = useState<Feed[]>([])
+
+    const [farms, setFarm] = useState<Farm[]>([])
+
+
+    useEffect(() => {
+        axios.get("/api/farm").then(response => setFarm(response.data))
+    }, [])
 
 
     useEffect(() => {
@@ -64,6 +77,34 @@ function App() {
 
     const navigate = useNavigate()
 
+    const addFarmInfo = (farmDto : FarmDto)=>{
+        axios.post("/api/farm", farmDto)
+             .then((response) => {
+                 setChickenBars([...farms, response.data])
+                 navigate("/farm/viewFarm/" + response.data.id)
+        })
+    }
+
+    const editFarmInfo = (editedFarm: Farm): void => {
+        console.log(editedFarm.id);
+        axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
+            .then((response) => {
+                    setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
+                    console.log(response.data.id);
+
+                    navigate("/farm/viewFarm/" + response.data.id)
+                }
+            )
+    }
+
+    const deleteFarm = (id: string) => {
+        axios.delete(`/api/farm/${id}`)
+            .then(() => {
+                setFarm(farms.filter(farm => id !== farm.id));
+                navigate("/farm/farmInfo")
+            })
+    }
+
     const addChickenBarn = (chickenBarnDtoToSend:ChBarnDto)=>{
         axios.post("/api/chickenBarns", chickenBarnDtoToSend)
              .then((response) => {
@@ -80,7 +121,6 @@ function App() {
         })
     }
 
-
     const addSilo = (siloToSave : SiloDto):void=>{
         axios.post("/api/silos", siloToSave)
             .then((response) => {
@@ -96,6 +136,7 @@ function App() {
                 navigate("/farm/viewFeed/" + response.data.id)
             })
     }
+
 
     const editBarn = (editedChickenBarn: ChBarnDto): void => {
         axios.put(`/api/chickenBarns/${editedChickenBarn.id}`, editedChickenBarn)
@@ -132,6 +173,7 @@ function App() {
                 }
             )
     }
+
 
     const deleteBarn = (id: string) => {
         axios.delete(`/api/chickenBarns/${id}`)
@@ -173,9 +215,13 @@ function App() {
              <Route index element={<Home/>}/>
 
              <Route path={"/farm"}  element={<AsideMain/>}>
+
                  <Route index element={<p>Farm ...</p>}/>
-                 <Route path={"farmInfo"} element={<FarmInfo/>}/>
-                 <Route path={"addFarm"} element={<AddNewFarm/>}/>
+
+                 <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
+                 <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
+                 <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
+                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
 
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>
@@ -195,11 +241,11 @@ function App() {
                  <Route path={"silos"} element={<Silos silos={silos}/>}  />
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
-                <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+                 <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
              </Route>
              <Route path={"/contact"} element={<Contact/>} />
              <Route path={"/production"} element={<Production/>} />
-             <Route path={"/climate"} element={<Clime/>}/>
+              <Route path={"/climate"} element={<Climate/>}/>
          </Routes>
 
     </>
