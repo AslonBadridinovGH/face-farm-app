@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,12 +77,25 @@ public class ChickenServiceTest {
     @Test
     void addChickenTest_returnChicken(){
 
-        LocalDate date = LocalDate.of(2024, 2, 12);
 
-        String dateString = "2024-02-12";
+        String dateString = "12.02.2024";
+
+        LocalDate date = null;
+
+        try {
+            // Define the date format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+            // Parse the string to a LocalDate object
+            date = LocalDate.parse(dateString, formatter);
+
+        } catch (DateTimeParseException e) {
+            // Handle parsing exception
+            System.out.println("Error parsing the date: " + e.getMessage());
+        }
 
         ChickenDto chickenDto = new ChickenDto("ross308", 0.5, 2.8, 40,
-                1.6, "kwh", dateString);
+                "1.6", "kwh", dateString);
 
 
         Chicken chicken =  new Chicken("test-id", "ross308", 0.5, 2.8, 40,

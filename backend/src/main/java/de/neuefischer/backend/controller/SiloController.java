@@ -14,7 +14,6 @@ public class SiloController {
 
     private final SiloService siloService;
 
-
     @GetMapping
     public List<Silo> getSilos(){
         return siloService.getSilos();
@@ -34,7 +33,6 @@ public class SiloController {
     public Silo updateSilo(@PathVariable String id, @RequestBody SiloDto siloDto){
         return siloService.updateSilo(id, siloDto);
     }
-
 
     @DeleteMapping("/{id}")
     public Silo deleteSilo(@PathVariable String id){

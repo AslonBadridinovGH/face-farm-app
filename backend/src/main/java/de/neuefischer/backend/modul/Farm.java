@@ -8,6 +8,7 @@ import java.util.Objects;
 
 @With
 public record Farm (
+
         @Id
         String id,
         String name,
@@ -15,12 +16,8 @@ public record Farm (
         String address,
         Double area,
         Integer constructionYear,
-        Integer amountAnimals,
-
-        List <ChickenBarn> chickenBarns,
-        List <Silo> silos,
-        List <Integer> techniques,
-        List <Integer> employees)  {
+        Integer amountAnimals
+)  {
 
         @Override
         public String toString() {
@@ -32,10 +29,6 @@ public record Farm (
                         ", area=" + area +
                         ", constructionYear=" + constructionYear +
                         ", amountAnimals=" + amountAnimals +
-                        ", chickenBarns=" + chickenBarns +
-                        ", silos=" + silos +
-                        ", techniques=" + techniques +
-                        ", employees=" + employees +
                         '}';
         }
 
@@ -44,11 +37,11 @@ public record Farm (
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
                 Farm farm = (Farm) o;
-                return Objects.equals(id, farm.id) && Objects.equals(name, farm.name) && Objects.equals(activity, farm.activity) && Objects.equals(address, farm.address) && Objects.equals(area, farm.area) && Objects.equals(constructionYear, farm.constructionYear) && Objects.equals(amountAnimals, farm.amountAnimals) && Objects.equals(chickenBarns, farm.chickenBarns) && Objects.equals(silos, farm.silos) && Objects.equals(techniques, farm.techniques) && Objects.equals(employees, farm.employees);
+                return Objects.equals(id, farm.id) && Objects.equals(name, farm.name) && Objects.equals(activity, farm.activity) && Objects.equals(address, farm.address) && Objects.equals(area, farm.area) && Objects.equals(constructionYear, farm.constructionYear) && Objects.equals(amountAnimals, farm.amountAnimals);
         }
 
         @Override
         public int hashCode() {
-                return Objects.hash(id, name, activity, address, area, constructionYear, amountAnimals, chickenBarns, silos, techniques, employees);
+                return Objects.hash(id, name, activity, address, area, constructionYear, amountAnimals);
         }
 }
