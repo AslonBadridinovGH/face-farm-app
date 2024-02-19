@@ -63,7 +63,7 @@ public class FeedServiceTest {
     void addFeedTest_returnFeed(){
 
 
-        FeedDto feedDto =  new FeedDto( "2220", "starter", "desc", "0.5");
+        FeedDto feedDto =  new FeedDto( "2220", "starter", "desc", 0.5);
 
               Feed feed = new Feed("test-id", "2220", "starter", "desc", 0.5);
 
