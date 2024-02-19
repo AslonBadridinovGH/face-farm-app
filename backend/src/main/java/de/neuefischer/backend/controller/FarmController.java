@@ -1,7 +1,6 @@
 package de.neuefischer.backend.controller;
 import de.neuefischer.backend.dto.FarmDto;
 import de.neuefischer.backend.modul.Farm;
-import de.neuefischer.backend.modul.Silo;
 import de.neuefischer.backend.service.FarmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +24,13 @@ public class FarmController {
         return farmService.getById(id);
     }
 
-
     @PostMapping
     public Farm addFarm(@RequestBody FarmDto farmDto){
         return farmService.addFarmInfos(farmDto);
     }
 
     @PutMapping("/{id}")
+
     public Farm updateFarm(@PathVariable String id, @RequestBody FarmDto farmDto){
         return farmService.updateFarmInfo(id, farmDto);
     }
@@ -40,6 +39,5 @@ public class FarmController {
     public Farm deleteFarm(@PathVariable String id){
            return farmService.deleteFarmById(id);
     }
-
 
 }
