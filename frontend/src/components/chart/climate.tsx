@@ -34,8 +34,6 @@ export default function Climate() {
         ],
         });
 
-     console.log(userData)
-
     return (
         <div className="App">
             <div style={{ width: 700 }}>
