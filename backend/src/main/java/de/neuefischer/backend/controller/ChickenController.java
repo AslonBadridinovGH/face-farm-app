@@ -15,7 +15,6 @@ public class ChickenController {
 
     private final ChickenService chickenService;
 
-
     @GetMapping
     public List<Chicken> getChickens(){
         return chickenService.getChickens();
