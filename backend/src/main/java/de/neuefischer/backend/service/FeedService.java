@@ -38,8 +38,9 @@ public class FeedService {
 
         String id = idService.newId();
         Feed feed = new Feed(
-        id, feedDto.articleNumber(),feedDto.type(),feedDto.description(),
-        Double.parseDouble(feedDto.pricePerTone()));
+        id, feedDto.articleNumber(),feedDto.type(),feedDto.description(),feedDto.pricePerTone()
+        );
+
         return feedsRepo.save(feed);
     }
 

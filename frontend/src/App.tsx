@@ -1,5 +1,5 @@
 import './App.css'
-import Navbar from "./components/chart/Navbar.tsx";
+import Navbar from "./Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home.tsx";
 import AsideMain from "./components/AsideMain.tsx";
@@ -36,6 +36,7 @@ import {FarmDto} from "./types/FarmDto.tsx";
 import AddFarmInfo from "./components/farm/AddFarmInfo.tsx";
 import ViewFarm from "./components/farm/ViewFarm.tsx";
 import EditFarmInfo from "./components/farm/EditFarmInfo.tsx";
+import Climate from "./components/chart/climate.tsx";
 
 
 
@@ -246,7 +247,7 @@ function App() {
 
              <Route path={"/contact"} element={<Contact/>} />
              <Route path={"/production"} element={<Production/>} />
-           {/*  <Route path={"/climate"} element={<Climate/>}/>*/}
+              <Route path={"/climate"} element={<Climate/>}/>
          </Routes>
 
     </>
