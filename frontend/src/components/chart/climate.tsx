@@ -3,6 +3,13 @@ import { useState } from "react";
 import "../../App.css";
 import { UserData } from "./Data.tsx";
 import {Bar} from "react-chartjs-2";
+import {BarElement, CategoryScale, Chart, LinearScale} from "chart.js";
+
+    Chart.register(CategoryScale)
+    Chart.register(LinearScale)
+    Chart.register(BarElement)
+
+
 
 export default function Climate() {
 
@@ -14,9 +21,19 @@ export default function Climate() {
                 label: "Users Gained",
                 data: UserData.map((data) => data.userGain),
 
+                backgroundColor: [
+                    "rgba(75,192,192,1)",
+                    "#ecf0f1",
+                    "#50AF95",
+                    "#f3ba2f",
+                    "#2a71d0",
+                ],
+                borderColor: "black",
+                borderWidth: 2,
             },
         ],
-    });
+        });
+
      console.log(userData)
 
     return (
