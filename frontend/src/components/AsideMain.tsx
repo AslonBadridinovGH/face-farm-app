@@ -34,7 +34,8 @@ const NavLinks = styled(NavLink)`
     
     color: #ffffff;
     width: 100%;
-    height: 30px;
+    height: auto;
+    
     text-decoration: none;
     border-radius: 0.375rem;
     padding: 5px 1.5vw;
@@ -42,7 +43,7 @@ const NavLinks = styled(NavLink)`
     font-weight: 500;
     margin-right: 0.3vw;
     text-align: start;
-    line-height: 30px;
+   
 `;
 
 const StyledNav = styled.nav`
@@ -50,7 +51,7 @@ const StyledNav = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding-right: 5rem;
+    padding-right: 3rem;
     gap: 20px;
     
 `;

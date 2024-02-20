@@ -1,8 +1,6 @@
 package de.neuefischer.backend.service;
 
-import de.neuefischer.backend.modul.Data;
 import de.neuefischer.backend.modul.Dataset;
-import de.neuefischer.backend.repository.DataRepo;
 import de.neuefischer.backend.repository.DataSetRepo;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +10,24 @@ import java.util.List;
 @Service
 public class DataSetService {
 
-    private final DataSetRepo dataRepo;
+    private final DataSetRepo dataSetRepo;
     private final IdService idService;
 
-    public DataSetService(DataSetRepo dataRepo, IdService idService) {
-        this.dataRepo = dataRepo;
+
+    public DataSetService(DataSetRepo dataSetRepo, IdService idService) {
+        this.dataSetRepo = dataSetRepo;
         this.idService = idService;
     }
 
     public List<Dataset> getDataSet() {
-        return dataRepo.findAll();
+        return dataSetRepo.findAll();
     }
 
-    public Dataset addDataSet(Dataset data) {
+    public Dataset addDataSet(Dataset dataset) {
 
         String id = idService.newId();
-
-        return dataRepo.save(data);
+        Dataset datasetToSave = dataset.withId(id);
+        return dataSetRepo.save(datasetToSave);
     }
 
 }

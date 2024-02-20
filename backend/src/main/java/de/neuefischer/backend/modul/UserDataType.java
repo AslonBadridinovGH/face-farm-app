@@ -4,6 +4,7 @@ import java.util.List;
 
 public record UserDataType(
 
+    String id,
     List <Integer> labels,
     List <Dataset> datasets
 

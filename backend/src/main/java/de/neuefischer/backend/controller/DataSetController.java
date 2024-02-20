@@ -13,16 +13,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DataSetController {
 
-    private final DataSetService dataService;
+    private final DataSetService dataSetService;
 
     @GetMapping
     public List<Dataset> getAllDataSets(){
-        return dataService.getDataSet();
+        return dataSetService.getDataSet();
     }
 
     @PostMapping
-    public Dataset addDataSet(@RequestBody Dataset data){
-        return dataService.addDataSet(data);
+    public Dataset addDataSet(@RequestBody Dataset dataset){
+        return dataSetService.addDataSet(dataset);
     }
 
 }

@@ -6,8 +6,7 @@ type chartPops ={
     chartData : UserDataType;
 }
 
-function BarChart( props: chartPops ) {
+export default  function BarChart( props: chartPops ) {
     return <Bar data={props.chartData} />;
 }
 
-export default BarChart;

@@ -17,13 +17,13 @@ public class UserDataController {
     private final UserDataService userDataService;
 
     @GetMapping
-    public List<UserDataType> getAllUserData(){
+    public UserDataType getAllUserData(){
         return userDataService.getUserData();
     }
 
-    @PostMapping
-    public UserDataType addUserData(@RequestBody UserDataType userDataType){
-        return userDataService.addUserData(userDataType);
+    @PutMapping
+    public UserDataType addUserData(){
+        return userDataService.addUserData();
     }
 
 }

@@ -27,14 +27,17 @@ nav a.active {
     background-color: #cdcfd5;
     width: 80%;
     padding-bottom: 20px;
+
 }
 
 .barns {
     display: flex;
     flex-wrap: wrap;
+
     justify-content: center;
     gap: 1rem;
     padding: 10px 5px;
+
 }
 
 .ClNavLink{

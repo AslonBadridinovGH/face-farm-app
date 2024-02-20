@@ -23,4 +23,5 @@ public class DataController {
         return dataService.addData(data);
     }
 
+
 }
