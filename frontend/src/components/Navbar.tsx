@@ -8,7 +8,7 @@ export default  function Navbar() {
             {/* className={({ isActive }) => (isActive ? 'active' : '')} */}
 
             <StyledNav>
-                <NavLinks to={"/"}>Home</NavLinks>
+                <NavLinks to={"/"}>About</NavLinks>
                 <NavLinks to={"/farm"}>Farm</NavLinks>
                 <NavLinks to={"/production"}>Production</NavLinks>
                 <NavLinks to={"climate"}>Climate</NavLinks>

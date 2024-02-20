@@ -1,42 +1,41 @@
-import './App.css'
+import './chart/App.css'
 import Navbar from "./Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
-import Home from "./components/Home.tsx";
-import AsideMain from "./components/AsideMain.tsx";
-import Contact from "./components/nextComp/contact.tsx";
-import Production from "./components/nextComp/production.tsx";
-/*import Climate from "./components/chart/climate.tsx";*/
-import AddChickenBarn from "./components/chickenBarn/AddChickenBarn.tsx";
-import FarmInfo from "./components/farm/FarmInfo.tsx";
-import ChickenBarns from "./components/chickenBarn/ChickenBarnComp.tsx";
-import AddNewSilo from "./components/silo/AddNewSilo.tsx";
-import Silos from "./components/silo/SiloComp.tsx";
+import Home from "./Home.tsx";
+import AsideMain from "./AsideMain.tsx";
+import Contact from "./nextComp/contact.tsx";
+import Production from "./nextComp/production.tsx";
+import AddChickenBarn from "./chickenBarn/AddChickenBarn.tsx";
+import FarmInfo from "./farm/FarmInfo.tsx";
+import ChickenBarns from "./chickenBarn/ChickenBarnComp.tsx";
+import AddNewSilo from "./silo/AddNewSilo.tsx";
+import Silos from "./silo/SiloComp.tsx";
 import {useEffect, useState} from "react";
-import {ChBarn} from "./types/ChickenBarn.tsx";
-import {Silo} from "./types/Silo.tsx";
-import ViewChickenBarn from "./components/chickenBarn/ViewChickenBarn.tsx";
+import {ChBarn} from "../types/ChickenBarn.tsx";
+import {Silo} from "../types/Silo.tsx";
+import ViewChickenBarn from "./chickenBarn/ViewChickenBarn.tsx";
 import axios from "axios";
-import EditChickenBarn from "./components/chickenBarn/EditChickenBarn.tsx";
-import EditSilo from "./components/silo/EditSilo.tsx";
-import ViewSilo from "./components/silo/ViewSilo.tsx";
-import {ChBarnDto} from "./types/ChickenBarnDto.tsx";
-import {SiloDto} from "./types/SiloDto.tsx";
-import {Chicken} from "./types/Chicken.tsx";
-import Chickens from "./components/chicken/ChickenComp.tsx";
-import AddNewChicken from "./components/chicken/AddNewChicken.tsx";
-import ViewChicken from "./components/chicken/ViewChicken.tsx";
-import EditChicken from "./components/chicken/EditChicken.tsx";
-import {Feed} from "./types/Feed.tsx";
-import AddNewFeed from "./components/feed/AddNewFeed.tsx";
-import Feeds from "./components/feed/FeedComp.tsx";
-import ViewFeed from "./components/feed/ViewFeed.tsx";
-import EditFeed from "./components/feed/EditFeed.tsx";
-import {Farm} from "./types/Farm.tsx";
-import {FarmDto} from "./types/FarmDto.tsx";
-import AddFarmInfo from "./components/farm/AddFarmInfo.tsx";
-import ViewFarm from "./components/farm/ViewFarm.tsx";
-import EditFarmInfo from "./components/farm/EditFarmInfo.tsx";
-import Climate from "./components/chart/climate.tsx";
+import EditChickenBarn from "./chickenBarn/EditChickenBarn.tsx";
+import EditSilo from "./silo/EditSilo.tsx";
+import ViewSilo from "./silo/ViewSilo.tsx";
+import {ChBarnDto} from "../types/ChickenBarnDto.tsx";
+import {SiloDto} from "../types/SiloDto.tsx";
+import {Chicken} from "../types/Chicken.tsx";
+import Chickens from "./chicken/ChickenComp.tsx";
+import AddNewChicken from "./chicken/AddNewChicken.tsx";
+import ViewChicken from "./chicken/ViewChicken.tsx";
+import EditChicken from "./chicken/EditChicken.tsx";
+import {Feed} from "../types/Feed.tsx";
+import AddNewFeed from "./feed/AddNewFeed.tsx";
+import Feeds from "./feed/FeedComp.tsx";
+import ViewFeed from "./feed/ViewFeed.tsx";
+import EditFeed from "./feed/EditFeed.tsx";
+import {Farm} from "../types/Farm.tsx";
+import {FarmDto} from "../types/FarmDto.tsx";
+import AddFarmInfo from "./farm/AddFarmInfo.tsx";
+import ViewFarm from "./farm/ViewFarm.tsx";
+import EditFarmInfo from "./farm/EditFarmInfo.tsx";
+import Climate from "./chart/climate.tsx";
 
 
 
@@ -77,24 +76,23 @@ function App() {
 
     const navigate = useNavigate()
 
-    const addFarmInfo = (farmDto : FarmDto)=>{
-        axios.post("/api/farm", farmDto)
-             .then((response) => {
-                 setChickenBars([...farms, response.data])
-                 navigate("/farm/viewFarm/" + response.data.id)
-        })
-    }
-
     const editFarmInfo = (editedFarm: Farm): void => {
         console.log(editedFarm.id);
         axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
             .then((response) => {
                     setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
                     console.log(response.data.id);
-
-                    navigate("/farm/viewFarm/" + response.data.id)
+                    navigate("/farm/farmInfo/")
                 }
             )
+    }
+
+    const addFarmInfo = (farmDto : FarmDto)=>{
+        axios.post("/api/farm", farmDto)
+            .then((response) => {
+                setChickenBars([...farms, response.data])
+                navigate("/farm/viewFarm/")
+            })
     }
 
     const deleteFarm = (id: string) => {
@@ -219,9 +217,10 @@ function App() {
                  <Route index element={<p>Farm ...</p>}/>
 
                  <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
+                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
+
                  <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
                  <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
-                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
 
                  <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
                  <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>
