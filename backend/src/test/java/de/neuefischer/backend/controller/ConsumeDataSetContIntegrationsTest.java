@@ -1,9 +1,5 @@
 package de.neuefischer.backend.controller;
-
-import de.neuefischer.backend.modul.Consume;
-import de.neuefischer.backend.modul.ConsumeData;
 import de.neuefischer.backend.modul.ConsumeDataset;
-import de.neuefischer.backend.repository.ConsumeDataRepo;
 import de.neuefischer.backend.repository.ConsumeDataSetRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +10,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ConsumeDataSetContIntegrationsTest {
+class ConsumeDataSetContIntegrationsTest {
 
     @Autowired
     MockMvc mvc;

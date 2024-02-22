@@ -24,4 +24,5 @@ public class ConsumeController {
         return consumeService.addConsume();
     }
 
+
 }

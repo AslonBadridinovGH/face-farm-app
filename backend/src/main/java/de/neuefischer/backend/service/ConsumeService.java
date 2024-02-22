@@ -3,7 +3,6 @@ package de.neuefischer.backend.service;
 import de.neuefischer.backend.modul.*;
 import de.neuefischer.backend.repository.*;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
