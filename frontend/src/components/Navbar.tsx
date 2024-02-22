@@ -9,7 +9,7 @@ export default  function Navbar() {
                 <NavLinks to={"/"}>About</NavLinks>
                 <NavLinks to={"/farm"}>Farm</NavLinks>
                 <NavLinks to={"/production"}>Production</NavLinks>
-                <NavLinks to={"climate"}>Climate</NavLinks>
+                <NavLinks to={"climate"}>Economy</NavLinks>
             </StyledNav>
 
         </div>
@@ -30,13 +30,13 @@ const StyledNav = styled.nav`
 const NavLinks = styled(NavLink)`
     
     color: #ffffff;
-    width: 90px;
+    width: 80px;
     height: 30px;
     text-decoration: none;
     border-radius: 0.375rem;
     padding: 1vw;
     font-size: 1.5vw;
-    font-weight: 500;
+    font-weight: 400;
     margin-right: 0.3vw;
     text-align: center;
     line-height: 30px;
