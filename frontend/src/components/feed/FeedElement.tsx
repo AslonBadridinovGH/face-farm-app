@@ -13,7 +13,7 @@ export default  function FeedElement(props:feedsElementProps) {
 
     return (
         <div>
-             <div onClick={onBoxClick} className="barns">
+             <div onClick={onBoxClick}>
 
                 <StyledDiv>
                     <StyledH>

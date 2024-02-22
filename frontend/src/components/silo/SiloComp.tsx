@@ -16,7 +16,7 @@ export default function Silos(props : viewAllSilos) {
                 <NavLink className={"navLink"} to={"/farm/addSilo"}>Add New Silo</NavLink>
             </div>
 
-            <div className="barns">
+            <div className="elementsBox">
             {props.silos.map(value => (<SiloElement key={value.id} silo={value}/>))}
           </div>
         </StyledDiv>

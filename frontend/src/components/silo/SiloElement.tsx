@@ -12,7 +12,7 @@ export default function SiloElement(props : barnsElementProps) {
 
     return (
         <div>
-             <div onClick={onBoxClick} className="barns">
+             <div onClick={onBoxClick}>
 
                 <StyledDiv>
                     <StyledH>

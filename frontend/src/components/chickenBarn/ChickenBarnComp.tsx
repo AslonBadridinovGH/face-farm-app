@@ -16,7 +16,7 @@ export default  function ChickenBarns(props: viewAllBarnsProps) {
                 <NavLink className={"navLink"} to={"/farm/addNewBarn"}>Add New Chicken Barn</NavLink>
             </div>
 
-            <div className="barns">
+            <div className="elementsBox">
                 {props.chickenBarns.map(barn => (<ChickenBarnElement key={barn.id} barn={barn}/>))}
             </div>
 

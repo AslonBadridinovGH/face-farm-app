@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export default function AsideMain() {
     return (
-        <div className={"farm"}>
+        <div className={"asideMain"}>
 
             <aside>
                <StyledNav>
