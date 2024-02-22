@@ -3,8 +3,7 @@ import Navbar from "./Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./Home.tsx";
 import AsideMain from "./AsideMain.tsx";
-import Contact from "./nextComp/contact.tsx";
-import Production from "./nextComp/production.tsx";
+import Production from "./consume/Production.tsx";
 import AddChickenBarn from "./chickenBarn/AddChickenBarn.tsx";
 import FarmInfo from "./farm/FarmInfo.tsx";
 import ChickenBarns from "./chickenBarn/ChickenBarnComp.tsx";
@@ -36,6 +35,10 @@ import AddFarmInfo from "./farm/AddFarmInfo.tsx";
 import ViewFarm from "./farm/ViewFarm.tsx";
 import EditFarmInfo from "./farm/EditFarmInfo.tsx";
 import Climate from "./chart/climate.tsx";
+import Consume from "./consume/Consume.tsx";
+import ConsumeChart from "./chart/ConsumeChart.tsx";
+import ConsumeTable from "./consume/ConsumeTable.tsx";
+
 
 
 
@@ -207,14 +210,14 @@ function App() {
 
 
     return (
-    <>
+      <div className={"navRoot"}>
          <Navbar/>
          <Routes>
-             <Route index element={<Home/>}/>
+              <Route index element={<Home/>}/>
 
-             <Route path={"/farm"}  element={<AsideMain/>}>
+              <Route path={"/farm"}  element={<AsideMain/>}>
 
-                 <Route index element={<p>Farm ...</p>}/>
+                 <Route index element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>} />
 
                  <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
                  <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
@@ -241,13 +244,26 @@ function App() {
                  <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
                  <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
                  <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
-             </Route>
-             <Route path={"/contact"} element={<Contact/>} />
-             <Route path={"/production"} element={<Production/>} />
-              <Route path={"/climate"} element={<Climate/>}/>
-         </Routes>
 
-    </>
+             </Route>
+
+              <Route path={"/production"} element={<Production/>}>
+
+                  <Route index element={<Consume/>}/>
+
+                   <Route path={"consume"} element={<Consume/>}>
+
+                        <Route index element={<ConsumeChart/>}/>
+
+                       <Route path={"consumeChart"} element={<ConsumeChart/>}/>
+                       <Route path={"consumeTable"} element={<ConsumeTable/>}/>
+                   </Route>
+              </Route>
+
+              <Route path={"/climate"} element={<Climate/>}/>
+
+         </Routes>
+      </div>
   )
 }
 

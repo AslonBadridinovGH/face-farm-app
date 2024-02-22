@@ -1,5 +1,5 @@
 
-export type UserDataType = {
+export type ConsumeType = {
     id : string,
     labels: string[],
     datasets: {

@@ -2,10 +2,10 @@ package de.neuefischer.backend.modul;
 
 import java.util.List;
 
-public record UserDataType(
+public record Consume(
 
     String id,
-    List <Integer> labels,
-    List <Dataset> datasets
+    List <String> labels,
+    List <ConsumeDataset> datasets
 
 ) {}

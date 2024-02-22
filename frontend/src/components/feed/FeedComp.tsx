@@ -18,7 +18,7 @@ export default function Feeds(props : viewAllFeeds) {
                 <NavLink className={"navLink"} to={"/farm/addFeed"}>Add New Feed</NavLink>
             </div>
 
-            <div className="barns">
+            <div className="elementsBox">
             {props.feeds.map(value => (<FeedElement key={value.id} feed={value}/>))}
           </div>
         </StyledDiv>

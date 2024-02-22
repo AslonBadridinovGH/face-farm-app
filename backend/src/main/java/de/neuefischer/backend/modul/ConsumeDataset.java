@@ -5,11 +5,11 @@ import lombok.With;
 import java.util.List;
 
 @With
-public record Dataset(
+public record ConsumeDataset(
 
-        String id,
+        String  id,
         String  label,
-        List<Integer> data,   // year , userGain , userLost
+        List <Integer> data,
         List <String> backgroundColor,
         String  borderColor,
         Integer borderWidth
