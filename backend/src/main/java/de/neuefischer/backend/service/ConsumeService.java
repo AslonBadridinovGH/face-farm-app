@@ -10,30 +10,33 @@ import java.util.UUID;
 @Service
 public class ConsumeService {
 
-    private final ConsumeRepo userDataRepo;
+    private final ConsumeRepo consumeRepo;
     private final ConsumeDataRepo dataRepo;
     private final ConsumeDataSetRepo dataSetRepo ;
+    private final IdService idService;
 
-    public ConsumeService(ConsumeRepo userDataRepo, ConsumeDataRepo dataRepo, ConsumeDataSetRepo dataSetRepo ) {
-        this.userDataRepo = userDataRepo;
+    public ConsumeService(ConsumeRepo consumeRepo, ConsumeDataRepo dataRepo, ConsumeDataSetRepo dataSetRepo,IdService idService) {
+        this.consumeRepo = consumeRepo;
         this.dataRepo = dataRepo;
         this.dataSetRepo = dataSetRepo;
+        this.idService = idService;
     }
 
     public Consume getConsume() {
-        return userDataRepo.findAll().stream().findFirst().orElseThrow();
+        return consumeRepo.findAll().stream().findFirst().orElseThrow();
     }
 
     public Consume addConsume() {
 
-        String stringId = UUID.randomUUID().toString();
+        String stringId = idService.newId();
         List<ConsumeData> allData = dataRepo.findAll();
         List<String> labels = allData.stream().map(ConsumeData::date).toList();
 
         List<ConsumeDataset> datasetList = dataSetRepo.findAll();
-        Consume userDataType = new Consume(stringId, labels, datasetList);
-        return userDataRepo.save(userDataType);
+        Consume consume1 = new Consume(stringId, labels, datasetList);
+        return consumeRepo.save(consume1);
     }
+
 
 
 }

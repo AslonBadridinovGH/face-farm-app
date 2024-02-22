@@ -141,8 +141,6 @@ public class ChickenServiceTest {
          Mockito.verify(chickensRepo, Mockito.times(1)).save(updateChicken);
          Mockito.verifyNoMoreInteractions(chickensRepo);
 
-
-
     }
 
     @Test
