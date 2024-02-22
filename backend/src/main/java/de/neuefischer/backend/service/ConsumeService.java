@@ -32,10 +32,8 @@ public class ConsumeService {
         List<String> labels = allData.stream().map(ConsumeData::date).toList();
 
         List<ConsumeDataset> datasetList = dataSetRepo.findAll();
-
         Consume userDataType = new Consume(stringId, labels, datasetList);
         return userDataRepo.save(userDataType);
-
     }
 
 
