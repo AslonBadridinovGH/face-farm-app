@@ -11,48 +11,6 @@ Chart.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement, 
 
 export default function ConsumeChart() {
 
-    /*
-    const [data, setData] = useState<ConsumeData[]>();
-
-    useEffect(() => {
-        axios.get("/api/consumeData").then(response => {
-            setData(response.data)
-        })
-    }, [])
-
-
-
-    const [consumeData] = useState({
-
-        labels: data?.map((data) => data.date),
-        datasets: [
-            {
-
-                label: "Feed Consume",
-                data: data?.map((data) => data.feedConsume),
-                backgroundColor: [
-                    "rgba(75,192,192,1)",
-                    "rgba(75,192,192,1)",
-                    "rgba(75,192,192,1)",
-                ],
-                borderColor: "black",
-                borderWidth: 2
-            } ,
-            {
-                label: "Water Consume",
-                data: data?.map((data) => data.waterConsume),
-                backgroundColor: [
-                    "rgb(93,145,93)",
-                    "rgb(93,145,93)",
-                    "rgb(93,145,93)",
-                ],
-                borderColor: "black",
-                borderWidth: 2
-            }
-
-        ]
-    });
-    */
 
     const [data, setData] = useState<ConsumeType>();
 

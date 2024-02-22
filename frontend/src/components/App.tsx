@@ -3,7 +3,6 @@ import Navbar from "./Navbar.tsx";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./Home.tsx";
 import AsideMain from "./AsideMain.tsx";
-import Contact from "./nextComp/contact.tsx";
 import Production from "./consume/Production.tsx";
 import AddChickenBarn from "./chickenBarn/AddChickenBarn.tsx";
 import FarmInfo from "./farm/FarmInfo.tsx";
@@ -36,7 +35,7 @@ import AddFarmInfo from "./farm/AddFarmInfo.tsx";
 import ViewFarm from "./farm/ViewFarm.tsx";
 import EditFarmInfo from "./farm/EditFarmInfo.tsx";
 import Climate from "./chart/climate.tsx";
-import FeedConsume from "./consume/FeedConsume.tsx";
+import Consume from "./consume/Consume.tsx";
 import ConsumeChart from "./chart/ConsumeChart.tsx";
 import ConsumeTable from "./consume/ConsumeTable.tsx";
 
@@ -214,9 +213,9 @@ function App() {
       <div className={"navRoot"}>
          <Navbar/>
          <Routes>
-             <Route index element={<Home/>}/>
+              <Route index element={<Home/>}/>
 
-             <Route path={"/farm"}  element={<AsideMain/>}>
+              <Route path={"/farm"}  element={<AsideMain/>}>
 
                  <Route index element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>} />
 
@@ -250,19 +249,19 @@ function App() {
 
               <Route path={"/production"} element={<Production/>}>
 
-                  <Route index element={<FeedConsume/>}/>
+                  <Route index element={<Consume/>}/>
 
-                   <Route path={"feedConsume"} element={<FeedConsume/>}>
+                   <Route path={"consume"} element={<Consume/>}>
 
                         <Route index element={<ConsumeChart/>}/>
 
-                       <Route path={"feedChart"} element={<ConsumeChart/>}/>
-                       <Route path={"feedTable"} element={<ConsumeTable/>}/>
+                       <Route path={"consumeChart"} element={<ConsumeChart/>}/>
+                       <Route path={"consumeTable"} element={<ConsumeTable/>}/>
                    </Route>
               </Route>
 
               <Route path={"/climate"} element={<Climate/>}/>
-              <Route path={"/contact"} element={<Contact/>} />
+
          </Routes>
       </div>
   )

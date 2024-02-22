@@ -8,7 +8,7 @@ export default function Production() {
 
             <aside>
                 <StyledNav>
-                    <NavLinks to={"/production/feedConsume"}>Consume</NavLinks>
+                    <NavLinks to={"/production/consume"}>Consume</NavLinks>
                 </StyledNav>
 
             </aside>

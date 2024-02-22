@@ -1,9 +1,6 @@
 package de.neuefischer.backend.service;
 
-import de.neuefischer.backend.modul.ConsumeData;
 import de.neuefischer.backend.modul.ConsumeDataset;
-import de.neuefischer.backend.modul.ConsumeDatasetDto;
-import de.neuefischer.backend.repository.ConsumeDataRepo;
 import de.neuefischer.backend.repository.ConsumeDataSetRepo;
 import org.springframework.stereotype.Service;
 

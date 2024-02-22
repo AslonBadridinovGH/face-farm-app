@@ -1,6 +1,5 @@
 package de.neuefischer.backend.controller;
 import de.neuefischer.backend.modul.ConsumeDataset;
-import de.neuefischer.backend.modul.ConsumeDatasetDto;
 import de.neuefischer.backend.service.ConsumeDataSetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

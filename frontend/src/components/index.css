@@ -13,6 +13,7 @@
 .outletClass{
     width: 100%;
 }
+
 nav a.active {
     background-color: #5da95d;
     color: #fff;

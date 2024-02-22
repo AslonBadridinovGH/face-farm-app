@@ -5,14 +5,14 @@ import styled from "styled-components";
 import {NavLink, Outlet} from "react-router-dom";
 
 
-export default function FeedConsume() {
+export default function Consume() {
 
      return (
 
          <StyledDiv>
              <div className={"ClNavLinkFeed"}>
-                 <NavLink className={"navLink"} to={"/production/feedConsume/feedTable"} >Consume as Table</NavLink>
-                 <NavLink className={"navLink"} to={"/production/feedConsume/feedChart"} >Consume as Diagram</NavLink>
+                 <NavLink className={"navLink"} to={"/production/consume/consumeTable"} >Consume as Table</NavLink>
+                 <NavLink className={"navLink"} to={"/production/consume/consumeChart"} >Consume as Diagram</NavLink>
              </div>
 
              <div className={"outletClass"}>

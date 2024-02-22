@@ -8,7 +8,6 @@ export default function AsideMain() {
 
             <aside>
                <StyledNav>
-                    {/*<NavLinks to={"/farm/farmInfo"} >Farm Info</NavLinks>*/}
 
                     <NavLinks to={"/farm/chickenBarns"}>All Chicken Barns</NavLinks>
 
@@ -17,6 +16,7 @@ export default function AsideMain() {
                     <NavLinks to={"/farm/chickens"}>All chickens</NavLinks>
 
                     <NavLinks to={"/farm/feeds"}>All feeds</NavLinks>
+
                 </StyledNav>
 
             </aside>

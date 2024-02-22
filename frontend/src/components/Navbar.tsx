@@ -5,14 +5,11 @@ import styled from "styled-components";
 export default  function Navbar() {
     return (
         <div>
-            {/* className={({ isActive }) => (isActive ? 'active' : '')} */}
-
             <StyledNav>
                 <NavLinks to={"/"}>About</NavLinks>
                 <NavLinks to={"/farm"}>Farm</NavLinks>
                 <NavLinks to={"/production"}>Production</NavLinks>
                 <NavLinks to={"climate"}>Climate</NavLinks>
-             {/*   <NavLinks to={"/contact"}>Contact</NavLinks>*/}
             </StyledNav>
 
         </div>
