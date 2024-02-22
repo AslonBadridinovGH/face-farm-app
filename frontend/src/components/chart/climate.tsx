@@ -3,17 +3,17 @@ import {ArcElement} from 'chart.js'
 import {BarElement, CategoryScale, Chart, LinearScale, LineElement, PointElement} from "chart.js";
 import {Title, Tooltip, Legend,} from 'chart.js';
 import PieChart from "./PieChart.tsx";
-import {UserDataType} from "../../types/UserDataType.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {ConsumeType} from "../../types/Consume.tsx";
 Chart.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement, ArcElement, Title, Tooltip, Legend)
 
 
 export default function Climate() {
 
-    const [userData, setUserData] = useState<UserDataType>();
+    const [userData, setUserData] = useState<ConsumeType>();
     useEffect(() => {
-        axios.get("/api/userData").then(response => {
+        axios.get("/api/consume").then(response => {
             setUserData(response.data)
         })
     }, [])
