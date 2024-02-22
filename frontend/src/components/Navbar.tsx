@@ -24,10 +24,10 @@ const StyledNav = styled.nav`
     background-color: #7e878c;
     height: 100px;
     display: flex;
-    gap: 1rem;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 0.5rem;
+    gap: 1rem;
+
 `;
 
 const NavLinks = styled(NavLink)`

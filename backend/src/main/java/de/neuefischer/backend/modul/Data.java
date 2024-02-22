@@ -6,4 +6,5 @@ public record Data (
     Integer year,
     Integer userGain,
     Integer userLost
+
 ) {}
