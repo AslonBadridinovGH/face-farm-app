@@ -70,7 +70,7 @@ export default function ConsumeChart() {
     return (
         <div className="App">
 
-            <div style={{ width: 700 }}>
+            <div style={{ width:"90%", height:"700px" }}>
                 <Bar data={data} />
             </div>
         </div>

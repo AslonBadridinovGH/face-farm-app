@@ -15,7 +15,7 @@ export default function FeedConsume() {
                  <NavLink className={"navLink"} to={"/production/feedConsume/feedChart"} >Consume as Diagram</NavLink>
              </div>
 
-             <div>
+             <div className={"outletClass"}>
                  <Outlet/>
              </div>
 

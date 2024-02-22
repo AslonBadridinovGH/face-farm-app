@@ -211,7 +211,7 @@ function App() {
 
 
     return (
-      <>
+      <div className={"navRoot"}>
          <Navbar/>
          <Routes>
              <Route index element={<Home/>}/>
@@ -264,8 +264,7 @@ function App() {
               <Route path={"/climate"} element={<Climate/>}/>
               <Route path={"/contact"} element={<Contact/>} />
          </Routes>
-
-      </>
+      </div>
   )
 }
 
