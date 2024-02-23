@@ -8,7 +8,7 @@ export type FatPeriod = {
     currentDate: string,
     currentOld: number,
     currentFeedingPhase: string,
-    lostToday: number,
+    lostToDay: number,
     totalLost: number,
     dateOfSlaughter: string,
 

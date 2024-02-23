@@ -33,7 +33,6 @@ function ViewFatteningPeriod(props : ViewFatteningProps) {
                              <div>{"Chickens:  "}</div>
                              <div>{fattening?.chickens?.map(value => value.race).join(" and ")}</div>
                            </StyledG>
-
                            <StyledG>
                                 <div>{"Start  day of fattening:  "}</div>
                                 <div>{fattening?.startDate}</div>
@@ -46,20 +45,18 @@ function ViewFatteningPeriod(props : ViewFatteningProps) {
                                 <div>{"current old of chickens:  "}</div>
                                 <div>{fattening?.currentOld}</div>
                             </StyledG>
-
                             <StyledG>
                                 <div>{"current feeding phase of chickens:  "}</div>
                                 <div>{fattening?.currentFeedingPhase}</div>
                             </StyledG>
                             <StyledG>
                                 <div>{"lost today of chickens:  "}</div>
-                                <div>{fattening?.lostToday}</div>
+                                <div>{fattening?.lostToDay}</div>
                             </StyledG>
                             <StyledG>
                                 <div>{"total lost of chickens:  "}</div>
                                 <div>{fattening?.totalLost}</div>
                             </StyledG>
-
                             <StyledG>
                                <div>{"date of slaughter of chickens:  "}</div>
                                <div>{fattening?.dateOfSlaughter}</div>

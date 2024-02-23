@@ -10,6 +10,5 @@ public record FatteningPeriodDto(
         String  startDate,
         String  dateOfSlaughter
 
-
 ) {}
 

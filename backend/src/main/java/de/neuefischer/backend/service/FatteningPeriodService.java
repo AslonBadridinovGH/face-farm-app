@@ -67,7 +67,7 @@ public class FatteningPeriodService {
         if (!dateString.isEmpty()){
             try {
                 // Define the date format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
                 startDate = LocalDate.parse(dateString, formatter);
@@ -84,7 +84,7 @@ public class FatteningPeriodService {
         if (!dateString.isEmpty()){
             try {
                 // Define the date format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
                 dateOfSlaughter = LocalDate.parse(startDateS, formatter);
@@ -110,7 +110,7 @@ public class FatteningPeriodService {
             currentFeedingPhase = "finisher";
         }
         int totalLost = 0;
-             totalLost =+ fatteningDto.lostToday();
+             totalLost += fatteningDto.lostToday();
 
         System.out.println(startDate);
         System.out.println(dateOfSlaughter);
@@ -125,6 +125,11 @@ public class FatteningPeriodService {
 
 
     public FatteningPeriod updateFatteningPeriod(String id, FatteningPeriodDto fatteningDto){
+
+        Optional<FatteningPeriod> optionalFatteningPeriod = fatteningsRepo.findById(id);
+        if (optionalFatteningPeriod.isEmpty()){
+            throw (new NoSuchElementException());
+        }
 
         List <Chicken> chickens = new ArrayList<>();
 
@@ -144,7 +149,7 @@ public class FatteningPeriodService {
         if (!dateString.isEmpty()){
             try {
                 // Define the date format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
                 startDate = LocalDate.parse(dateString, formatter);
@@ -159,7 +164,7 @@ public class FatteningPeriodService {
         if (!dateString.isEmpty()){
             try {
                 // Define the date format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
                 dateOfSlaughter = LocalDate.parse(dateString, formatter);
@@ -183,8 +188,10 @@ public class FatteningPeriodService {
         }else {
             currentFeedingPhase = "finisher";
         }
-         int totalLost = 0;
-         totalLost =+ fatteningDto.lostToday();
+
+         FatteningPeriod fatteningPeriod = optionalFatteningPeriod.get();
+         int totalLost = fatteningPeriod.totalLost();
+         totalLost  += fatteningDto.lostToday();
 
           FatteningPeriod fattening = new FatteningPeriod(
          id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToday(), totalLost, dateOfSlaughter);

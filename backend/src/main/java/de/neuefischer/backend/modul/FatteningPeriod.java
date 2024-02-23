@@ -13,7 +13,7 @@ public record FatteningPeriod(
         LocalDate currentDate,
         Long currentOld,
         String currentFeedingPhase,
-        Integer lostDay,
+        Integer lostToDay,
         Integer totalLost,
         LocalDate dateOfSlaughter
 

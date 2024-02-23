@@ -18,8 +18,8 @@ export default function EditFatteningPeriod(props : editFatteningPeriod) {
 
     const [chickenIds, setChickenIds]=useState<string[]>(period?.chickens?.map(value => value.id)||[])
     const [startDate, setStartDate] = useState<string>(period?.startDate || "")
-    const [lostToday, setLostToday]=useState<number>(period?.lostToday || 0)
-    const [dateOfSlaughter, setDateOfSlaughter]=useState<string>(period?.dateOfSlaughter || "")
+    const [lostToday, setLostToday]=useState<number>(period?.lostToday||0)
+    const [dateOfSlaughter, setDateOfSlaughter]=useState<string>(period?.dateOfSlaughter||"")
 
 
     const onChickensIdsChange = (event:ChangeEvent<HTMLInputElement>)=>{

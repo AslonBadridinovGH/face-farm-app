@@ -3,7 +3,7 @@ export type FatPeriodDto = {
 
                id : string,
      chickenIDs ? : string[],
-        lostToday : number,
+    lostToDay : number,
         startDate : string,
   dateOfSlaughter : string
 }
