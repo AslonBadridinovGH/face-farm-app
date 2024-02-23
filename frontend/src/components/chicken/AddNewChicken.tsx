@@ -85,7 +85,7 @@ export default function AddNewChicken(props : addChickenProps) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>expected slaughter age</label>
+                    <label>expected slaughter age in gram</label>
                     <StyledInput value={expectedSlaughterAge} type={"number"} onChange={onExpectedSlaughterAgeChange}
                                  placeholder={"expected slaughter age"}/>
                 </LabelInput>
@@ -98,8 +98,7 @@ export default function AddNewChicken(props : addChickenProps) {
 
                 <LabelInput>
                     <label>hatch day</label>
-                    <StyledInput value={hatchDay} type={"date"} onChange={onHatchDayChange}
-                                 placeholder={"hatch day in form: dd.MM.yyyy"}/>
+                    <StyledInput value={hatchDay} type={"date"} onChange={onHatchDayChange}/>
                 </LabelInput>
 
                 <LabelInput>

@@ -81,19 +81,19 @@ function EditChickenBarn(props : editChicken) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>weight in first day</label>
+                    <label>weight in first day in gram</label>
                     <StyledInput value={weightInFirstDay} type={"number"} onChange={onWeightInFirstDayChange}
                                  placeholder={"weight in first day"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>expected slaughter weight</label>
+                    <label>expected slaughter weight in gram</label>
                     <StyledInput value={expectedSlaughterWeight} type={"number"} onChange={onExpectedSlaughterWeightChange}
                                  placeholder={"expected slaughter weight"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>expected slaughter age</label>
+                    <label>expected slaughter age </label>
                     <StyledInput value={expectedSlaughterAge} type={"number"} onChange={onExpectedSlaughterAgeChange}
                                  placeholder={"expected slaughter age"}/>
                 </LabelInput>

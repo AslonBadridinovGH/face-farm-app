@@ -18,7 +18,7 @@ function EditSilo(props : editSilo) {
     const [numberOfSilo, setNumberSilo]=useState<number>(silo?.numberOfSilo || 0)
     const [capacity, setCapacity]=useState<number>( silo?.capacity || 0)
     const [amountOfFeed, setAmountOfFeed]=useState<number>( silo?.amountOfFeed || 0)
-    const [feedIds, setFeedIds]=useState<string[]>([])
+    const [feedIds, setFeedIds]=useState<string[]>(silo?.feeds?.map(value => value.id) || [])
 
 
     const onNumberSiloChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +73,7 @@ function EditSilo(props : editSilo) {
                         placeholder={"amount of Feed"}/>
 
                 <label>Feeds ID s</label>
-                <SInput value={feedIds} type={"number"} onChange={onCurrentFeedChange}
+                <SInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
                         placeholder={"feeds IDs"}/>
 
                 <button type={"submit"}>Submit</button>

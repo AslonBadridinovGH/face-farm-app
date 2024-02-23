@@ -50,18 +50,18 @@ export default function AddNewFeed(props: adFeedPops) {
 
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>article number</label>
-                <SInput value={articleNumber} type={"string"} onChange={onArticleNumberChange} placeholder={"area"}/>
-
                 <label>type of feed</label>
                 <SInput value={type} type={"string"} onChange={onTypeChange}
-                        placeholder={"capacity of silo"}/>
+                        placeholder={"type of feed"}/>
+
+                <label>article number</label>
+                <SInput value={articleNumber} type={"string"} onChange={onArticleNumberChange} placeholder={"article number"}/>
 
                 <label>description of feed</label>
                 <SInput value={description} type={"string"} onChange={onDescriptionChange}
                         placeholder={"description of feed"}/>
 
-                <label>price per tone</label>
+                <label>price per tone in euro</label>
                 <SInput value={pricePerTone} type={"string"} onChange={onPricePerToneChange}
                         placeholder={"price per tone"}/>
 

@@ -44,7 +44,7 @@ function ViewSilo(props : ViewBarnProps) {
                         </StyledG>
                         <StyledG>
                             <div>{"Feeds of Silo:  "}</div>
-                            <div>{silo?.feeds?.map(value => value.type)}</div>
+                            <div>{silo?.feeds?.map(value => value.type).join(" and ")}</div>
                         </StyledG>
 
                     </StyledInfo>

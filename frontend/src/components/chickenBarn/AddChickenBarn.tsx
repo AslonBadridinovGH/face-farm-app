@@ -77,7 +77,7 @@ export default function AddChickenBarn(props : addBarnProps) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Area in Hectare</label>
+                    <label>Area in square meters</label>
                     <StyledInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
                 </LabelInput>
 
