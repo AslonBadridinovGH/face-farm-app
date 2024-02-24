@@ -63,7 +63,7 @@ public class ChickenBarnContIntegrationTest {
                 .andExpect(content().json("""
 
                         [
-                                
+                           
                            {
                                    "id": "1",
                                    "area": 10.4,
@@ -74,7 +74,7 @@ public class ChickenBarnContIntegrationTest {
                                    "silos": []
                            }
                         ]
-                         
+                        
                         """));
 
         assertEquals(200, resultActions.andReturn().getResponse().getStatus());

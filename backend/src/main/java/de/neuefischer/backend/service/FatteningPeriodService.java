@@ -44,7 +44,6 @@ public class FatteningPeriodService {
     public FatteningPeriod addFatteningPeriod(FatteningPeriodDto fatteningDto) {
 
         List <Chicken> chickens = new ArrayList<>();
-
         List <String> chickenIDs = fatteningDto.chickenIDs();
 
         for (String chickenID : chickenIDs) {
@@ -57,11 +56,7 @@ public class FatteningPeriodService {
         }
 
          String id = idService.newId();
-
          String dateString = fatteningDto.startDate();
-
-        System.out.println(fatteningDto.startDate());
-        System.out.println(fatteningDto.dateOfSlaughter());
 
         LocalDate startDate = null;
         if (!dateString.isEmpty()){
@@ -110,13 +105,13 @@ public class FatteningPeriodService {
             currentFeedingPhase = "finisher";
         }
         int totalLost = 0;
-             totalLost += fatteningDto.lostToday();
+             totalLost += fatteningDto.lostToDay();
 
         System.out.println(startDate);
         System.out.println(dateOfSlaughter);
 
             FatteningPeriod fattening = new FatteningPeriod(
-          id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToday(), totalLost, dateOfSlaughter);
+          id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToDay(), totalLost, dateOfSlaughter);
 
         return fatteningsRepo.save(fattening);
     }
@@ -191,10 +186,10 @@ public class FatteningPeriodService {
 
          FatteningPeriod fatteningPeriod = optionalFatteningPeriod.get();
          int totalLost = fatteningPeriod.totalLost();
-         totalLost  += fatteningDto.lostToday();
+         totalLost  += fatteningDto.lostToDay();
 
           FatteningPeriod fattening = new FatteningPeriod(
-         id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToday(), totalLost, dateOfSlaughter);
+         id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToDay(), totalLost, dateOfSlaughter);
          return fatteningsRepo.save(fattening);
     }
 

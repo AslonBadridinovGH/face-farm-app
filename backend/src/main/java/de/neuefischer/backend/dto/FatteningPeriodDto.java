@@ -6,7 +6,7 @@ public record FatteningPeriodDto(
 
         String id,
         List <String> chickenIDs,
-        Integer lostToday,
+        Integer lostToDay,
         String  startDate,
         String  dateOfSlaughter
 
