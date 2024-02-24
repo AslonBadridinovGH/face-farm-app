@@ -10,6 +10,7 @@ type editFatteningPeriod = {
     fatteningPeriods: FatPeriod [],
     editFatPeriod: (periodDto: FatPeriodDto) => void
 }
+
 export default function EditFatteningPeriod(props : editFatteningPeriod) {
 
     const {id} = useParams();
@@ -18,7 +19,7 @@ export default function EditFatteningPeriod(props : editFatteningPeriod) {
 
     const [chickenIds, setChickenIds]=useState<string[]>(period?.chickens?.map(value => value.id)||[])
     const [startDate, setStartDate] = useState<string>(period?.startDate || "")
-    const [lostToday, setLostToday]=useState<number>(period?.lostToday||0)
+    const [lostToday, setLostToday]=useState<number>(period?.lostToDay||0)
     const [dateOfSlaughter, setDateOfSlaughter]=useState<string>(period?.dateOfSlaughter||"")
 
 
@@ -49,7 +50,7 @@ export default function EditFatteningPeriod(props : editFatteningPeriod) {
             id : period?.id || "",
             chickenIDs : chickenIds,
             startDate: startDate,
-            lostToday : lostToday,
+            lostToDay : lostToday,
             dateOfSlaughter: dateOfSlaughter,
         }
         props.editFatPeriod(fatPeriodDto)

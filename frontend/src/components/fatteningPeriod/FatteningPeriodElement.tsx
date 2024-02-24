@@ -15,11 +15,11 @@ export default  function FatteningPeriodElement(props:barnsElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"startDate of fattening period: "}</div>
+                        <div>{"start date of fattening period: "}</div>
                         <div>{props.period.startDate}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"Current old chickens  "}</div>
+                        <div>{"current old chickens  "}</div>
                         <div>{props.period.currentOld}</div>
                     </StyledH>
                 </StyledDiv>
