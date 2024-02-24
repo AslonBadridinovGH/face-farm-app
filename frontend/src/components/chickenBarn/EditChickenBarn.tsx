@@ -19,8 +19,8 @@ function EditChickenBarn(props : editChickenBarn) {
     const [amountOfAnimal, setAmountOfAnimal]=useState<number>(cBarn?.amountOfChickens || 0)
     const [numberOfBarn, setNumberOfBarn]=useState<string>(cBarn?.name || "")
     const [capacityOfBarn, setCapacityOfBarn]=useState<number>(cBarn?.capacityForChickens || 0)
-    const [silosIds, setSilosIds]=useState<string[]>( [])
-    const [chickenIds, setChickenIds]=useState<string[]>([])
+    const [silosIds, setSilosIds]=useState<string[]>( cBarn?.silos?.map(value => value.id)||[])
+    const [chickenIds, setChickenIds]=useState<string[]>(cBarn?.chickens?.map(value => value.id)||[])
 
 
     const onAreaChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +82,7 @@ function EditChickenBarn(props : editChickenBarn) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Area in Hectare</label>
+                    <label>Area in square meters</label>
                     <StyledInput value={area} type={"number"} onChange={onAreaChange} placeholder={"area"}/>
                 </LabelInput>
 

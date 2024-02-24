@@ -12,7 +12,9 @@ export default function Consume() {
          <StyledDiv>
              <div className={"ClNavLinkFeed"}>
                  <NavLink className={"navLink"} to={"/production/consume/consumeTable"} >Consume as Table</NavLink>
-                 <NavLink className={"navLink"} to={"/production/consume/consumeChart"} >Consume as Diagram</NavLink>
+                 <NavLink className={"navLink"} to={"/production/consume/consumeBarChart"} >Consume as Column Diagram</NavLink>
+                 <NavLink className={"navLink"} to={"/production/consume/consumeLineChart"} >Consume as Line Diagram</NavLink>
+                 <NavLink className={"navLink"} to={"/production/consume/consumePieChart"} >Consume as Circle Diagram</NavLink>
              </div>
 
              <div className={"outletClass"}>
@@ -28,5 +30,6 @@ const StyledDiv = styled.div`
 
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
 `;

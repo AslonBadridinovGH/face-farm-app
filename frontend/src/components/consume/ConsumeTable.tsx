@@ -19,7 +19,6 @@ export default function ConsumeTable() {
     }
 
         return (
-            <div>
                 <table className={"tableStyle"}>
                     <tbody>
                       <tr>
@@ -38,7 +37,6 @@ export default function ConsumeTable() {
                        }
                     </tbody>
                 </table>
-            </div>
         );
 
 }

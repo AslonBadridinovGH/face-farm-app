@@ -45,7 +45,7 @@ public class ChickenService {
         if (!dateString.isEmpty()){
               try {
             // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             // Parse the string to a LocalDate object
             date = LocalDate.parse(dateString, formatter);

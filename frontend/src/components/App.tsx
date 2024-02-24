@@ -34,10 +34,17 @@ import {FarmDto} from "../types/FarmDto.tsx";
 import AddFarmInfo from "./farm/AddFarmInfo.tsx";
 import ViewFarm from "./farm/ViewFarm.tsx";
 import EditFarmInfo from "./farm/EditFarmInfo.tsx";
-import Climate from "./chart/climate.tsx";
 import Consume from "./consume/Consume.tsx";
-import ConsumeChart from "./chart/ConsumeChart.tsx";
+import ConsumeBarChart from "./chart/ConsumeBarChart.tsx";
 import ConsumeTable from "./consume/ConsumeTable.tsx";
+import FatteningPeriod from "./fatteningPeriod/FatteningPeriodComp.tsx";
+import {FatPeriod} from "../types/FatteningPeriod.tsx";
+import AddFatteningPeriod from "./fatteningPeriod/AddFatteningPeriod.tsx";
+import {FatPeriodDto} from "../types/FatteningPeriodDto.tsx";
+import ViewFatteningPeriod from "./fatteningPeriod/ViewFatteningPeriod.tsx";
+import EditFatteningPeriod from "./fatteningPeriod/EditFatteningPeriod.tsx";
+import ConsumeLineChart from "./chart/ConsumeLineChart.tsx";
+import ConsumePieChart from "./chart/ConsumePieChart.tsx";
 
 
 
@@ -45,6 +52,8 @@ import ConsumeTable from "./consume/ConsumeTable.tsx";
 function App() {
 
     const [chickenBarns, setChickenBars] = useState<ChBarn[]>([])
+
+    const [fatteningsPeriods, setFatteningsPeriods] = useState<FatPeriod[]>([])
 
     const [silos, setSilos] = useState<Silo[]>([])
 
@@ -63,6 +72,11 @@ function App() {
     useEffect(() => {
         axios.get("/api/chickenBarns").then(response => setChickenBars(response.data))
     }, [])
+
+    useEffect(() => {
+        axios.get("/api/fattening").then(response => setFatteningsPeriods(response.data))
+    }, [])
+
 
     useEffect(() => {
         axios.get("/api/silos").then(response => setSilos(response.data))
@@ -114,6 +128,14 @@ function App() {
         })
     }
 
+    const addFatPeriod = (fatPeriodDtoToSend : FatPeriodDto)=>{
+        axios.post("/api/fattening", fatPeriodDtoToSend)
+             .then((response) => {
+                 setFatteningsPeriods([...fatteningsPeriods, response.data])
+                 navigate("/production/viewFattening/" + response.data.id)
+        })
+    }
+
     const addChicken = (chickenToSave : Chicken)=>{
         axios.post("/api/chickens", chickenToSave)
              .then((response) => {
@@ -144,6 +166,15 @@ function App() {
             .then((response) => {
                 setChickenBars(chickenBarns.map((item) => (item.id === editedChickenBarn.id ? response.data : item)))
                   navigate("/farm/viewBarn/" + response.data.id)
+                }
+            )
+    }
+
+    const editFatPeriod = (editedFatPeriod: FatPeriodDto): void => {
+        axios.put(`/api/fattening/${editedFatPeriod.id}`, editedFatPeriod)
+            .then((response) => {
+                setFatteningsPeriods(fatteningsPeriods.map((item) => (item.id === editedFatPeriod.id ? response.data : item)))
+                  navigate("/production/viewFattening/" + response.data.id)
                 }
             )
     }
@@ -181,6 +212,14 @@ function App() {
             .then(() => {
                 setChickenBars(chickenBarns.filter(barn => id !== barn.id));
                 navigate("/farm/chickenBarns")
+            })
+    }
+
+    const deleteFatPeriod = (id: string) => {
+        axios.delete(`/api/fattening/${id}`)
+            .then(() => {
+                setFatteningsPeriods(fatteningsPeriods.filter(period => id !== period.id));
+                navigate("/production/fattenings")
             })
     }
 
@@ -249,18 +288,24 @@ function App() {
 
               <Route path={"/production"} element={<Production/>}>
 
-                  <Route index element={<Consume/>}/>
+                   <Route index element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>} />
 
                    <Route path={"consume"} element={<Consume/>}>
 
-                        <Route index element={<ConsumeChart/>}/>
-
-                       <Route path={"consumeChart"} element={<ConsumeChart/>}/>
+                       <Route index element={<ConsumeTable/>}/>
+                       <Route path={"consumeBarChart"} element={<ConsumeBarChart/>}/>
+                       <Route path={"consumeLineChart"} element={<ConsumeLineChart/>}/>
+                       <Route path={"consumePieChart"} element={<ConsumePieChart/>}/>
                        <Route path={"consumeTable"} element={<ConsumeTable/>}/>
-                   </Route>
-              </Route>
 
-              <Route path={"/climate"} element={<Climate/>}/>
+                   </Route>
+
+                  <Route path={"fattenings"} element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>}/>
+                  <Route path={"addFattening"} element={<AddFatteningPeriod savePeriod={addFatPeriod}/>}/>
+                  <Route path={"viewFattening/:id"} element={<ViewFatteningPeriod handleFatPeriodDelete={deleteFatPeriod}/>}/>
+                  <Route path={"fattening/:id/edit"} element={<EditFatteningPeriod  fatteningPeriods={fatteningsPeriods} editFatPeriod={editFatPeriod}/>}/>
+
+              </Route>
 
          </Routes>
       </div>

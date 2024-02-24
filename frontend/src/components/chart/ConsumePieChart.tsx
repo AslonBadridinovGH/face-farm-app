@@ -1,15 +1,15 @@
 import "./App.css";
 import {ArcElement} from 'chart.js'
-import {Bar} from "react-chartjs-2";
 import {BarElement, CategoryScale, Chart, LinearScale, LineElement, PointElement} from "chart.js";
 import {Title, Tooltip, Legend,} from 'chart.js';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {ConsumeType} from "../../types/Consume.tsx";
+import {Pie} from "react-chartjs-2";
 Chart.register(CategoryScale, LinearScale, BarElement,PointElement,LineElement, ArcElement, Title, Tooltip, Legend)
 
 
-export default function ConsumeChart() {
+export default function ConsumePieChart() {
 
 
     const [data, setData] = useState<ConsumeType>();
@@ -22,15 +22,10 @@ export default function ConsumeChart() {
 
     if (data===undefined){
     return <p>Loading...</p>
-
 }
-
     return (
         <div className="App">
-
-            <div style={{ width:"90%", height:"700px" }}>
-                <Bar data={data} />
-            </div>
+            <Pie data={data} />
         </div>
     );
 }

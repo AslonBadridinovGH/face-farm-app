@@ -9,7 +9,6 @@ export default  function Navbar() {
                 <NavLinks to={"/"}>About</NavLinks>
                 <NavLinks to={"/farm"}>Farm</NavLinks>
                 <NavLinks to={"/production"}>Production</NavLinks>
-                <NavLinks to={"climate"}>Economy</NavLinks>
             </StyledNav>
 
         </div>
@@ -23,7 +22,8 @@ const StyledNav = styled.nav`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 0.8rem;
+    padding-right: 1rem;
 
 `;
 

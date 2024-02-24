@@ -53,12 +53,13 @@ export default function EditFeed (props : editFeed) {
             <StyledDivAddFarm>Edit Silo Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>article number</label>
-                <SInput value={articleNumber} type={"string"} onChange={onArticleNumberChange} placeholder={"article number"}/>
-
                 <label>type of feed</label>
                 <SInput value={type} type={"string"} onChange={onTypeChange}
                         placeholder={"type of feed"}/>
+
+                <label>article number</label>
+                <SInput value={articleNumber} type={"string"} onChange={onArticleNumberChange}
+                        placeholder={"article number"}/>
 
                 <label>description of feed</label>
                 <SInput value={description} type={"string"} onChange={onDescriptionChange}
