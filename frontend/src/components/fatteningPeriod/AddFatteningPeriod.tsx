@@ -41,8 +41,8 @@ export default function AddFatteningPeriod(props : addPeriodProps) {
 
             id: "1",
             chickenIDs: chickenIds,
+            lostToDay : lostToday,
             startDate: startDate,
-            lostToday : lostToday,
             dateOfSlaughter: dateOfSlaughter,
 
         }
