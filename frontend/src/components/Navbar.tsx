@@ -18,20 +18,19 @@ export default  function Navbar() {
 const StyledNav = styled.nav`
     
     background-color: #7e878c;
-    height: 100px;
+    height: auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 0.8rem;
     padding-right: 1rem;
-
 `;
 
 const NavLinks = styled(NavLink)`
     
     color: #ffffff;
-    width: 80px;
-    height: 30px;
+    width: auto;
+    height: auto;
     text-decoration: none;
     border-radius: 0.375rem;
     padding: 1vw;
@@ -40,6 +39,7 @@ const NavLinks = styled(NavLink)`
     margin-right: 0.3vw;
     text-align: center;
     line-height: 30px;
+    
 `;
 
 

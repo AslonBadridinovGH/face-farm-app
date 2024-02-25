@@ -12,9 +12,10 @@ export default function FarmInfo(props : farmInfo) {
     return (
 
     <StyledDiv>
+
         <div className={"ClNavLink"}>
             <h2>Farm Infos</h2>
-            <NavLink className={"navLink"} to={`/farm/farmInfo/${ props.farm.map(value => value.id) }/edit`} >Change Farm Infos</NavLink>
+            <NavLink className={"navLink"} to={`/farm/farmInfo/${ props.farm.map(value => value.id) }/edit`}>Change Farm Infos</NavLink>
         </div>
 
        <div>
@@ -22,14 +23,14 @@ export default function FarmInfo(props : farmInfo) {
        </div>
 
     </StyledDiv>
-);
 
+    );
 }
-
 
 const StyledDiv =styled.div`
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 `;

@@ -63,7 +63,7 @@ function ViewFatteningPeriod(props : ViewFatteningProps) {
                             </StyledG>
 
                     </StyledInfo>
-                    <Link to={`/production/fattening/${fattening?.id}/edit`}>
+                    <Link className={"linkButtons"} to={`/production/fattening/${fattening?.id}/edit`}>
                         <button>Edit</button>
                         <button className="fattening-delete-button" onClick={() => handleBarnDelete(fattening?.id)}>Delete
                         </button>
@@ -78,33 +78,31 @@ export default ViewFatteningPeriod;
 
 
 const StyledDiv = styled.div`
+    
     margin: 2vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: red;
+    padding-top: 1vh;
+    width: 60vw;
+    height: 60vh;
 `;
+
 
 const StyledDivInfo = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 1vw;
-    background-color: #213547;
+    justify-content: space-between;
 `;
 
 const StyledInfo = styled.div`
-    margin: 1vw;
-    background-color: yellow;
+    background-color: #b3c0cb;
 `;
 
 const StyledG = styled.h2`
-    margin: 2vw;
-    font-size: 2vw;
+    margin: 1vw;
+    padding: 0.3rem;
+    font-size: 1.7vw;
     display: flex;
     flex-direction: row;
     gap: 5vw;
     justify-content: space-between;
-    background-color: #646cff;
+    background-color: azure;
 `;
-

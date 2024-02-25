@@ -47,15 +47,14 @@ function ViewFarm (props : ViewFarmProps) {
                             <div>{farm?.area}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"construction year of Farm:  "}</div>
+                            <div>{"Construction year of Farm:  "}</div>
                             <div>{farm?.constructionYear}</div>
                         </StyledG>
 
                     </StyledInfo>
                     <Link to={`/farm/farmInfo/${farm?.id}/edit`}>
                         <button>Edit</button>
-                        <button className="farm-delete-button" onClick={() => handleFarmDelete(farm?.id)}>Delete
-                        </button>
+                        <button onClick={() => handleFarmDelete(farm?.id)}>Delete</button>
                     </Link>
                 </StyledDivInfo>
             </StyledDiv>
@@ -70,7 +69,6 @@ const StyledDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    background-color: red;
 `;
 
 const StyledDivInfo = styled.div`
@@ -83,7 +81,6 @@ const StyledDivInfo = styled.div`
 
 const StyledInfo = styled.div`
     margin: 1vw;
-    background-color: yellow;
 `;
 
 const StyledG = styled.h2`
@@ -93,5 +90,5 @@ const StyledG = styled.h2`
     flex-direction: row;
     gap: 5vw;
     justify-content: space-between;
-    background-color: #646cff;
+
 `;

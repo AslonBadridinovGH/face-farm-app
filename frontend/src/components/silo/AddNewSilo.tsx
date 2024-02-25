@@ -53,20 +53,29 @@ export default function AddNewSilo(props: adSiloPops) {
 
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>Number of Silo</label>
-                <SInput value={numberOfSilo} type={"number"} onChange={onNumberOfSiloChange} placeholder={"area"}/>
+                <LabelInput>
+                    <label>Number of Silo</label>
+                    <StyledInput value={numberOfSilo} type={"number"} onChange={onNumberOfSiloChange}
+                                 placeholder={"area"}/>
+                </LabelInput>
 
-                <label>Capacity of Silo</label>
-                <SInput value={capacity} type={"number"} onChange={onCapacityChange}
-                        placeholder={"capacity of silo"}/>
+                <LabelInput>
+                    <label>Capacity of Silo</label>
+                    <StyledInput value={capacity} type={"number"} onChange={onCapacityChange}
+                                 placeholder={"capacity of silo"}/>
+                </LabelInput>
 
-                <label>Amount of Current Feed</label>
-                <SInput value={amountFeed} type={"number"} onChange={onAmountFeedChange}
-                        placeholder={"Amount of Feed"}/>
+                <LabelInput>
+                    <label>Amount of Current Feed</label>
+                    <StyledInput value={amountFeed} type={"number"} onChange={onAmountFeedChange}
+                                 placeholder={"Amount of Feed"}/>
+                </LabelInput>
 
-                <label>ID of Current Feed</label>
-                <SInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
-                        placeholder={"Name of Current Feed"}/>
+                <LabelInput>
+                    <label>ID of Current Feed</label>
+                    <StyledInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
+                                 placeholder={"Name of Current Feed"}/>
+                </LabelInput>
 
                 <button type={"submit"}>Submit</button>
 
@@ -76,27 +85,38 @@ export default function AddNewSilo(props: adSiloPops) {
     );
 }
 
-
-const StyledDivAddFarm = styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
-
 const StyledDiv = styled.div`
     display: flex;
-    padding: 1vw;
+    padding: 1vw 0 0 3vw;
     flex-direction: column;
+    gap: 1rem;
+
+`;
+
+const StyledDivAddFarm = styled.div`
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    font-size: 2vw;
+    width: 40vw;
 `;
 
 const StyledFormAdd = styled.form`
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 15px;
     align-items: initial;
     width:60%;
 `;
 
-const SInput =styled.input`
-    margin: 0.5vw 0 0.5vw 0;
+const LabelInput = styled.div`
+     display: flex;
+     flex-direction: column;
 `;
+
+const StyledInput =styled.input`
+    margin: 0.5vw 0 ;
+`;
+
+
+

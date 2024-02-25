@@ -61,21 +61,29 @@ function EditSilo(props : editSilo) {
             <StyledDivAddFarm>Edit Silo Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>Number of Silo</label>
-                <SInput value={numberOfSilo} type={"number"} onChange={onNumberSiloChange} placeholder={"area"}/>
+                <LabelInput>
+                    <label>Number of Silo</label>
+                    <StyledInput value={numberOfSilo} type={"number"} onChange={onNumberSiloChange}
+                                 placeholder={"area"}/>
+                </LabelInput>
 
-                <label>Capacity</label>
-                <SInput value={capacity} type={"number"} onChange={onCapacityChange}
-                        placeholder={"number of animals"}/>
+                <LabelInput>
+                    <label>Capacity</label>
+                    <StyledInput value={capacity} type={"number"} onChange={onCapacityChange}
+                                 placeholder={"number of animals"}/>
+                </LabelInput>
 
-                <label>Amount of Feed</label>
-                <SInput value={amountOfFeed} type={"number"} onChange={onAmountFeedChange}
-                        placeholder={"amount of Feed"}/>
+                <LabelInput>
+                    <label>Amount of Feed</label>
+                    <StyledInput value={amountOfFeed} type={"number"} onChange={onAmountFeedChange}
+                                 placeholder={"amount of Feed"}/>
+                </LabelInput>
 
-                <label>Feeds ID s</label>
-                <SInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
-                        placeholder={"feeds IDs"}/>
-
+                <LabelInput>
+                    <label>Feeds ID s</label>
+                    <StyledInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
+                                 placeholder={"feeds IDs"}/>
+                </LabelInput>
                 <button type={"submit"}>Submit</button>
             </StyledFormAdd>
 
@@ -85,26 +93,36 @@ function EditSilo(props : editSilo) {
 
 export default EditSilo;
 
-const StyledDivAddFarm = styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
 
 const StyledDiv = styled.div`
     display: flex;
-    padding: 1vw;
+    padding: 1vw 0 0 3vw;
     flex-direction: column;
+    gap: 1rem;
+
+`;
+
+const StyledDivAddFarm = styled.div`
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    font-size: 2vw;
+    width: 40vw;
 `;
 
 const StyledFormAdd = styled.form`
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 15px;
     align-items: initial;
     width:60%;
 `;
 
-const SInput =styled.input`
-    margin: 0.5vw 0 0.5vw 0;
+const LabelInput = styled.div`
+     display: flex;
+     flex-direction: column;
+`;
+
+const StyledInput =styled.input`
+    margin: 0.5vw 0 ;
 `;
