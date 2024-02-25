@@ -50,24 +50,33 @@ export default function EditFeed (props : editFeed) {
     return (
         <StyledDiv>
 
-            <StyledDivAddFarm>Edit Silo Infos</StyledDivAddFarm>
+            <StyledDivAddFarm>Edit Feed Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>type of feed</label>
-                <SInput value={type} type={"string"} onChange={onTypeChange}
-                        placeholder={"type of feed"}/>
+                <LabelInput>
+                    <label>type of feed</label>
+                    <StyledInput value={type} type={"string"} onChange={onTypeChange}
+                                 placeholder={"type of feed"}/>
+                </LabelInput>
 
-                <label>article number</label>
-                <SInput value={articleNumber} type={"string"} onChange={onArticleNumberChange}
-                        placeholder={"article number"}/>
+                <LabelInput>
+                    <label>article number</label>
+                    <StyledInput value={articleNumber} type={"string"} onChange={onArticleNumberChange}
+                                 placeholder={"article number"}/>
+                </LabelInput>
 
-                <label>description of feed</label>
-                <SInput value={description} type={"string"} onChange={onDescriptionChange}
-                        placeholder={"description of feed"}/>
+                <LabelInput>
+                    <label>description of feed</label>
+                    <StyledInput value={description} type={"string"} onChange={onDescriptionChange}
+                                 placeholder={"description of feed"}/>
 
-                <label>price per tone</label>
-                <SInput value={pricePerTone} type={"string"} onChange={onPricePerToneChange}
-                        placeholder={"price per tone"}/>
+                </LabelInput>
+
+                <LabelInput>
+                    <label>price per tone in euro</label>
+                    <StyledInput value={pricePerTone} type={"string"} onChange={onPricePerToneChange}
+                                 placeholder={"price per tone"}/>
+                </LabelInput>
 
                 <button type={"submit"}>Submit</button>
 
@@ -78,26 +87,34 @@ export default function EditFeed (props : editFeed) {
 }
 
 
-const StyledDivAddFarm = styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
-
 const StyledDiv = styled.div`
     display: flex;
-    padding: 1vw;
+    padding: 1vw 0 0 3vw;
     flex-direction: column;
+    gap: 1rem;
+`;
+
+const StyledDivAddFarm = styled.div`
+ 
+    text-align: center;
+    padding: 10px 300px 10px 0;
+    font-size: 2vw;
 `;
 
 const StyledFormAdd = styled.form`
-    display: flex;
+    display:flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 15px;
     align-items: initial;
-    width: 60%;
+    width:60%;
 `;
 
-const SInput = styled.input`
-    margin: 0.5vw 0 0.5vw 0;
+const LabelInput = styled.div`
+     display: flex;
+     flex-direction: column;
+`;
+
+const StyledInput =styled.input`
+    margin: 0.5vw 0 ;
 `;

@@ -3,7 +3,6 @@ import {ChangeEvent, FormEvent, useState} from "react";
 import {Farm} from "../../types/Farm.tsx";
 import {useParams} from "react-router-dom";
 
-
 type FarmInfoProps = {
     farms : Farm [],
     editeFarm : (farm : Farm) => void;
@@ -23,14 +22,6 @@ export default function EditFarmInfo(props: FarmInfoProps) {
     const [constructionYear, setConstructionYear]=useState<number>(farm?.constructionYear || 2024)
 
 
- /* const [numberOfAnimals, setNumberOfAnimals]=useState<number>(0)
-    const [numberOfBarns, setNumberOfBarns]=useState<number>(0)
-    const [numberOfSilos, setNumberOfSilos]=useState<number>(0)
-
-    const [numberOfEmployees, setNumberOfEmployees]=useState<number>(0)
-    const [numberOfTechniques, setNumberOfTechniques]=useState<number>(0)
-   */
-
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
     }
@@ -47,25 +38,6 @@ export default function EditFarmInfo(props: FarmInfoProps) {
     const onConstruction_yearChange = (event: ChangeEvent<HTMLInputElement>) => {
         setConstructionYear(event.target.valueAsNumber)
     }
-
-    /*
-    const onNumber_of_animalsChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfAnimals(event.target.valueAsNumber)
-    }
-        const onNumber_of_barnsChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfBarns(event.target.valueAsNumber)
-    }
-        const onNumber_of_employeesChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfEmployees(event.target.valueAsNumber)
-    }
-        const onNumber_of_silosChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfSilos(event.target.valueAsNumber)
-    }
-
-    const onNumber_of_techniquesChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setNumberOfTechniques(event.target.valueAsNumber)
-    }
-*/
 
     const onFarmSubmit = (event: FormEvent<HTMLFormElement>) => {
 
@@ -108,27 +80,6 @@ export default function EditFarmInfo(props: FarmInfoProps) {
                 <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}
                         placeholder={"construction year"}/>
 
-{/*
-                <label>number of animals</label>
-                <StyledInput value={numberOfAnimals} type={"number"} onChange={onNumber_of_animalsChange}
-                        placeholder={"number of animals"}/>
-
-                <label>number of barns</label>
-                <StyledInput value={numberOfBarns} type={"number"} onChange={onNumber_of_barnsChange}
-                        placeholder={"number of barns"}/>
-
-                <label>number of employees</label>
-                <StyledInput value={numberOfEmployees} type={"number"} onChange={onNumber_of_employeesChange}
-                        placeholder={"numberOfEmployees"}/>
-
-                <label>number of silos</label>
-                <StyledInput value={numberOfSilos} type={"number"} onChange={onNumber_of_silosChange}
-                        placeholder={"numberOfSilos"}/>
-
-                <label>number of techniques</label>
-                <StyledInput value={numberOfTechniques} type={"number"} onChange={onNumber_of_techniquesChange}
-                        placeholder={"numberOfTechniques"}/>
-*/}
                 <button type={"submit"}>Submit</button>
             </StyledFormAdd>
 

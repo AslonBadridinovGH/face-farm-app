@@ -3,7 +3,9 @@ import styled from "styled-components";
 export default function Home() {
     return (
         <StyledDiv>
+
             <h2>Herzlich willkommen  in Face Farm App!</h2>
+
             <StyledP>
                   Diese App wurde für den Bauernhof entwickelt, auf dem Masthähnchen gehalten wird.
                 Mit Hilfe dieses Programms können Sie mit allen Informationen über den Bauernhof und seine Küken arbeiten.
@@ -26,16 +28,16 @@ const StyledDiv = styled.div`
 `;
 
 const StyledP = styled.p`
-
+    
+    background-color: #dfe4ea;
     display: flex;
     justify-content: center;
     text-align: justify;
     width: 70vw;
-    font-size: 2vw;
+    font-size: 1rem;
     margin-top: 2vw;
-    background-color: #dfe4ea;
-    line-height: 40px;
+    line-height: 4vw;
     text-indent: 30px;
-    padding: 30px;
+    padding: 2rem;
     border-radius: 5px;
 `;

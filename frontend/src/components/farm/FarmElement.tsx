@@ -19,8 +19,6 @@ export default function FarmElement(props : farmsElementProps) {
     return (
         <div>
                  <StyledDiv>
-                     <StyledDivInfo>
-                         <StyledInfo>
 
                              <StyledG>
                                  <div>{"Name of Farm:  "}</div>
@@ -39,12 +37,10 @@ export default function FarmElement(props : farmsElementProps) {
                                  <div>{farm?.area}</div>
                              </StyledG>
                              <StyledG>
-                                 <div>{"construction year of Farm:  "}</div>
+                                 <div>{"Construction year of Farm:  "}</div>
                                  <div>{farm?.constructionYear}</div>
                              </StyledG>
-                         </StyledInfo>
 
-                     </StyledDivInfo>
                  </StyledDiv>
             </div>
 
@@ -53,33 +49,22 @@ export default function FarmElement(props : farmsElementProps) {
 
 
 const StyledDiv = styled.div`
+    
     margin: 2vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: red;
-`;
-
-const StyledDivInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1vw;
-    background-color: #213547;
-`;
-
-const StyledInfo = styled.div`
-    margin: 1vw;
-    background-color: yellow;
+    padding-top: 1vh;
+    width: 60vw;
+    height: 60vh;
+    
 `;
 
 const StyledG = styled.h2`
     margin: 2vw;
+    padding: 0.3rem;
     font-size: 2vw;
     display: flex;
     flex-direction: row;
     gap: 5vw;
     justify-content: space-between;
-    background-color: #646cff;
+    background-color: azure;
 `;
 

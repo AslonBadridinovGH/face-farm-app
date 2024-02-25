@@ -10,7 +10,7 @@ export default function Consume() {
      return (
 
          <StyledDiv>
-             <div className={"ClNavLinkFeed"}>
+             <div className={"ClNavLinkConsume"}>
                  <NavLink className={"navLink"} to={"/production/consume/consumeTable"} >Consume as Table</NavLink>
                  <NavLink className={"navLink"} to={"/production/consume/consumeBarChart"} >Consume as Column Diagram</NavLink>
                  <NavLink className={"navLink"} to={"/production/consume/consumeLineChart"} >Consume as Line Diagram</NavLink>
@@ -22,7 +22,6 @@ export default function Consume() {
              </div>
 
          </StyledDiv>
-
      );
 }
 

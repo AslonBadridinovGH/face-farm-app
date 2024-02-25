@@ -59,10 +59,9 @@ function ViewBarn(props : ViewChickenProps) {
                             </StyledG>
 
                     </StyledInfo>
-                    <Link to={`/farm/chicken/${chicken?.id}/edit`}>
+                    <Link className={"linkButtons"} to={`/farm/chicken/${chicken?.id}/edit`}>
                         <button>Edit</button>
-                        <button className="chicken-delete-button" onClick={() => handleChickenDelete(chicken?.id)}>Delete
-                        </button>
+                        <button onClick={() => handleChickenDelete(chicken?.id)}>Delete</button>
                     </Link>
                 </StyledDivInfo>
             </StyledDiv>
@@ -72,35 +71,34 @@ function ViewBarn(props : ViewChickenProps) {
 
 export default ViewBarn;
 
-
 const StyledDiv = styled.div`
+    
     margin: 2vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: red;
+    padding-top: 1vh;
+    width: 60vw;
+    height: 60vh;
 `;
+
 
 const StyledDivInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1vw;
-    background-color: #213547;
 `;
 
 const StyledInfo = styled.div`
-    margin: 1vw;
-    background-color: yellow;
+    background-color: #b3c0cb;
 `;
 
 const StyledG = styled.h2`
     margin: 2vw;
+    padding: 0.3rem;
     font-size: 2vw;
     display: flex;
     flex-direction: row;
     gap: 5vw;
     justify-content: space-between;
-    background-color: #646cff;
+    background-color: azure;
 `;
+
 

@@ -54,9 +54,9 @@ function ViewChickenBarn(props : ViewBarnProps) {
                                 <div>{barn?.silos?.map(value => value.numberOfSilo).join(" and ")}</div>
                             </StyledG>
                     </StyledInfo>
-                    <Link to={`/farm/chickenBarn/${barn?.id}/edit`}>
+                    <Link className={"linkButtons"}  to={`/farm/chickenBarn/${barn?.id}/edit`}>
                         <button>Edit</button>
-                        <button className="barn-delete-button" onClick={() => handleBarnDelete(barn?.id)}>Delete
+                        <button onClick={() => handleBarnDelete(barn?.id)}>Delete
                         </button>
                     </Link>
                 </StyledDivInfo>
@@ -69,33 +69,31 @@ export default ViewChickenBarn;
 
 
 const StyledDiv = styled.div`
+    
     margin: 2vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: red;
+    padding-top: 1vh;
+    width: 60vw;
+    height: 60vh;
 `;
+
 
 const StyledDivInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1vw;
-    background-color: #213547;
 `;
 
 const StyledInfo = styled.div`
-    margin: 1vw;
-    background-color: yellow;
+    background-color: #b3c0cb;
 `;
 
 const StyledG = styled.h2`
     margin: 2vw;
+    padding: 0.3rem;
     font-size: 2vw;
     display: flex;
     flex-direction: row;
     gap: 5vw;
     justify-content: space-between;
-    background-color: #646cff;
+    background-color: azure;
 `;
-
