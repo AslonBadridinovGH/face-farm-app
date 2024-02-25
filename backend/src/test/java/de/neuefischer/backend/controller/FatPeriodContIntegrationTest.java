@@ -15,8 +15,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -137,8 +140,6 @@ public class FatPeriodContIntegrationTest {
                             {                         
                                    "chickens" : [],
                                    "startDate" : "2024-02-20",
-                                   "currentDate" : "2024-02-24",
-                                   "currentOld" : 4,
                                    "currentFeedingPhase" : "starter",
                                    "lostToDay" : 12,
                                    "totalLost" : 12,
@@ -146,7 +147,9 @@ public class FatPeriodContIntegrationTest {
                             }
                                                  
 """))
-                .andExpect(jsonPath("$.id").isNotEmpty());
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.currentOld").isNotEmpty())
+                .andExpect(jsonPath("$.currentDate").isNotEmpty());
     }
 
     @DirtiesContext
@@ -156,10 +159,13 @@ public class FatPeriodContIntegrationTest {
         FatteningPeriod fatteningPeriod = new FatteningPeriod(
                 "1", new ArrayList<>(),
                 LocalDate.of(2024,2,20),
-                LocalDate.of(2024,2,24),
+                LocalDate.now(),
                 4L,"starter", 12,
                 12, LocalDate.of(2024,12,13));
         fatteningPeriodsRepo.save(fatteningPeriod);
+
+        long old = 0;
+        old = Period.between(Objects.requireNonNull( LocalDate.of(2024,2,20)), LocalDate.now()).get(ChronoUnit.DAYS);
 
         // WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/fattening/1")
@@ -169,7 +175,7 @@ public class FatPeriodContIntegrationTest {
                                      "chickenIDs" : [],
                                      "lostToDay" : 12, 
                                      "startDate" : "2024-02-20",                         
-                                     "dateOfSlaughter" : "2024-12-13"
+                                     "dateOfSlaughter" : "2024-02-20"
                                   
                              }
                                 """))
@@ -179,8 +185,6 @@ public class FatPeriodContIntegrationTest {
                        {                        
                                    "chickens" : [],
                                    "startDate" : "2024-02-20",
-                                   "currentDate" : "2024-02-24",
-                                   "currentOld" : 4,
                                    "currentFeedingPhase" : "starter",
                                    "lostToDay" : 12,
                                    "totalLost" : 24,
@@ -188,11 +192,13 @@ public class FatPeriodContIntegrationTest {
                        }
                      
                         """))
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.currentOld").isNotEmpty())
+                .andExpect(jsonPath("$.currentDate").isNotEmpty())
                 .andReturn();
+
         assertEquals(200, mvcResult.getResponse().getStatus());
     }
-
-
 
 
     @DirtiesContext

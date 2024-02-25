@@ -78,13 +78,13 @@ public class ChickenServiceTest {
     void addChickenTest_returnChicken(){
 
 
-        String dateString = "12.02.2024";
+        String dateString = "2024-02-12";
 
         LocalDate date = null;
 
         try {
             // Define the date format
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             // Parse the string to a LocalDate object
             date = LocalDate.parse(dateString, formatter);

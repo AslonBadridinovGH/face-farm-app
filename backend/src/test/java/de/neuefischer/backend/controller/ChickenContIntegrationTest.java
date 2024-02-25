@@ -113,7 +113,7 @@ public class ChickenContIntegrationTest {
                   "expectedSlaughterAge": 40,
                   "feedConversion": "1.6",
                   "hatchery": "kwh",
-                  "hatchDay": "12.02.2024"
+                  "hatchDay": "2024-02-12"
              }
 """))
                 .andExpect(status().isOk())
