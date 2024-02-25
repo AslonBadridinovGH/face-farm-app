@@ -93,17 +93,18 @@ export default function EditFatteningPeriod(props : editFatteningPeriod) {
 }
 
 
-
-const StyledDivAddFarm = styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
-
 const StyledDiv = styled.div`
     display: flex;
-    padding: 1vw;
+    padding: 1vw 0 0 3vw;
     flex-direction: column;
+    gap: 1rem;
+`;
+
+const StyledDivAddFarm = styled.div`
+ 
+    text-align: center;
+    padding: 10px 300px 10px 0;
+    font-size: 2vw;
 `;
 
 const StyledFormAdd = styled.form`
@@ -114,11 +115,12 @@ const StyledFormAdd = styled.form`
     align-items: initial;
     width:60%;
 `;
+
 const LabelInput = styled.div`
      display: flex;
      flex-direction: column;
 `;
 
 const StyledInput =styled.input`
-    margin: 0.5vw 0 0.5vw 0;
+    margin: 0.5vw 0 ;
 `;
