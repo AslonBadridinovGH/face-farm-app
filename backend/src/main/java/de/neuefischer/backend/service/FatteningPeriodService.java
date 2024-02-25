@@ -74,7 +74,7 @@ public class FatteningPeriodService {
         }
 
         LocalDate dateOfSlaughter = null;
-        String startDateS = fatteningDto.dateOfSlaughter();
+        String slaughterDay = fatteningDto.dateOfSlaughter();
 
         if (!dateString.isEmpty()){
             try {
@@ -82,7 +82,7 @@ public class FatteningPeriodService {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
-                dateOfSlaughter = LocalDate.parse(startDateS, formatter);
+                dateOfSlaughter = LocalDate.parse(slaughterDay, formatter);
 
             } catch (DateTimeParseException e) {
                 // Handle parsing exception
@@ -99,30 +99,29 @@ public class FatteningPeriodService {
 
         if (old<=18){
             currentFeedingPhase = "starter";
-        } else if (old<=25) {
+        }
+        else if (old<=25) {
             currentFeedingPhase = "Aufzucht";
-        }else {
+        }
+        else {
             currentFeedingPhase = "finisher";
         }
+
         int totalLost = 0;
              totalLost += fatteningDto.lostToDay();
-
-        System.out.println(startDate);
-        System.out.println(dateOfSlaughter);
 
             FatteningPeriod fattening = new FatteningPeriod(
           id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToDay(), totalLost, dateOfSlaughter);
 
         return fatteningsRepo.save(fattening);
+
     }
-
-
 
 
     public FatteningPeriod updateFatteningPeriod(String id, FatteningPeriodDto fatteningDto){
 
-        Optional<FatteningPeriod> optionalFatteningPeriod = fatteningsRepo.findById(id);
-        if (optionalFatteningPeriod.isEmpty()){
+        Optional<FatteningPeriod> optionalPeriod = fatteningsRepo.findById(id);
+        if (optionalPeriod.isEmpty()){
             throw (new NoSuchElementException());
         }
 
@@ -138,16 +137,15 @@ public class FatteningPeriodService {
             }
         }
 
-        String dateString = fatteningDto.startDate();
-
+        String startDateString = fatteningDto.startDate();
         LocalDate startDate = null;
-        if (!dateString.isEmpty()){
+        if (!startDateString.isEmpty()){
             try {
                 // Define the date format
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
-                startDate = LocalDate.parse(dateString, formatter);
+                startDate = LocalDate.parse(startDateString, formatter);
 
             } catch (DateTimeParseException e) {
                 // Handle parsing exception
@@ -156,22 +154,24 @@ public class FatteningPeriodService {
         }
 
         LocalDate dateOfSlaughter = null;
-        if (!dateString.isEmpty()){
+        String slaughterString = fatteningDto.dateOfSlaughter();
+        if (!fatteningDto.dateOfSlaughter().isEmpty()){
             try {
                 // Define the date format
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 // Parse the string to a LocalDate object
-                dateOfSlaughter = LocalDate.parse(dateString, formatter);
+                dateOfSlaughter = LocalDate.parse(slaughterString, formatter);
 
             } catch (DateTimeParseException e) {
                 // Handle parsing exception
                 System.out.println("Error parsing the date: " + e.getMessage());
             }
         }
+
         long old = 0;
         if (startDate != null){
-          old = Period.between(Objects.requireNonNull(startDate),LocalDate.now()).get(ChronoUnit.DAYS);
+           old = Period.between(Objects.requireNonNull(startDate), LocalDate.now()).get(ChronoUnit.DAYS);
         }
 
         String currentFeedingPhase;
@@ -184,14 +184,21 @@ public class FatteningPeriodService {
             currentFeedingPhase = "finisher";
         }
 
-         FatteningPeriod fatteningPeriod = optionalFatteningPeriod.get();
+         FatteningPeriod fatteningPeriod = optionalPeriod.get();
+
          int totalLost = fatteningPeriod.totalLost();
          totalLost  += fatteningDto.lostToDay();
 
-          FatteningPeriod fattening = new FatteningPeriod(
-         id, chickens, startDate, LocalDate.now(), old, currentFeedingPhase, fatteningDto.lostToDay(), totalLost, dateOfSlaughter);
-         return fatteningsRepo.save(fattening);
+                 FatteningPeriod updatedfatteningPeriod = fatteningPeriod
+                .withId(id).withChickens(chickens).withStartDate(startDate).withCurrentOld(old)
+                .withCurrentFeedingPhase(currentFeedingPhase).withLostToDay(fatteningDto.lostToDay())
+                .withTotalLost(totalLost).withDateOfSlaughter(dateOfSlaughter);
+
+         fatteningsRepo.save(updatedfatteningPeriod);
+         return updatedfatteningPeriod;
+
     }
+
 
     public FatteningPeriod deleteFatteningPeriodById(String id) {
         Optional<FatteningPeriod> byId = fatteningsRepo.findById(id);
