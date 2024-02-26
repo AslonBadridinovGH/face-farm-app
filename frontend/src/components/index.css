@@ -54,7 +54,7 @@ nav a.active {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 2rem;
+    padding: 1rem 0;
 }
 
 .ClNavLinkConsume{
