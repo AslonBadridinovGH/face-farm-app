@@ -63,22 +63,32 @@ export default function EditFarmInfo(props: FarmInfoProps) {
                       <StyledDivAddFarm>Change Farm Infos</StyledDivAddFarm>
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
-                <label>Name</label>
-                <StyledInput value={name} onChange={onNameChange} placeholder={"name"}/>
+                <LabelInput>
+                    <label>Name</label>
+                    <StyledInput value={name} onChange={onNameChange} placeholder={"name"}/>
+                </LabelInput>
 
-                <label>Activity</label>
-                <StyledInput value={activity} onChange={onActivityChange} placeholder={"activity"}/>
+                <LabelInput>
+                    <label>Activity</label>
+                    <StyledInput value={activity} onChange={onActivityChange} placeholder={"activity"}/>
+                </LabelInput>
 
-                <label>Address</label>
-                <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
+                <LabelInput>
+                    <label>Address</label>
+                    <StyledInput value={address} onChange={onAddressChange} placeholder={"address"}/>
+                </LabelInput>
 
-                <label>Area</label>
-                <StyledInput value={area} type={"number"} step={"0.5"}
-                             onChange={onAreaChange} placeholder={"area"}/>
+                <LabelInput>
+                    <label>Area</label>
+                    <StyledInput value={area} type={"number"} step={"0.5"}
+                                 onChange={onAreaChange} placeholder={"area"}/>
+                </LabelInput>
 
-                <label>Construction year</label>
-                <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}
-                        placeholder={"construction year"}/>
+                <LabelInput>
+                    <label>Construction year</label>
+                    <StyledInput value={constructionYear} type={"number"} onChange={onConstruction_yearChange}
+                                 placeholder={"construction year"}/>
+                </LabelInput>
 
                 <button type={"submit"}>Submit</button>
             </StyledFormAdd>
@@ -87,28 +97,34 @@ export default function EditFarmInfo(props: FarmInfoProps) {
     );
 }
 
-const StyledDivAddFarm= styled.div`
-    background-color: red;
-    text-align: center;
-    padding: 20px 500px 20px 0;
-`;
-
 const StyledDiv = styled.div`
     display: flex;
-    padding: 1vw;
+    padding: 1vw 0 0 3vw;
     flex-direction: column;
-    height: auto;
+    gap: 1rem;
+`;
+
+const StyledDivAddFarm = styled.div`
+
+    text-align: center;
+    padding: 10px 300px 10px 0;
+    font-size: 2vw;
 `;
 
 const StyledFormAdd = styled.form`
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 15px;
     align-items: initial;
     width:60%;
-    height: auto;
+`;
+
+const LabelInput = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 const StyledInput =styled.input`
-    margin: 0.5vw 0 0.5vw 0;
+    margin: 0.5vw 0 ;
 `;

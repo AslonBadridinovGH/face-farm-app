@@ -7,6 +7,7 @@ import de.neuefischer.backend.repository.ChickenBarnsRepo;
 import de.neuefischer.backend.repository.ChickensRepo;
 import de.neuefischer.backend.repository.SilosRepo;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -44,7 +45,7 @@ public class ChickenBarnService {
         throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No chicken Barn with such id!: " +id));
     }
 
-    public ChickenBarn addChickenBarn(ChickenBarnDto chickenBarnDto) {
+    public ResponseEntity<?> addChickenBarn(ChickenBarnDto chickenBarnDto) {
 
         String [] strings = chickenBarnDto.chickensIds();
 
@@ -68,11 +69,12 @@ public class ChickenBarnService {
             }
             silosList.add(byId.get());
         }
+
          String id = idService.newId();
         ChickenBarn chickenBarn = new ChickenBarn(
         id, chickenBarnDto.area(),chickenBarnDto.name(), chickenList,
         chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
-        return chickenBarnsRepo.save(chickenBarn);
+        return ResponseEntity.status(HttpStatus.CREATED).body(chickenBarnsRepo.save(chickenBarn));
     }
 
     public ChickenBarn updateChickenBarn(String id, ChickenBarnDto chickenBarnDto){
@@ -83,7 +85,6 @@ public class ChickenBarnService {
         }
 
         String [] strings = chickenBarnDto.chickensIds();
-
         List<Chicken> chickenList = new ArrayList<>();
 
         for (String string : strings) {
@@ -107,9 +108,8 @@ public class ChickenBarnService {
 
             ChickenBarn chickenBarn = byId.get();
              chickenBarn = new ChickenBarn(
-                byId.get().id(), chickenBarnDto.area(),chickenBarnDto.name(), chickenList,
-                chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
-
+                 byId.get().id(), chickenBarnDto.area(),chickenBarnDto.name(), chickenList,
+                 chickenBarnDto.amountOfChickens(), chickenBarnDto.capacityForChickens(), silosList);
          return chickenBarnsRepo.save(chickenBarn);
 
     }

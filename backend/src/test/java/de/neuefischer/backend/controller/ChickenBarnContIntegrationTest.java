@@ -138,7 +138,7 @@ public class ChickenBarnContIntegrationTest {
                                    "silosIds": ["s1"]
                             }
 """))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().json("""
 
                             {
