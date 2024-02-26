@@ -30,7 +30,6 @@ public class FarmController {
     }
 
     @PutMapping("/{id}")
-
     public Farm updateFarm(@PathVariable String id, @RequestBody FarmDto farmDto){
         return farmService.updateFarmInfo(id, farmDto);
     }

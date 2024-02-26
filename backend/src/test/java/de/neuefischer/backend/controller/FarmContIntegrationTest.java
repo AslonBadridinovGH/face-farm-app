@@ -32,6 +32,7 @@ class FarmContIntegrationTest {
     @Autowired
     private FarmsRepo farmsRepo;
 
+
     @DirtiesContext
     @Test
     void getFarmsTest_shouldReturnListWithOneObject_whenOneObjectWasSavedInRepository() throws Exception {
@@ -63,7 +64,6 @@ class FarmContIntegrationTest {
 
         assertEquals(200, resultActions.andReturn().getResponse().getStatus());
     }
-
 
 
     @DirtiesContext

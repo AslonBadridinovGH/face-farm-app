@@ -11,6 +11,8 @@ import de.neuefischer.backend.repository.SilosRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -105,7 +107,7 @@ public class ChickenBarnServiceTest {
         ChickenBarnService chickenBarnService = new ChickenBarnService(chickenBarnsRepo, idService, chickensRepo, silosRepo);
 
         // WHEN
-        ChickenBarn actual = chickenBarnService.addChickenBarn(chickenBarnDto);
+        ResponseEntity<?> responseEntity = chickenBarnService.addChickenBarn(chickenBarnDto);
 
         // THEN
         Mockito.verify(chickenBarnsRepo, Mockito.times(1)).save(chickenBarn);
@@ -117,7 +119,7 @@ public class ChickenBarnServiceTest {
         ChickenBarn expected = new ChickenBarn("test-id", 1.2, "stall_1", new ArrayList<Chicken>(List.of(chicken)), 0,
                 35000, new ArrayList<Silo>(List.of(silo)));
 
-        assertEquals(expected, actual);
+        assertEquals(ResponseEntity.status(HttpStatus.CREATED).body(chickenBarnsRepo.save(expected)), responseEntity);
 
     }
 
