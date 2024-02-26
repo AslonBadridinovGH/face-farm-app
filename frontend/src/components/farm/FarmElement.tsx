@@ -52,7 +52,7 @@ const StyledDiv = styled.div`
     
     margin: 2vw;
     padding-top: 1vh;
-    width: 60vw;
+    width: 55vw;
     height: 60vh;
     
 `;
