@@ -91,7 +91,6 @@ function App() {
     const navigate = useNavigate()
 
     const editFarmInfo = (editedFarm: Farm): void => {
-        console.log(editedFarm.id);
         axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
             .then((response) => {
                     setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
@@ -122,8 +121,9 @@ function App() {
              .then((response) => {
                  setChickenBars([...chickenBarns, response.data])
                  navigate("/farm/viewBarn/" + response.data.id)
-        })
+        }).catch(reason => alert(reason.response.data.message))
     }
+
 
     const addFatPeriod = (fatPeriodDtoToSend : FatPeriodDto)=>{
         axios.post("/api/fattening", fatPeriodDtoToSend)
@@ -146,7 +146,7 @@ function App() {
             .then((response) => {
                 setSilos([...silos, response.data])
                 navigate("/farm/viewSilo/" + response.data.id)
-            })
+            }).catch(reason => alert(reason.response.data.message))
     }
 
     const addFeed = (feedToSave : Feed):void=>{

@@ -40,7 +40,7 @@ public class SiloService {
         if (byId.isPresent()){
             return byId.get();
         }
-        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No silo with such id!"));
+        throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No silo with such id! :"+id));
     }
 
     public Silo addSilo(SiloDto siloDto) {
@@ -50,14 +50,13 @@ public class SiloService {
         List<Feed> feedList = new ArrayList<>();
         String[] strings = siloDto.feedIds();
 
-        for (String string : strings) {
-            Optional<Feed> byId = feedsRepo.findById(string);
+        for (String stringID : strings) {
+            Optional<Feed> byId = feedsRepo.findById(stringID);
             if (byId.isEmpty()) {
-                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No silo with such id!"));
+                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No silo with such id:  "+stringID));
             }
             feedList.add(byId.get());
         }
-
         Silo silo = new Silo(
         id, siloDto.numberOfSilo(),siloDto.capacity(),
         siloDto.amountOfFeed(), feedList);
@@ -73,10 +72,10 @@ public class SiloService {
 
         List<Feed> feedList = new ArrayList<>();
         String[] strings = siloDto.feedIds();
-        for (String string : strings) {
-            Optional<Feed> feedById = feedsRepo.findById(string);
+        for (String stringId : strings) {
+            Optional<Feed> feedById = feedsRepo.findById(stringId);
             if (feedById.isEmpty()){
-                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No Feed with such id: "+string));
+                throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No Feed with such id: "+stringId));
             }
             feedList.add(feedById.get());
         }

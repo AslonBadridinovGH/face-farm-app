@@ -4,6 +4,7 @@ import de.neuefischer.backend.dto.ChickenBarnDto;
 import de.neuefischer.backend.modul.ChickenBarn;
 import de.neuefischer.backend.service.ChickenBarnService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ChickenBarnController {
     }
 
     @PostMapping
-    public ChickenBarn addChickenBarn(@RequestBody ChickenBarnDto chickenBarnDto){
+    public ResponseEntity<?> addChickenBarn(@RequestBody ChickenBarnDto chickenBarnDto){
         return chickenBarnService.addChickenBarn(chickenBarnDto);
     }
 
