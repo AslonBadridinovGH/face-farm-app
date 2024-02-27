@@ -64,24 +64,24 @@ export default function EditFatteningPeriod(props : editFatteningPeriod) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>ChickenIds</label>
+                    <label>Chicken ids</label>
                     <input value={chickenIds.join(",")} onChange={onChickensIdsChange}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>lost chickens today</label>
+                    <label>Lost chickens today</label>
                     <StyledInput value={lostToday} type={"number"} onChange={onLostToDayChange}
                                  placeholder={"lost Today"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>start date</label>
+                    <label>Start date</label>
                     <StyledInput value={startDate} type={"date"} onChange={onStartDateChange}
                                  placeholder={"start date"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>date of slaughter</label>
+                    <label>Date of slaughter</label>
                     <StyledInput value={dateOfSlaughter} type={"date"} onChange={onDateOfSlaughterChange}
                                  placeholder={"Date Of Slaughter"}/>
                 </LabelInput>

@@ -57,24 +57,24 @@ export default function AddFatteningPeriod(props : addPeriodProps) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>chicken Ids</label>
+                    <label>Chicken ids</label>
                     <input value={chickenIds.join(",")} placeholder={"chicken Ids"} onChange={onChickensIdsChange}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>start date</label>
+                    <label>Start date</label>
                     <StyledInput value={startDate} type={"date"} onChange={onStartDateChange}
                                  placeholder={"start date"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>lost chicken today</label>
+                    <label>Lost chicken today</label>
                     <StyledInput value={lostToday} type={"number"} onChange={onLostToDayChange}
                                  placeholder={"lost Today"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>date of slaughter</label>
+                    <label>Date of slaughter</label>
                     <StyledInput value={dateOfSlaughter} type={"date"} onChange={onDateOfSlaughterChange}
                                  placeholder={"Date Of Slaughter"}/>
                 </LabelInput>

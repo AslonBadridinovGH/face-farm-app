@@ -38,27 +38,27 @@ function ViewFatteningPeriod(props : ViewFatteningProps) {
                                 <div>{fattening?.startDate}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"current day of fattening:"}</div>
+                                <div>{"Current day of fattening:"}</div>
                                 <div>{fattening?.currentDate}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"current old of chickens:  "}</div>
+                                <div>{"Current old of chickens:  "}</div>
                                 <div>{fattening?.currentOld}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"current feeding phase of chickens:  "}</div>
+                                <div>{"Current feeding phase of chickens:  "}</div>
                                 <div>{fattening?.currentFeedingPhase}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"lost today of chickens:  "}</div>
+                                <div>{"Lost today of chickens:  "}</div>
                                 <div>{fattening?.lostToDay}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"total lost of chickens:  "}</div>
+                                <div>{"Total lost of chickens:  "}</div>
                                 <div>{fattening?.totalLost}</div>
                             </StyledG>
                             <StyledG>
-                               <div>{"date of slaughter of chickens:  "}</div>
+                               <div>{"Date of slaughter of chickens:  "}</div>
                                <div>{fattening?.dateOfSlaughter}</div>
                             </StyledG>
 
