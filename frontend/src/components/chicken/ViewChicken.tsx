@@ -30,11 +30,11 @@ function ViewBarn(props : ViewChickenProps) {
                 <StyledDivInfo>
                     <StyledInfo>
                             <StyledG>
-                                <div>{"race of chicken"}</div>
+                                <div>{"Race of chicken"}</div>
                                 <div>{chicken?.race}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"weight in first day"}</div>
+                                <div>{"Weight in first day"}</div>
                                 <div>{chicken?.weightInFirstDay}</div>
                             </StyledG>
                             <StyledG>
@@ -42,19 +42,19 @@ function ViewBarn(props : ViewChickenProps) {
                                 <div>{chicken?.expectedSlaughterWeight}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"expected slaughter age"}</div>
+                                <div>{"Expected slaughter age"}</div>
                                 <div>{chicken?.expectedSlaughterAge}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"feed conversion"}</div>
+                                <div>{"Feed conversion"}</div>
                                 <div>{chicken?.feedConversion}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"hatch day"}</div>
+                                <div>{"Hatch day"}</div>
                                 <div>{chicken?.hatchDay}</div>
                             </StyledG>
                              <StyledG>
-                                <div>{"hatchery"}</div>
+                                <div>{"Hatchery"}</div>
                                 <div>{chicken?.hatchery}</div>
                             </StyledG>
 

@@ -13,9 +13,9 @@ export default function AsideMain() {
 
                     <NavLinks to={"/farm/silos"}>All Silos</NavLinks>
 
-                    <NavLinks to={"/farm/chickens"}>All chickens</NavLinks>
+                    <NavLinks to={"/farm/chickens"}>All Chickens</NavLinks>
 
-                    <NavLinks to={"/farm/feeds"}>All feeds</NavLinks>
+                    <NavLinks to={"/farm/feeds"}>All Feeds</NavLinks>
 
                 </StyledNav>
 

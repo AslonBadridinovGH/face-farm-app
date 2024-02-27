@@ -54,26 +54,26 @@ export default function EditFeed (props : editFeed) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>type of feed</label>
+                    <label>Type of feed</label>
                     <StyledInput value={type} type={"string"} onChange={onTypeChange}
                                  placeholder={"type of feed"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>article number</label>
+                    <label>Article number</label>
                     <StyledInput value={articleNumber} type={"string"} onChange={onArticleNumberChange}
                                  placeholder={"article number"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>description of feed</label>
+                    <label>Description of feed</label>
                     <StyledInput value={description} type={"string"} onChange={onDescriptionChange}
                                  placeholder={"description of feed"}/>
 
                 </LabelInput>
 
                 <LabelInput>
-                    <label>price per tone in euro</label>
+                    <label>Price per tone in euro</label>
                     <StyledInput value={pricePerTone} type={"string"} onChange={onPricePerToneChange}
                                  placeholder={"price per tone"}/>
                 </LabelInput>

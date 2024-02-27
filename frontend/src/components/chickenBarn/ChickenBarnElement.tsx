@@ -15,11 +15,11 @@ export default  function ChickenBarnElement(props:barnsElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"Number of Chicken Barns"}</div>
+                        <div>{"Number of chicken barns"}</div>
                         <div>{props.barn.name}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"Amount of chickens  "}</div>
+                        <div>{"Amount of all chickens  "}</div>
                         <div>{props.barn.amountOfChickens}</div>
                     </StyledH>
                 </StyledDiv>
