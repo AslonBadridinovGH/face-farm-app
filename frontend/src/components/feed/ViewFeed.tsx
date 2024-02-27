@@ -30,19 +30,19 @@ function ViewFeed(props : ViewFeedProps) {
                     <StyledInfo>
 
                         <StyledG>
-                            <div>{"type of Feed:  "}</div>
+                            <div>{"Type of the feed:  "}</div>
                             <div>{feed?.type}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"article number of Feed:  "}</div>
+                            <div>{"Article number of the feed:  "}</div>
                             <div>{feed?.articleNumber}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"description of feed:  "}</div>
+                            <div>{"Description of the feed:  "}</div>
                             <div>{feed?.description}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"price per tone of feed:  "}</div>
+                            <div>{"Price per tone for the feed:  "}</div>
                             <div>{feed?.pricePerTone}</div>
                         </StyledG>
 

@@ -31,11 +31,11 @@ function ViewSilo(props : ViewBarnProps) {
                     <StyledInfo>
 
                         <StyledG>
-                            <div>{"Number of Silo:  "}</div>
+                            <div>{"Number of silo:  "}</div>
                             <div>{silo?.numberOfSilo}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Capacity of Silo:  "}</div>
+                            <div>{"Capacity of silo:  "}</div>
                             <div>{silo?.capacity}</div>
                         </StyledG>
                         <StyledG>
@@ -43,7 +43,7 @@ function ViewSilo(props : ViewBarnProps) {
                             <div>{silo?.amountOfFeed}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Feeds of Silo:  "}</div>
+                            <div>{"Feeds of silo:  "}</div>
                             <div>{silo?.feeds?.map(value => value.type).join(" and ")}</div>
                         </StyledG>
 

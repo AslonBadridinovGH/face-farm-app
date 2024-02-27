@@ -62,7 +62,7 @@ function EditSilo(props : editSilo) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>Number of Silo</label>
+                    <label>Number of silo</label>
                     <StyledInput value={numberOfSilo} type={"number"} onChange={onNumberSiloChange}
                                  placeholder={"area"}/>
                 </LabelInput>
@@ -74,13 +74,13 @@ function EditSilo(props : editSilo) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Amount of Feed</label>
+                    <label>Amount of feed</label>
                     <StyledInput value={amountOfFeed} type={"number"} onChange={onAmountFeedChange}
                                  placeholder={"amount of Feed"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Feeds ID s</label>
+                    <label>Feeds Ids</label>
                     <StyledInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
                                  placeholder={"feeds IDs"}/>
                 </LabelInput>

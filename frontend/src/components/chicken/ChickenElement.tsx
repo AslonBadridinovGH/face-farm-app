@@ -18,11 +18,11 @@ export default  function ChickenElement(props:chickenElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"Race of Chicken "}</div>
+                        <div>{"Race of chicken "}</div>
                         <div>{props.chicken.race}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"chickens  "}</div>
+                        <div>{"Chickens "}</div>
                         <div>{props.chicken.expectedSlaughterAge}</div>
                     </StyledH>
                 </StyledDiv>

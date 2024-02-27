@@ -54,25 +54,25 @@ export default function AddNewSilo(props: adSiloPops) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>Number of Silo</label>
+                    <label>Number of silo</label>
                     <StyledInput value={numberOfSilo} type={"number"} onChange={onNumberOfSiloChange}
                                  placeholder={"area"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Capacity of Silo</label>
+                    <label>Capacity of silo</label>
                     <StyledInput value={capacity} type={"number"} onChange={onCapacityChange}
                                  placeholder={"capacity of silo"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>Amount of Current Feed</label>
+                    <label>Amount of current feed</label>
                     <StyledInput value={amountFeed} type={"number"} onChange={onAmountFeedChange}
                                  placeholder={"Amount of Feed"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>ID of Current Feed</label>
+                    <label>ID of current feed</label>
                     <StyledInput value={feedIds} type={"string"} onChange={onCurrentFeedChange}
                                  placeholder={"Name of Current Feed"}/>
                 </LabelInput>

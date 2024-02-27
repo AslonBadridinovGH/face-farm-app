@@ -17,11 +17,11 @@ export default  function FeedElement(props:feedsElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"type of Feed"}</div>
+                        <div>{"Type of feed"}</div>
                         <div>{props.feed.type}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"article Number of Feed"}</div>
+                        <div>{"Article number of feed"}</div>
                         <div>{props.feed.articleNumber}</div>
                     </StyledH>
                 </StyledDiv>

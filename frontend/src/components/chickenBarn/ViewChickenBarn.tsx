@@ -34,23 +34,23 @@ function ViewChickenBarn(props : ViewBarnProps) {
                                 <div>{barn?.name}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"Area of Chicken Barn:  "}</div>
+                                <div>{"Area of chicken barn:  "}</div>
                                 <div>{barn?.area}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"Capacity for chickens:  "}</div>
+                                <div>{"Capacity of barn:  "}</div>
                                 <div>{barn?.capacityForChickens}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"Amount of chickens:  "}</div>
+                                <div>{"Amount of all chickens:  "}</div>
                                 <div>{barn?.amountOfChickens}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"Chickens of Chicken Barn:  "}</div>
+                                <div>{"Chickens of chicken barn:  "}</div>
                                 <div>{barn?.chickens?.map(value => value.race).join(" and ")}</div>
                             </StyledG>
                             <StyledG>
-                                <div>{"Silos of Chicken Barn:  "}</div>
+                                <div>{"Silos of chicken barn:  "}</div>
                                 <div>{barn?.silos?.map(value => value.numberOfSilo).join(" and ")}</div>
                             </StyledG>
                     </StyledInfo>

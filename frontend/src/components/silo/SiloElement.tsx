@@ -16,11 +16,11 @@ export default function SiloElement(props : barnsElementProps) {
 
                 <StyledDiv>
                     <StyledH>
-                        <div>{"Number of Silo"}</div>
+                        <div>{"Number of silo"}</div>
                         <div>{props.silo?.numberOfSilo}</div>
                     </StyledH>
                     <StyledH>
-                        <div>{"Amount of Feed"}</div>
+                        <div>{"Amount of feed"}</div>
                         <div>{props.silo?.amountOfFeed}</div>
                     </StyledH>
                 </StyledDiv>

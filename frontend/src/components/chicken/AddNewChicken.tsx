@@ -67,13 +67,13 @@ export default function AddNewChicken(props : addChickenProps) {
             <StyledFormAdd onSubmit={onFarmSubmit}>
 
                 <LabelInput>
-                    <label>race of chicken</label>
+                    <label>Race of chicken</label>
                     <StyledInput value={race} type={"string"} onChange={onRaceChange}
                                  placeholder={"race of chicken"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>weight in first day in gram</label>
+                    <label>Weight in first day in gram</label>
                     <StyledInput value={weightInFirstDay} type={"number"} onChange={onWeightInFirstDayChange}
                                  placeholder={"weight in first day"}/>
                 </LabelInput>
@@ -85,24 +85,24 @@ export default function AddNewChicken(props : addChickenProps) {
                 </LabelInput>
 
                 <LabelInput>
-                    <label>expected slaughter age in gram</label>
+                    <label>Expected slaughter age in gram</label>
                     <StyledInput value={expectedSlaughterAge} type={"number"} onChange={onExpectedSlaughterAgeChange}
                                  placeholder={"expected slaughter age"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>feed conversion</label>
+                    <label>Feed conversion</label>
                     <StyledInput value={feedConversion} type={"string"} onChange={onFeedConversion}
                                  placeholder={"feed conversion"}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>hatch day</label>
+                    <label>Hatch day</label>
                     <StyledInput value={hatchDay} type={"date"} onChange={onHatchDayChange}/>
                 </LabelInput>
 
                 <LabelInput>
-                    <label>hatchery</label>
+                    <label>Hatchery</label>
                     <StyledInput value={hatchery} type={"string"} onChange={onHatcheryChange}
                                  placeholder={"hatchery"}/>
                 </LabelInput>
