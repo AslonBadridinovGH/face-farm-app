@@ -64,6 +64,8 @@ function App() {
 
     const [farms, setFarm] = useState<Farm[]>([])
 
+    const [user, setUser] = useState("")
+
 
     useEffect(() => {
         axios.get("/api/farm").then(response => setFarm(response.data))
@@ -247,12 +249,36 @@ function App() {
             })
     }
 
+    const login = () =>{
+        const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080' : window.location.origin
+        window.open(host + '/oauth2/authorization/github', '_self')
+
+    }
+
+    const logout = () => {
+        axios.post("/api/logout").then(()=>loadUser())
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
+
+    function loadUser () {
+        axios.get("/api/users/me")
+            .then((response) => {
+                console.log(response)
+                setUser(response.data)
+            })
+    }
 
     return (
       <div className={"navRoot"}>
-         <Navbar/>
+         <Navbar  log={login} userSet={user} userLoad={loadUser} outLog={logout}/>
          <Routes>
+
               <Route index element={<Home/>}/>
+
               <Route path={"/*"} element={<NoPage/>}/>
 
               <Route path={"/farm"}  element={<AsideMain/>}>
