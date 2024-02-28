@@ -45,6 +45,7 @@ import ConsumePieChart from "./chart/ConsumePieChart.tsx";
 import {FarmDto} from "../types/FarmDto.tsx";
 import AddFarmInfo from "./farm/AddFarmInfo.tsx";
 import ViewFarm from "./farm/ViewFarm.tsx";
+import NoPage from "./NoPage.tsx";
 
 
 
@@ -252,6 +253,7 @@ function App() {
          <Navbar/>
          <Routes>
               <Route index element={<Home/>}/>
+              <Route path={"/*"} element={<NoPage/>}/>
 
               <Route path={"/farm"}  element={<AsideMain/>}>
 
