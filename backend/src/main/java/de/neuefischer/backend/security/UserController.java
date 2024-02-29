@@ -1,5 +1,4 @@
 package de.neuefischer.backend.security;
-import de.neuefischer.backend.modul.User;
 import de.neuefischer.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
