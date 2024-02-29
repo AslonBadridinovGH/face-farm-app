@@ -21,10 +21,4 @@ public class UserController {
         return userService.getUserById(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
-
-    @PostMapping("/me")
-    public User updateFavorite(@RequestBody String bookId) {
-        return userService.updateStatus(SecurityContextHolder.getContext().getAuthentication().getName(), bookId);
-    }
-
 }
