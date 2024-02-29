@@ -12,11 +12,15 @@ export default  function Navbar(props:PropsNavBar) {
     return (
         <div>
             <StyledNav>
-                {props.userSet !== "anonymousUser" && props.userSet !== undefined ? <button onClick={props.outLog} title={"LOGOUT"}>{props.userSet}</button>:
-                    <button onClick={props.log}>Login</button>}
                 <NavLinks to={"/"}>About</NavLinks>
                 <NavLinks to={"/farm"}>Farm</NavLinks>
                 <NavLinks to={"/production"}>Production</NavLinks>
+                {props.userSet !== "anonymousUser" && props.userSet !== undefined ?
+                    <div className={"divContainer"}>
+                        <p>User: {props.userSet}</p>
+                        <button onClick={props.outLog} title={"LOGOUT"}>Logout</button>
+                    </div> :
+                    <button onClick={props.log}>Login</button>}
             </StyledNav>
 
         </div>
@@ -49,5 +53,6 @@ const NavLinks = styled(NavLink)`
     line-height: 30px;
     
 `;
+
 
 

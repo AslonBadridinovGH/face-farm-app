@@ -46,8 +46,8 @@ import {FarmDto} from "../types/FarmDto.tsx";
 import AddFarmInfo from "./farm/AddFarmInfo.tsx";
 import ViewFarm from "./farm/ViewFarm.tsx";
 import NoPage from "./NoPage.tsx";
-
-
+import ProtectedRoutes from "./ProtectedRouts.tsx";
+import Login from "./login.tsx";
 
 
 function App() {
@@ -100,7 +100,6 @@ function App() {
         axios.put(`/api/farm/${editedFarm.id}`, editedFarm)
             .then((response) => {
                     setFarm(farms.map((item) => (item.id === editedFarm.id ? response.data : item)))
-                    console.log(response.data.id);
                     navigate("/farm/farmInfo/")
                 }
             )
@@ -113,6 +112,7 @@ function App() {
                 navigate("/farm/viewFarm/")
             })
     }
+
 
     const deleteFarm = (id: string) => {
         axios.delete(`/api/farm/${id}`)
@@ -267,7 +267,6 @@ function App() {
     function loadUser () {
         axios.get("/api/users/me")
             .then((response) => {
-                console.log(response)
                 setUser(response.data)
             })
     }
@@ -276,63 +275,68 @@ function App() {
       <div className={"navRoot"}>
          <Navbar  log={login} userSet={user} userLoad={loadUser} outLog={logout}/>
          <Routes>
+              <Route path={"/login"} element={<Login log={login}/>}/>
 
               <Route index element={<Home/>}/>
 
-              <Route path={"/*"} element={<NoPage/>}/>
+              <Route element={<ProtectedRoutes user={user} />}>
 
-              <Route path={"/farm"}  element={<AsideMain/>}>
+                  <Route path={"/farm"}  element={<AsideMain/>}>
 
-                 <Route index element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>} />
+                      <Route index element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>} />
 
-                 <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
-                 <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
+                      <Route path={"farmInfo"} element={<FarmInfo farm={farms} handleFarmDelete={deleteFarm}/>}  />
+                      <Route path={"farmInfo/:id/edit"} element={<EditFarmInfo farms={farms} editeFarm={editFarmInfo}/>}/>
 
-                 <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
-                 <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
+                      <Route path={"addFarm"} element={<AddFarmInfo saveFarm = {addFarmInfo}/>}/>
+                      <Route path={"viewFarm/:id"} element={<ViewFarm handleFarmDelete={deleteFarm}/>}/>
 
-                 <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
-                 <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>
-                 <Route path={"viewBarn/:id"} element={<ViewChickenBarn handleBarnDelete={deleteBarn}/>}/>
-                 <Route path={"chickenBarn/:id/edit"} element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
+                      <Route path={"chickenBarns"} element={<ChickenBarns chickenBarns = {chickenBarns}/>}/>
+                      <Route path={"addNewBarn"} element={<AddChickenBarn saveBarn = {addChickenBarn} />}/>
+                      <Route path={"viewBarn/:id"} element={<ViewChickenBarn handleBarnDelete={deleteBarn}/>}/>
+                      <Route path={"chickenBarn/:id/edit"} element={<EditChickenBarn chickenBarns={chickenBarns} editBarn={editBarn}/>}/>
 
-                 <Route path={"chickens"} element={<Chickens chickens = {chickens}/>}/>
-                 <Route path={"addChicken"} element={<AddNewChicken saveChicken = {addChicken} />}/>
-                 <Route path={"viewChicken/:id"} element={<ViewChicken handleChickenDelete={deleteChicken}/>}/>
-                 <Route path={"chicken/:id/edit"} element={<EditChicken chickens={chickens} editChicken={editChicken}/>}/>
+                      <Route path={"chickens"} element={<Chickens chickens = {chickens}/>}/>
+                      <Route path={"addChicken"} element={<AddNewChicken saveChicken = {addChicken} />}/>
+                      <Route path={"viewChicken/:id"} element={<ViewChicken handleChickenDelete={deleteChicken}/>}/>
+                      <Route path={"chicken/:id/edit"} element={<EditChicken chickens={chickens} editChicken={editChicken}/>}/>
 
-                 <Route path={"feeds"} element={<Feeds feeds = {feeds}/>}/>
-                 <Route path={"addFeed"} element={<AddNewFeed saveFeed = {addFeed} />}/>
-                 <Route path={"viewFeed/:id"} element={<ViewFeed handleFeedDelete={deleteFeed}/>}/>
-                 <Route path={"feed/:id/edit"} element={<EditFeed feeds={feeds} editFeed={editFeed}/>}/>
+                      <Route path={"feeds"} element={<Feeds feeds = {feeds}/>}/>
+                      <Route path={"addFeed"} element={<AddNewFeed saveFeed = {addFeed} />}/>
+                      <Route path={"viewFeed/:id"} element={<ViewFeed handleFeedDelete={deleteFeed}/>}/>
+                      <Route path={"feed/:id/edit"} element={<EditFeed feeds={feeds} editFeed={editFeed}/>}/>
 
-                 <Route path={"silos"} element={<Silos silos={silos}/>}  />
-                 <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
-                 <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
-                 <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+                      <Route path={"silos"} element={<Silos silos={silos}/>}  />
+                      <Route path={"addSilo"} element={<AddNewSilo saveSilo = {addSilo}/>}/>
+                      <Route path={"viewSilo/:id"} element={<ViewSilo handleSiloDelete={deleteSilo}/>}/>
+                      <Route path={"silo/:id/edit"} element={<EditSilo silos={silos} editSilo={editSilo}/>}/>
+
+                  </Route>
+
+                  <Route path={"/production"} element={<Production/>}>
+
+                      <Route index element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>} />
+
+                      <Route path={"consume"} element={<Consume/>}>
+
+                          <Route index element={<ConsumeTable/>}/>
+                          <Route path={"consumeBarChart"} element={<ConsumeBarChart/>}/>
+                          <Route path={"consumeLineChart"} element={<ConsumeLineChart/>}/>
+                          <Route path={"consumePieChart"} element={<ConsumePieChart/>}/>
+                          <Route path={"consumeTable"} element={<ConsumeTable/>}/>
+
+                      </Route>
+
+                      <Route path={"fattenings"} element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>}/>
+                      <Route path={"addFattening"} element={<AddFatteningPeriod savePeriod={addFatPeriod}/>}/>
+                      <Route path={"viewFattening/:id"} element={<ViewFatteningPeriod handleFatPeriodDelete={deleteFatPeriod}/>}/>
+                      <Route path={"fattening/:id/edit"} element={<EditFatteningPeriod  fatteningPeriods={fatteningsPeriods} editFatPeriod={editFatPeriod}/>}/>
+
+                  </Route>
 
              </Route>
 
-              <Route path={"/production"} element={<Production/>}>
-
-                   <Route index element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>} />
-
-                   <Route path={"consume"} element={<Consume/>}>
-
-                       <Route index element={<ConsumeTable/>}/>
-                       <Route path={"consumeBarChart"} element={<ConsumeBarChart/>}/>
-                       <Route path={"consumeLineChart"} element={<ConsumeLineChart/>}/>
-                       <Route path={"consumePieChart"} element={<ConsumePieChart/>}/>
-                       <Route path={"consumeTable"} element={<ConsumeTable/>}/>
-
-                   </Route>
-
-                  <Route path={"fattenings"} element={<FatteningPeriod fatteningsPeriods = {fatteningsPeriods}/>}/>
-                  <Route path={"addFattening"} element={<AddFatteningPeriod savePeriod={addFatPeriod}/>}/>
-                  <Route path={"viewFattening/:id"} element={<ViewFatteningPeriod handleFatPeriodDelete={deleteFatPeriod}/>}/>
-                  <Route path={"fattening/:id/edit"} element={<EditFatteningPeriod  fatteningPeriods={fatteningsPeriods} editFatPeriod={editFatPeriod}/>}/>
-
-              </Route>
+              <Route path={"/*"} element={<NoPage/>}/>
 
          </Routes>
       </div>
