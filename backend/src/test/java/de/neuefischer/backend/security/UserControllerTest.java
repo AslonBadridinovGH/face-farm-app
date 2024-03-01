@@ -20,6 +20,7 @@ class UserControllerTest {
     @Autowired
     private UserRepo userRepo;
 
+
     @Test
     void getCurrentUserTest_whenUserWithoutLogin() throws Exception {
         mockMvc.perform(get("/api/users/me"))
@@ -29,15 +30,13 @@ class UserControllerTest {
 
     @Test
     void getCurrentUserTest_whenUserLogin() throws Exception {
-        userRepo.save(new User("user", "Name"));
+        userRepo.save(new User("user", "name"));
         mockMvc.perform(get("/api/users/me")
                         .with(oidcLogin()
                                 .userInfoToken(token ->
-                                        token.claim("id", "user").claim("login", "Name"))))
+                                        token.claim("id", "user").claim("login", "name"))))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Name"));
+                .andExpect(content().string("name"));
     }
-
-
 
 }
