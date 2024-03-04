@@ -27,10 +27,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .authorizeHttpRequests(a -> a
-                       /* .requestMatchers(HttpMethod.POST, "/api/chickenBarns").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/chickens").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/chickenBarns/edit").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/chickens/:id").authenticated()*/
+//                        .requestMatchers(HttpMethod.POST, "/api/chickenBarns").authenticated()
+//                        .requestMatchers(HttpMethod.POST, "/api/chickens").authenticated()
+//                        .requestMatchers(HttpMethod.PUT, "/api/chickenBarns/edit").authenticated()
+//                        .requestMatchers(HttpMethod.PUT, "/api/chickens/:id").authenticated()
                         .anyRequest().permitAll()
                 )
                 .exceptionHandling(e -> e
