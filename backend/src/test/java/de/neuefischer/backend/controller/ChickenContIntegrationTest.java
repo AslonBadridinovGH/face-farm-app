@@ -114,6 +114,7 @@ public class ChickenContIntegrationTest {
                   "feedConversion": "1.6",
                   "hatchery": "kwh",
                   "hatchDay": "2024-02-12"
+
              }
 """))
                 .andExpect(status().isOk())
@@ -128,6 +129,8 @@ public class ChickenContIntegrationTest {
                   "hatchery": "kwh",
                   "hatchDay": "2024-02-12"
              }
+
+                     
 """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
 
