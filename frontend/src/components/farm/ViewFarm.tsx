@@ -31,23 +31,23 @@ function ViewFarm (props : ViewFarmProps) {
                     <StyledInfo>
 
                         <StyledG>
-                            <div>{"Name of Farm:  "}</div>
+                            <div>{"Name of the Farm:  "}</div>
                             <div>{farm?.name}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Activity of Farm:  "}</div>
+                            <div>{"Activity of the Farm:  "}</div>
                             <div>{farm?.activity}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Address of Farm:  "}</div>
+                            <div>{"Address of the Farm:  "}</div>
                             <div>{farm?.address}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Area of Farm:  "}</div>
+                            <div>{"Area of the Farm:  "}</div>
                             <div>{farm?.area}</div>
                         </StyledG>
                         <StyledG>
-                            <div>{"Construction year of Farm:  "}</div>
+                            <div>{"Construction year of the Farm:  "}</div>
                             <div>{farm?.constructionYear}</div>
                         </StyledG>
 

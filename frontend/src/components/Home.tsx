@@ -9,8 +9,8 @@ export default function Home() {
             <StyledP>
                   Diese App wurde für den Bauernhof entwickelt, auf dem Masthähnchen gehalten wird.
                 Mit Hilfe dieses Programms können Sie mit allen Informationen über den Bauernhof und seine Küken arbeiten.
-                Das heißt, es ist möglich, neue Daten einzugeben, anzuzeigen und zu bearbeiten. Anhand des Diagramms lassen
-                sich die jährlichen Wirtschaftskennzahlen des Betriebs ablesen.
+                Das heißt, es ist möglich, neue Daten einzugeben, anzuzeigen und zu bearbeiten. Mithilfe von Diagrammen
+                und Tabellen lässt sich der tägliche Wasser- und Futterverbrauch der Küken erkennen.
             </StyledP>
 
         </StyledDiv>
