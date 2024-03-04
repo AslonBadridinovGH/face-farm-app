@@ -9,4 +9,5 @@ public record ChickenDto(
         String feedConversion,
         String hatchery,
         String hatchDay
+
 ) {}
