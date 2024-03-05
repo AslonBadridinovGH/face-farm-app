@@ -1,4 +1,5 @@
 package de.neuefischer.backend.security;
+import de.neuefischer.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,6 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .authorizeHttpRequests(a -> a
                           .requestMatchers(HttpMethod.POST, "/api/farm").authenticated()
-//                        .requestMatchers(HttpMethod.POST, "/api/chickens").authenticated()
-//                        .requestMatchers(HttpMethod.PUT, "/api/chickenBarns/edit").authenticated()
-//                        .requestMatchers(HttpMethod.PUT, "/api/chickens/:id").authenticated()
                         .anyRequest().permitAll()
                 )
                 .exceptionHandling(e -> e
