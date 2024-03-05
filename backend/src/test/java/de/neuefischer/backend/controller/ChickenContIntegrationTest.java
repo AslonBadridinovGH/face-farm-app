@@ -1,4 +1,4 @@
-/*
+
 package de.neuefischer.backend.controller;
 
 import de.neuefischer.backend.modul.Chicken;
@@ -242,4 +242,3 @@ public class ChickenContIntegrationTest {
 }
 
 
-*/

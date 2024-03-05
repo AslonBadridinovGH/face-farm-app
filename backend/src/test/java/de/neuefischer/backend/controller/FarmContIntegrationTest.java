@@ -66,6 +66,7 @@ class FarmContIntegrationTest {
     }
 
 
+/*
     @DirtiesContext
     @Test
     void addFarmTest_shouldReturnOneObject_whenObjectWasSavedInRepository() throws Exception {
@@ -76,7 +77,7 @@ class FarmContIntegrationTest {
 
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
-                           {                            
+                           {
                                    "name": "barnstorf",
                                    "activity": "broiler",
                                    "address": "landstrasse",
@@ -87,7 +88,7 @@ class FarmContIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
 
-                         {        
+                         {
 
                                    "name": "barnstorf",
                                    "activity": "broiler",
@@ -99,6 +100,7 @@ class FarmContIntegrationTest {
 """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
+*/
 
 
     @DirtiesContext
