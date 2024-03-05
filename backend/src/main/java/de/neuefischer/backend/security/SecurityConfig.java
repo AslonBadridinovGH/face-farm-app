@@ -27,11 +27,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a.anyRequest().permitAll())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .httpBasic(c -> {
+/*                .httpBasic(c -> {
                     c.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(),
                             HttpStatus.UNAUTHORIZED.getReasonPhrase()));
                     c.init(http);
-                })
+                })*/
                 .logout(l -> l
                         .logoutUrl("/api/logout")
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
