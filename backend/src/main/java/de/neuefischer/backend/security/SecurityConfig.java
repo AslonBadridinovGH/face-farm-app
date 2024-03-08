@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${app.env}")
+    @Value("${app.environment}")
     private String environment;
 
 
@@ -27,14 +27,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a.anyRequest().permitAll())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-/*                .httpBasic(c -> {
-                    c.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpStatus.UNAUTHORIZED.value(),
-                            HttpStatus.UNAUTHORIZED.getReasonPhrase()));
-                    c.init(http);
-                })*/
-                .logout(l -> l
-                        .logoutUrl("/api/logout")
-                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
+
                 .oauth2Login(o -> {
                     try {
                         o.init(http);
@@ -48,6 +41,10 @@ public class SecurityConfig {
                         throw new OAuth2AuthenticationException(e.getMessage());
                     }
                 })
+                .logout(l -> l
+                        .logoutUrl("/api/logout")
+                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
+
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
 
