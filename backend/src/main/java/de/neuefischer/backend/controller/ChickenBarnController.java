@@ -31,6 +31,7 @@ public class ChickenBarnController {
         return chickenBarnService.addChickenBarn(chickenBarnDto);
     }
 
+
     @PutMapping("/{id}")
     public ChickenBarn updateChickenBarn(@PathVariable String id, @RequestBody ChickenBarnDto chickenBarnDto){
         return chickenBarnService.updateChickenBarn(id, chickenBarnDto);
