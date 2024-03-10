@@ -140,7 +140,7 @@ public class FatPeriodContIntegrationTest {
                             {                         
                                    "chickens" : [],
                                    "startDate" : "2024-02-20",
-                                   "currentFeedingPhase" : "starter",
+                                   "currentFeedingPhase" : "Aufzucht",
                                    "lostToDay" : 12,
                                    "totalLost" : 12,
                                    "dateOfSlaughter" : "2020-12-13"
@@ -185,7 +185,7 @@ public class FatPeriodContIntegrationTest {
                        {                        
                                    "chickens" : [],
                                    "startDate" : "2024-02-20",
-                                   "currentFeedingPhase" : "starter",
+                                   "currentFeedingPhase" : "Aufzucht",
                                    "lostToDay" : 12,
                                    "totalLost" : 24,
                                    "dateOfSlaughter" : "2024-02-20"
