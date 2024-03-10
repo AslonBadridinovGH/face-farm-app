@@ -94,7 +94,7 @@ public class FatteningPeriodServiceTest {
                 "test-id", new ArrayList<>(List.of(chicken)),
                 startDate,
                 LocalDate.now(),
-                old,"starter", 12,
+                old,"Aufzucht", 12,
                 12, slaughterDay );
 
          FatteningPeriodDto fatteningPeriodDto = new FatteningPeriodDto(
@@ -135,7 +135,7 @@ public class FatteningPeriodServiceTest {
         FatteningPeriod fatPeriod = new FatteningPeriod(
                 "test-id", new ArrayList<>(),
                  startDate,
-                 LocalDate.now(), old,"starter", 12,
+                 LocalDate.now(), old,"Aufzucht", 12,
                  24, LocalDate.of(2024,2,22));
 
 
@@ -147,7 +147,7 @@ public class FatteningPeriodServiceTest {
                 "test-id", new ArrayList<>(List.of(chicken)),
                 editedStartDate,
                 LocalDate.now(),
-                oldEdited,"starter", 12,
+                oldEdited,"Aufzucht", 12,
                 36, LocalDate.of(2024, 12, 21) );
 
         FatteningPeriodDto fatPeriodDto = new FatteningPeriodDto(
