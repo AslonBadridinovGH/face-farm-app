@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .oauth2Login(o -> {
                     try {
                         o.init(http);
-                        if (environment.equals("dev")) {
+                        if (environment.equals("production")) {
                             o.defaultSuccessUrl("/", true);
                         } else {
                             o.defaultSuccessUrl("http://localhost:5173", true);
