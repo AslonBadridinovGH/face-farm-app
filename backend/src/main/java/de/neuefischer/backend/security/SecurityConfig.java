@@ -31,10 +31,10 @@ public class SecurityConfig {
                 .oauth2Login(o -> {
                     try {
                         o.init(http);
-                        if (environment.equals("production")) {
-                            o.defaultSuccessUrl("/", true);
-                        } else {
+                        if (environment.equals("dev")) {
                             o.defaultSuccessUrl("http://localhost:5173", true);
+                        } else {
+                            o.defaultSuccessUrl("https://face-farm-app.onrender.com", true);
                         }
 
                     } catch (Exception e) {
