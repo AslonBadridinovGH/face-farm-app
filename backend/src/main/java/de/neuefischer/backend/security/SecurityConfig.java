@@ -32,7 +32,7 @@ public class SecurityConfig {
                     try {
                         o.init(http);
                         if (environment.equals("production")) {
-                            o.defaultSuccessUrl("http://localhost:5173", true);
+                            o.defaultSuccessUrl("https://face-farm-app.onrender.com/", true);
                         } else {
                             o.defaultSuccessUrl("https://face-farm-app.onrender.com/", true);
                         }
